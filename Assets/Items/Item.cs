@@ -24,3 +24,10 @@ public class ItemStack
         this.currentStack = currentStack;
     }
 }
+
+[Serializable]
+public class ItemLootable
+{
+    public ItemStack item;
+    public float percentageDrop;
+}

@@ -15,20 +15,19 @@ public class Forge : MonoBehaviour, IInteract
     [SerializeField] private GameObject _craftPrefab;
     private PlayerInventory _playerInventory;
 
-    private void Awake()
+    private void Start()
     {
         _playerInventory = PlayerInventory.instance;
     }
 
-
-    public void Interact(ref float coolDown)
+    public void Interact(ref float cooldown)
     {
         if (!forgeCanvas.CheckOpened())
         {
             forgeCanvas.Show();
         }
         CraftDisplayer();
-        coolDown = 0;
+        cooldown = 0;
     }
 
     public IEnumerator Cook(Craft currentCraft)
