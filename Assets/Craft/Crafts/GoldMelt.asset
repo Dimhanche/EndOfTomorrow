@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a33738d9a5a476a499db14bd33f94fd0, type: 3}
+  m_Name: GoldMelt
+  m_EditorClassIdentifier: 
+  craftName: Gold Melt
+  craftTime: 3
+  isLocked: 0
+  lockedIcon: {fileID: 21300000, guid: 55747841a2e3b47dab36dc8d5e0dc4df, type: 3}
+  craftIcon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  itemInputs:
+  - item: {fileID: 11400000, guid: 11b835b2c32750c4da84fe46cc9d294f, type: 2}
+    currentStack: 1
+  itemOutputs:
+  - item: {fileID: 11400000, guid: 7669ba3f987b9954194d852ba0beeaf5, type: 2}
+    currentStack: 1

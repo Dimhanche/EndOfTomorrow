@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a33738d9a5a476a499db14bd33f94fd0, type: 3}
+  m_Name: IronMelt
+  m_EditorClassIdentifier: 
+  craftName: IronMelt
+  craftTime: 3
+  isLocked: 1
+  lockedIcon: {fileID: 21300000, guid: 55747841a2e3b47dab36dc8d5e0dc4df, type: 3}
+  craftIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  itemInputs:
+  - item: {fileID: 11400000, guid: 446c591639bb20a4e963acc364219604, type: 2}
+    currentStack: 1
+  itemOutputs:
+  - item: {fileID: 11400000, guid: 9c94bea63c6cf274094642d18b82dc27, type: 2}
+    currentStack: 1
