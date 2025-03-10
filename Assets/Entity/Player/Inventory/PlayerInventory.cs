@@ -42,6 +42,7 @@ public class PlayerInventory : MonoBehaviour
             }
         }
 
+        DisplayInvenotry();
     }
 
     public void RemoveItem(ItemStack item)
@@ -58,6 +59,7 @@ public class PlayerInventory : MonoBehaviour
                 return;
             }
         }
+        DisplayInvenotry();
     }
 
     public void OpenInventory(InputAction.CallbackContext ctx)

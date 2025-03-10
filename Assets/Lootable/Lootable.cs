@@ -5,11 +5,11 @@ public class Lootable : MonoBehaviour,IInteract
 {
     public ItemStack[] guaranteedLootItems;
     public ItemLootable[] possibleLootItems;
-    private bool isOpened;
+    [SerializeField]private bool _isOpened;
 
     public void Interact(ref float cooldown)
     {
-        if (!isOpened)
+        if (!_isOpened)
         {
             cooldown = 0.25f;
             Loot();
@@ -33,5 +33,6 @@ public class Lootable : MonoBehaviour,IInteract
         }
         ItemStack[] tempItem = tempItemList.ToArray();
         IInteract.AddInInventory(tempItem);
+        _isOpened = true;
     }
 }

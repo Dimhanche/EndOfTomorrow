@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Stat", menuName = "Entity/Stats", order = 1)]
-public class SOStats : ScriptableObject
+[Serializable]
+public class SOStats
 {
     public float health;
     public float healthRegen;
@@ -13,4 +13,5 @@ public class SOStats : ScriptableObject
     public float luck;
     public float attackRange;
     public float jumpForce;
+    public float oratory;
 }
