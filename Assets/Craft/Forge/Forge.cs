@@ -66,13 +66,13 @@ public class Forge : MonoBehaviour, IInteract
         {
             GameObject craftVisualizer = Instantiate(_craftPrefab, _craftParent);
             crafts[i].isLocked = !_playerInventory.CanCraft(crafts[i]);
-            craftVisualizer.GetComponent<CraftVisualizer>().SetCraft(crafts[i]);
+            craftVisualizer.GetComponent<ItemVisualizerButton>().SetItem(crafts[i]);
             int index = i;
-            craftVisualizer.GetComponent<CraftVisualizer>().craftButton.onClick.AddListener(() =>
+            craftVisualizer.GetComponent<ItemVisualizerButton>().itemButton.onClick.AddListener(() =>
             {
                 StartCoroutine(Cook(crafts[index]));
                 crafts[index].isLocked = !_playerInventory.CanCraft(crafts[index]);
-                craftVisualizer.GetComponent<CraftVisualizer>().CheckCraft(crafts[index]);
+                craftVisualizer.GetComponent<ItemVisualizerButton>().CheckItem(crafts[index]);
             });
 
         }

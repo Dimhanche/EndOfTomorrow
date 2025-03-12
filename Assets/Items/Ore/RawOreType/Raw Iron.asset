@@ -12,14 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b05bcaee033e3744d9e06e513935672d, type: 3}
   m_Name: Raw Iron
   m_EditorClassIdentifier: 
-  itemID: 0
   itemName: Raw Iron
   itemDescription: 
   itemSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  itemValue: 0
-  stackable: 1
-  maxStack: 20
+  itemValue: 5
   questItem: 0
   consumable: 0
-  canBeCook: 1
-  cooldownMelt: 3

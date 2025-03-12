@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _entityInfo = GetComponent<EntityInfo>();
         _rb = GetComponent<Rigidbody>();
-        _stats = _entityInfo._soEntity.entityStats;
+        _stats = _entityInfo.entity.entityStats;
         _camera = Camera.main;
     }
 

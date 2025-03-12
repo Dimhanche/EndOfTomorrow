@@ -29,6 +29,7 @@ public class PlayerInventory : MonoBehaviour
             if (items[j].item == item.item)
             {
                 items[j].currentStack += item.currentStack;
+                DisplayInventory();
                 return;
             }
         }
@@ -38,11 +39,11 @@ public class PlayerInventory : MonoBehaviour
             if (!items[i].item)
             {
                 items[i] = item;
+                DisplayInventory();
                 return;
             }
         }
 
-        DisplayInvenotry();
     }
 
     public void RemoveItem(ItemStack item)
@@ -56,10 +57,22 @@ public class PlayerInventory : MonoBehaviour
                 {
                     items[i].item = null;
                 }
+                DisplayInventory();
                 return;
             }
         }
-        DisplayInvenotry();
+    }
+
+    public int GetItemCount(ItemStack item)
+    {
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i].item == item.item)
+            {
+                return items[i].currentStack;
+            }
+        }
+        return 0;
     }
 
     public void OpenInventory(InputAction.CallbackContext ctx)
@@ -67,11 +80,11 @@ public class PlayerInventory : MonoBehaviour
         if (ctx.performed)
         {
             _inventoryCanvas.Toggle();
-            DisplayInvenotry();
+            DisplayInventory();
         }
     }
 
-    private void DisplayInvenotry()
+    private void DisplayInventory()
     {
         DestroyAllItemVisualizer();
         for (int i = 0; i < items.Length; i++)
@@ -82,6 +95,7 @@ public class PlayerInventory : MonoBehaviour
                 itemVisualizer.GetComponent<ItemVisualizer>().SetItem(items[i]);
             }
         }
+        Debug.Log("WasDisplayed");
     }
 
     private void DestroyAllItemVisualizer()

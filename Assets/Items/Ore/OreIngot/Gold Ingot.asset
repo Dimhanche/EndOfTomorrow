@@ -15,6 +15,6 @@ MonoBehaviour:
   itemName: Gold Ingot
   itemDescription: 
   itemSprite: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
-  itemValue: 0
+  itemValue: 20
   questItem: 0
   consumable: 0

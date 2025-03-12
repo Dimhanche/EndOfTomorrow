@@ -7,9 +7,8 @@ using UnityEngine.UI;
 
 public class EntityInfo : MonoBehaviour
 {
-    public SOEntity _soEntity;
+    public Entity entity;
     public bool isPlayer;
     public bool isPaused;
     public bool isDead;
-
 }
