@@ -35,7 +35,6 @@ public class PlayerInventory : MonoBehaviour
         }
         for (int i = 0; i < items.Length; i++)
         {
-            Debug.Log($"{item} is added to Inventory with {item.currentStack} stack");
             if (!items[i].item)
             {
                 items[i] = item;
@@ -95,7 +94,6 @@ public class PlayerInventory : MonoBehaviour
                 itemVisualizer.GetComponent<ItemVisualizer>().SetItem(items[i]);
             }
         }
-        Debug.Log("WasDisplayed");
     }
 
     private void DestroyAllItemVisualizer()

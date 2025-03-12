@@ -26,13 +26,11 @@ public class Ore :  MonoBehaviour,IInteract
     public void AddInInventory(ItemStack[] soItemToAdd)
     {
         IInteract.AddInInventory(soItemToAdd);
-        Debug.Log($"Adding to inventory with custom logic for Ore.");
     }
 
     private void DropOre()
     {
         int oreAmount = UnityEngine.Random.Range(1, _oreMaxAmountDroppable + 1);
         AddInInventory(new [] { new ItemStack(_itemsToDrop.item, oreAmount) });
-        Debug.Log($"you dropped {oreAmount} of {oreType}");
     }
 }

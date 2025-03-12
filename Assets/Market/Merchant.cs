@@ -25,7 +25,6 @@ public class Merchant : MonoBehaviour, IInteract
 
     public void Interact(ref float cooldown)
     {
-        Debug.Log("Interacting with merchant");
         if (!merchantCanvas.CheckOpened())
         {
             merchantCanvas.Show();

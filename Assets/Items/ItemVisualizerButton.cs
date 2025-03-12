@@ -28,7 +28,6 @@ public class ItemVisualizerButton : MonoBehaviour
     {
         itemName.text = item.item.itemName;
         itemButton.image.sprite = item.item.itemSprite;
-        Debug.Log(playerInventory.GetItemCount(item));
         lockImage.gameObject.SetActive(currentMoney < item.item.itemValue || playerInventory.GetItemCount(item)<=0);
     }
 
