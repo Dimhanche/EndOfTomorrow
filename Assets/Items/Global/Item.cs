@@ -1,15 +1,25 @@
 using System;
 using UnityEngine;
 
+public enum EItemLabel{
+    Equipment,
+    Consumable,
+    QuestItem,
+    Other
+}
+
+
 [Serializable]
 public class Item : ScriptableObject
 {
+    [Header("Item Stats")]
     public string itemName;
     public string itemDescription;
     public Sprite itemSprite;
     public int itemValue;
     public bool questItem;
     public bool consumable;
+    public EItemLabel itemLabel = EItemLabel.Other;
 }
 
 [Serializable]

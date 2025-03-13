@@ -1,6 +1,13 @@
 using System;
 using UnityEditor;
 using UnityEngine;
+public enum OreType
+{
+    Copper,
+    Iron,
+    Gold,
+    Diamond
+}
 
 public class Ore :  MonoBehaviour,IInteract
 {

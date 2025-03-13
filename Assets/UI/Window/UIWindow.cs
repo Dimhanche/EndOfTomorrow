@@ -5,12 +5,12 @@ using static WindowManager;
 public class UIWindow : MonoBehaviour
 {
     private Canvas _canvas;
-    private PlayerMovement _playerMovement;
+    private EntityInfo _playerEntity;
 
     private void Start()
     {
         _canvas = GetComponent<Canvas>();
-        _playerMovement = PlayerInventory.instance.GetComponent<PlayerMovement>();
+        _playerEntity = PlayerInventory.instance.GetComponent<EntityInfo>();
         Close(false);
     }
 
@@ -18,7 +18,7 @@ public class UIWindow : MonoBehaviour
     {
         _canvas.enabled =true;
         if(closeWindow)
-            _playerMovement.canMove = OpenWindow();
+            _playerEntity.canMove = OpenWindow();
     }
 
     public bool CheckOpened()
@@ -31,7 +31,7 @@ public class UIWindow : MonoBehaviour
         _canvas.enabled = false;
 
         if(closeWindow)
-            _playerMovement.canMove = CloseWindow();
+            _playerEntity.canMove = CloseWindow();
     }
 
     public void Toggle()

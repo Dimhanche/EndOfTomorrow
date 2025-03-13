@@ -18,3 +18,4 @@ MonoBehaviour:
   itemValue: 5
   questItem: 0
   consumable: 0
+  itemLabel: 3

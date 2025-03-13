@@ -14,6 +14,11 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private GameObject _itemVisualizerPrefab;
 
 
+    //InventorySection
+    [SerializeField] private Button[] _inventorySections;
+    private int currentIndex = -1;
+
+
     private void Awake()
     {
         if (instance == null)
@@ -29,7 +34,7 @@ public class PlayerInventory : MonoBehaviour
             if (items[j].item == item.item)
             {
                 items[j].currentStack += item.currentStack;
-                DisplayInventory();
+                DisplayInventory(currentIndex);
                 return;
             }
         }
@@ -38,7 +43,7 @@ public class PlayerInventory : MonoBehaviour
             if (!items[i].item)
             {
                 items[i] = item;
-                DisplayInventory();
+                DisplayInventory(currentIndex);
                 return;
             }
         }
@@ -56,7 +61,7 @@ public class PlayerInventory : MonoBehaviour
                 {
                     items[i].item = null;
                 }
-                DisplayInventory();
+                DisplayInventory(currentIndex);
                 return;
             }
         }
@@ -74,33 +79,71 @@ public class PlayerInventory : MonoBehaviour
         return 0;
     }
 
-    public void OpenInventory(InputAction.CallbackContext ctx)
+    public void PlayerOpenInventoryInput(InputAction.CallbackContext ctx)
     {
         if (ctx.performed)
         {
             _inventoryCanvas.Toggle();
-            DisplayInventory();
+            _inventorySections[0].Select();
+            DisplayInventory(currentIndex = -1);
         }
     }
 
-    private void DisplayInventory()
+    private void DisplayInventory(int index)
     {
         DestroyAllItemVisualizer();
+        switch(index)
+        {
+            case 0:
+                DisplayItemByLabel(EItemLabel.Equipment);
+                break;
+            case 1:
+                DisplayItemByLabel(EItemLabel.Consumable);
+                break;
+            case 2:
+                DisplayItemByLabel(EItemLabel.QuestItem);
+                break;
+            case 3:
+                DisplayItemByLabel(EItemLabel.Other);
+                break;
+            default:
+                DisplayAllItemVisualizer();
+                break;
+        }
+    }
+
+    private void DisplayAllItemVisualizer()
+    {
         for (int i = 0; i < items.Length; i++)
         {
-            if (items[i].item != null)
+            if (items[i].item)
             {
                 GameObject itemVisualizer = Instantiate(_itemVisualizerPrefab, GetComponentInChildren<GridLayoutGroup>().transform);
-                itemVisualizer.GetComponent<ItemVisualizer>().SetItem(items[i]);
+                itemVisualizer.GetComponent<ItemVisualizerButton>().SetItem(items[i]);
+            }
+        }
+    }
+
+    private void DisplayItemByLabel(EItemLabel itemLabel)
+    {
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i].item && items[i].item.itemLabel == itemLabel)
+            {
+                GameObject itemVisualizer = Instantiate(_itemVisualizerPrefab, GetComponentsInChildren<GridLayoutGroup>()[currentIndex+1].transform);
+                itemVisualizer.GetComponent<ItemVisualizerButton>().SetItem(items[i]);
             }
         }
     }
 
     private void DestroyAllItemVisualizer()
     {
-        foreach (Transform child in GetComponentInChildren<GridLayoutGroup>().transform)
+        foreach (GridLayoutGroup childGridLayoutGroup in GetComponentsInChildren<GridLayoutGroup>())
         {
-            Destroy(child.gameObject);
+            foreach (Transform child in childGridLayoutGroup.transform)
+            {
+                Destroy(child.gameObject);
+            }
         }
     }
 
@@ -125,5 +168,11 @@ public class PlayerInventory : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void SetIndexSection(int index)
+    {
+        currentIndex = index;
+        DisplayInventory(currentIndex);
     }
 }

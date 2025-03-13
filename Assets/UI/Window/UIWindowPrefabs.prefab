@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 8769078880604700570}
   - component: {fileID: 6873300086111656518}
   m_Layer: 0
-  m_Name: UI
+  m_Name: UIWindowPrefabs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

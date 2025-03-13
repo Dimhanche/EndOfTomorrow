@@ -14,4 +14,5 @@ public class SOStats
     public float attackRange;
     public float jumpForce;
     public float oratory;
+
 }

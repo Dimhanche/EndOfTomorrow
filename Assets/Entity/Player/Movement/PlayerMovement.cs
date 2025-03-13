@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private bool _isGrounded;
     [SerializeField] private Transform _orientation;
     private Vector3 _moveDirection;
-    public bool canMove;
+    private bool _canMove => _entityInfo.canMove;
 
     #endregion
 
@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         CheckGrounded();
-        if (canMove && !_entityInfo.isPaused)
+        if (_canMove && !_entityInfo.isPaused)
         {
             Movement();
             RotateCamera();
@@ -67,14 +67,14 @@ public class PlayerMovement : MonoBehaviour
     }
     public void PlayerJumpInput(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed && _isGrounded && canMove)
+        if (ctx.performed && _isGrounded && _canMove)
         {
             _rb.AddForce(Vector3.up * _stats.jumpForce, ForceMode.Impulse);
         }
     }
     public void PlayerLookInput(InputAction.CallbackContext ctx)
     {
-        if(canMove)
+        if(_canMove)
             _inputRotation = ctx.ReadValue<Vector2>();
         else
         {

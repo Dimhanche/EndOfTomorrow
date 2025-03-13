@@ -9,6 +9,7 @@ public class EntityInfo : MonoBehaviour
 {
     public Entity entity;
     public bool isPlayer;
-    public bool isPaused;
+    public bool canMove;
     public bool isDead;
+    public bool isPaused;
 }
