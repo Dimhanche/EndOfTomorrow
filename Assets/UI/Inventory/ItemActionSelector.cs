@@ -102,7 +102,7 @@ public class ItemActionSelector : MonoBehaviour
     public void DestroyItem()
     {
         Debug.Log("Destroy item");
-        PlayerInventory.Instance.RemoveItem(_item);
+        PlayerInventory.instance.RemoveItem(new ItemStack(_item));
         HideItemActions();
     }
 }
