@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public WeaponsItem currentWeapon;
+    public WeaponsItem currentWeapon => GetComponent<PlayerEquipment>().weapon;
     public float cooldownAttack;
     private bool _canMove => GetComponent<EntityInfo>().canMove;
 
@@ -24,7 +24,7 @@ public class PlayerAttack : MonoBehaviour
         {
             if(hit.collider.TryGetComponent(out EntityInfo entity))
             {
-                entity.entity.TakeDamage(CalculateDamage());
+                entity.GetComponent<LifeManager>().TakeDamage(CalculateDamage());
             }
         }
         Debug.Log("Attack");

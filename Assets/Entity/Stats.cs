@@ -2,14 +2,13 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class SOStats
+public class Stats
 {
-    public float health;
-    public float healthRegen;
-    public float armor;
+    public float life;
+    public float lifeRegen;
+    public float maxLife;
     public float speed;
     public float luck;
     public float jumpForce;
     public float oratory;
-
 }

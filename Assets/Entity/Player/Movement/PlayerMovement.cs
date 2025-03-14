@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 _inputDirection;
     private Rigidbody _rb;
     private EntityInfo _entityInfo;
-    private SOStats _stats;
+    private Stats _stats;
 
     private void Awake()
     {

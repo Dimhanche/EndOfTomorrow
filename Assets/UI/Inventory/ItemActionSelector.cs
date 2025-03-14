@@ -13,6 +13,7 @@ public class ItemActionSelector : MonoBehaviour
 
     private PlayerEquipment _playerEquipment;
     private Item _item;
+    private DescriptionItem _descriptionItem;
 
     private void Awake()
     {
@@ -21,7 +22,7 @@ public class ItemActionSelector : MonoBehaviour
         _itemActionButton[2].onClick.AddListener(DestroyItem);
         HideItemActions();
         _playerEquipment = GetComponentInParent<PlayerEquipment>();
-
+        _descriptionItem = GetComponentInParent<DescriptionItem>();
     }
 
     public void DisplayItemActions(Vector3 itemPos ,bool usable = false, bool equipable = false,bool isEquipped= false,Item item = null)
@@ -93,12 +94,15 @@ public class ItemActionSelector : MonoBehaviour
     public void DescriptionItem()
     {
         Debug.Log("Description item");
+        _descriptionItem.window.Show();
+        _descriptionItem.DisplayItemDescription(_item);
         HideItemActions();
     }
 
     public void DestroyItem()
     {
         Debug.Log("Destroy item");
+        PlayerInventory.Instance.RemoveItem(_item);
         HideItemActions();
     }
 }

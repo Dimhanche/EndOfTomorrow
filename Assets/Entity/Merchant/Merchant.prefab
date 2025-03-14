@@ -90,14 +90,11 @@ MonoBehaviour:
   entity:
     entityName: Merchant
     entityStats:
-      health: 100
-      healthRegen: 0
-      damage: 0
-      armor: 0
+      life: 0
+      lifeRegen: 0
+      maxLife: 0
       speed: 1
-      attackSpeed: 0
       luck: 0
-      attackRange: 0
       jumpForce: 1
       oratory: 1
     experienceDrop: 0
@@ -105,7 +102,7 @@ MonoBehaviour:
     nbDeath: 0
     money: 1000
   isPlayer: 0
-  canMove: 0
+  canMove: 1
   isDead: 0
   isPaused: 0
 --- !u!114 &5929804904200536384
