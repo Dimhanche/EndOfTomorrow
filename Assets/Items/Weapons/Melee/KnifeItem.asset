@@ -18,6 +18,9 @@ MonoBehaviour:
   itemValue: 10
   questItem: 0
   consumable: 0
+  usable: 0
+  equipable: 1
+  isEquipped: 0
   itemLabel: 0
   damage: 10
   attackSpeed: 2

@@ -9,16 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b05bcaee033e3744d9e06e513935672d, type: 3}
-  m_Name: Raw Gold
+  m_Script: {fileID: 11500000, guid: 8e6a335ed47fa00419a2cab5f830d2e2, type: 3}
+  m_Name: Straw Hat
   m_EditorClassIdentifier: 
-  itemName: Raw Gold
+  itemName: Straw Hat
   itemDescription: 
-  itemSprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  itemValue: 7
+  itemSprite: {fileID: 21300000, guid: 119f93d0bcbf1e743bf5fcf237507d39, type: 3}
+  itemValue: 0
   questItem: 0
   consumable: 0
   usable: 0
-  equipable: 0
-  isEquipped: 0
-  itemLabel: 3
+  equipable: 1
+  itemLabel: 0
+  defense: 0
+  armorType: 0

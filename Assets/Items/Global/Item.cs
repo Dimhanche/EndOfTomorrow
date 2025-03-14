@@ -5,7 +5,8 @@ public enum EItemLabel{
     Equipment,
     Consumable,
     QuestItem,
-    Other
+    Other,
+    None
 }
 
 
@@ -19,6 +20,9 @@ public class Item : ScriptableObject
     public int itemValue;
     public bool questItem;
     public bool consumable;
+    public bool usable ;
+    public bool equipable;
+    public bool isEquipped;
     public EItemLabel itemLabel = EItemLabel.Other;
 }
 

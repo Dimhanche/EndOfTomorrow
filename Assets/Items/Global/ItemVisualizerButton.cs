@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -10,6 +11,28 @@ public class ItemVisualizerButton : MonoBehaviour
     public Image lockImage;
     public TextMeshProUGUI nbItem;
 
+    public Item itemToDisplay;
+
+    //Selector
+    private ItemActionSelector _itemActionSelector;
+
+    
+    private void Awake()
+    {
+        itemButton.onClick.AddListener(ShowItemActions);
+        _itemActionSelector = FindObjectsByType<ItemActionSelector>(FindObjectsInactive.Include, FindObjectsSortMode.None)[0];
+    }
+
+    private void ShowItemActions()
+    {
+        _itemActionSelector.enabled = true;
+        if (itemToDisplay)
+        {
+            _itemActionSelector.DisplayItemActions(
+                this.transform.position, itemToDisplay.usable, itemToDisplay.equipable,itemToDisplay.isEquipped,itemToDisplay);
+        }
+    }
+
     public void SetItem(Craft craft)
     {
         itemName.text = craft.craftName;
@@ -21,8 +44,9 @@ public class ItemVisualizerButton : MonoBehaviour
 
     public void SetItem(ItemStack item)
     {
-        itemName.text = item.item.itemName;
-        itemButton.image.sprite = item.item.itemSprite;
+        itemToDisplay = item.item;
+        itemName.text = itemToDisplay.itemName;
+        itemButton.image.sprite = itemToDisplay.itemSprite;
         lockImage.gameObject.SetActive(false);
         nbItem.text = item.currentStack.ToString();
     }

@@ -38,6 +38,7 @@ public class PlayerInventory : MonoBehaviour
                 return;
             }
         }
+
         for (int i = 0; i < items.Length; i++)
         {
             if (!items[i].item)
@@ -47,7 +48,6 @@ public class PlayerInventory : MonoBehaviour
                 return;
             }
         }
-
     }
 
     public void RemoveItem(ItemStack item)
@@ -61,6 +61,7 @@ public class PlayerInventory : MonoBehaviour
                 {
                     items[i].item = null;
                 }
+
                 DisplayInventory(currentIndex);
                 return;
             }
@@ -76,6 +77,7 @@ public class PlayerInventory : MonoBehaviour
                 return items[i].currentStack;
             }
         }
+
         return 0;
     }
 
@@ -92,7 +94,7 @@ public class PlayerInventory : MonoBehaviour
     private void DisplayInventory(int index)
     {
         DestroyAllItemVisualizer();
-        switch(index)
+        switch (index)
         {
             case 0:
                 DisplayItemByLabel(EItemLabel.Equipment);
@@ -107,31 +109,21 @@ public class PlayerInventory : MonoBehaviour
                 DisplayItemByLabel(EItemLabel.Other);
                 break;
             default:
-                DisplayAllItemVisualizer();
+                DisplayItemByLabel(EItemLabel.None, true);
                 break;
         }
     }
 
-    private void DisplayAllItemVisualizer()
+    private void DisplayItemByLabel(EItemLabel itemLabel, bool displayAll = false)
     {
         for (int i = 0; i < items.Length; i++)
         {
-            if (items[i].item)
+            if (items[i].item && (items[i].item.itemLabel == itemLabel || displayAll))
             {
-                GameObject itemVisualizer = Instantiate(_itemVisualizerPrefab, GetComponentInChildren<GridLayoutGroup>().transform);
+                GameObject itemVisualizer = Instantiate(_itemVisualizerPrefab,
+                    GetComponentsInChildren<GridLayoutGroup>()[currentIndex + 1].transform);
                 itemVisualizer.GetComponent<ItemVisualizerButton>().SetItem(items[i]);
-            }
-        }
-    }
-
-    private void DisplayItemByLabel(EItemLabel itemLabel)
-    {
-        for (int i = 0; i < items.Length; i++)
-        {
-            if (items[i].item && items[i].item.itemLabel == itemLabel)
-            {
-                GameObject itemVisualizer = Instantiate(_itemVisualizerPrefab, GetComponentsInChildren<GridLayoutGroup>()[currentIndex+1].transform);
-                itemVisualizer.GetComponent<ItemVisualizerButton>().SetItem(items[i]);
+                items[i].item.isEquipped = false;
             }
         }
     }
@@ -150,7 +142,7 @@ public class PlayerInventory : MonoBehaviour
     public bool CanCraft(Craft craft)
     {
         int ItemNeeded = 0;
-        for(int j = 0; j < items.Length; j++)
+        for (int j = 0; j < items.Length; j++)
         {
             if (items[j].item != null)
             {
@@ -163,10 +155,12 @@ public class PlayerInventory : MonoBehaviour
                 }
             }
         }
+
         if (ItemNeeded == craft.itemInputs.Length)
         {
             return true;
         }
+
         return false;
     }
 
