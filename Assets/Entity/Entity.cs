@@ -10,4 +10,5 @@ public class Entity
         public int nbEnemyKill;
         public int nbDeath;
         public int money;
+        public int competencePoint;
 }

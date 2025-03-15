@@ -15,5 +15,5 @@ MonoBehaviour:
   soNodeRequired: {fileID: 11400000, guid: 39f5246ccc47eff44a0a543e9ade43b6, type: 2}
   nextNodes:
   - {fileID: 11400000, guid: e7ecb9d58e75c5042b3947fc1f8b5d93, type: 2}
-  isUnlocked: 0
-  competencePointCost: 0
+  isUnlocked: 1
+  competencePointCost: 2

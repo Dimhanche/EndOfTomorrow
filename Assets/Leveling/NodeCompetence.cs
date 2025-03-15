@@ -7,11 +7,13 @@ public class NodeCompetence : MonoBehaviour
     public SONodeCompetencePoint soNode;
     private Button _nodeButton;
     public Image nodeImagePrefabs;
+    private Entity _entity;
 
     private void Start()
     {
         _nodeButton = GetComponent<Button>();
         _nodeButton.onClick.AddListener(UnlockNode);
+        _entity = GetComponentInParent<EntityInfo>().entity;
         CheckNextNodes();
     }
 
@@ -21,19 +23,29 @@ public class NodeCompetence : MonoBehaviour
         {
             return;
         }
-        if (soNode.soNodeRequired != null)
+
+        if (soNode.competencePointCost <= _entity.competencePoint)
         {
-            if (soNode.soNodeRequired.isUnlocked)
+            if (soNode.soNodeRequired != null)
             {
-                soNode.isUnlocked = true;
-                _nodeButton.interactable = false;
+                if (soNode.soNodeRequired.isUnlocked)
+                {
+                    UnlockButton();
+                    _entity.competencePoint -= soNode.competencePointCost;
+                }
+            }
+            else
+            {
+                UnlockButton();
+                _entity.competencePoint -= soNode.competencePointCost;
             }
         }
-        else
-        {
-            soNode.isUnlocked = true;
-            _nodeButton.interactable = false;
-        }
+    }
+
+    public void UnlockButton()
+    {
+        soNode.isUnlocked = true;
+        _nodeButton.interactable = false;
     }
 
     private void GenerateArrow(Vector3 nextNode)
@@ -46,7 +58,7 @@ public class NodeCompetence : MonoBehaviour
 
         currentPos.z = 0;
 
-        Vector3 midPointVector = (currentPos + anchorPos)/2;
+        Vector3 midPointVector = (currentPos + anchorPos) / 2;
 
         nodeImage.transform.position = midPointVector;
 
@@ -54,7 +66,7 @@ public class NodeCompetence : MonoBehaviour
         float maggy = relative.magnitude;
 
 
-        nodeImage.transform.localScale = new Vector3(maggy/2,1,0);
+        nodeImage.transform.localScale = new Vector3(maggy / 2, 1, 0);
         Quaternion rotationVector = Quaternion.LookRotation(relative);
         rotationVector.z = 0;
         rotationVector.w = 0;
@@ -67,6 +79,7 @@ public class NodeCompetence : MonoBehaviour
         {
             return;
         }
+
         foreach (NodeCompetence node in transform.parent.GetComponentsInChildren<NodeCompetence>())
         {
             foreach (SONodeCompetencePoint nextNode in soNode.nextNodes)

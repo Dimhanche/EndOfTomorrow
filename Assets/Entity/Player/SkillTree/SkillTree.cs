@@ -16,7 +16,13 @@ public class SkillTree : MonoBehaviour
 
     private void DisplaySkillTree()
     {
-        // Display the skill tree
-
+        NodeCompetence[] nodesCompetences = GetComponentsInChildren<NodeCompetence>();
+        foreach (NodeCompetence nodeComp in nodesCompetences)
+        {
+            if (nodeComp.soNode.isUnlocked)
+            {
+                nodeComp.UnlockButton();
+            }
+        }
     }
 }
