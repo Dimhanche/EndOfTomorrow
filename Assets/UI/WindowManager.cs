@@ -32,4 +32,10 @@ public static class WindowManager
             return true;
         }
     }
+
+    public static void CloseAllWindow()
+    {
+        nbWindowsOpen = 0;
+        CheckAllWindowClose();
+    }
 }

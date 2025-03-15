@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2bccb4b6d4c5484e8dd56596cf8d51d, type: 3}
+  m_Name: Farmer1
+  m_EditorClassIdentifier: 
+  soNodeRequired: {fileID: 11400000, guid: 39f5246ccc47eff44a0a543e9ade43b6, type: 2}
+  nextNodes: []
+  isUnlocked: 0
+  competencePointCost: 0

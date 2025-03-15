@@ -12,6 +12,7 @@ public class UIWindow : MonoBehaviour
         _canvas = GetComponent<Canvas>();
         _playerEntity = PlayerInventory.instance.GetComponent<EntityInfo>();
         Close(false);
+        CloseAllWindow();
     }
 
     public void Show(bool closeWindow = true)
@@ -29,7 +30,6 @@ public class UIWindow : MonoBehaviour
     public void Close(bool closeWindow = true)
     {
         _canvas.enabled = false;
-
         if(closeWindow)
             _playerEntity.canMove = CloseWindow();
     }
