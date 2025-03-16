@@ -6,7 +6,7 @@ public class PlayerAttack : MonoBehaviour
 {
     public WeaponsItem currentWeapon => GetComponent<PlayerEquipment>().weapon;
     public float cooldownAttack;
-    private bool _canMove => GetComponent<EntityInfo>().canMove;
+    private bool _canMove => GetComponent<PlayerEntity>().canMove;
 
     public void PlayerAttackInput(InputAction.CallbackContext ctx)
     {

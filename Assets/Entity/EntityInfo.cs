@@ -8,8 +8,4 @@ using UnityEngine.UI;
 public class EntityInfo : MonoBehaviour
 {
     public Entity entity;
-    public bool isPlayer;
-    public bool canMove;
-    public bool isDead;
-    public bool isPaused;
 }

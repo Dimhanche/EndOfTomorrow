@@ -42,6 +42,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "5b334e72-f4bb-4a02-aae2-3e13c6645d2c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Look",
                     "type": "Value",
                     "id": "1ea2daf8-e451-4511-b568-a076064ead9a",
@@ -63,15 +72,6 @@
                     "name": "Inventory",
                     "type": "Button",
                     "id": "e5bb3672-8f40-4488-bc19-d949c2fe64d3",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Attack",
-                    "type": "Button",
-                    "id": "5b334e72-f4bb-4a02-aae2-3e13c6645d2c",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",

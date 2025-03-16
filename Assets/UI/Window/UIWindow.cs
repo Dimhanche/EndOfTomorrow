@@ -1,16 +1,19 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using static WindowManager;
 
 public class UIWindow : MonoBehaviour
 {
     private Canvas _canvas;
-    private EntityInfo _playerEntity;
+    private PlayerEntity _playerEntity;
+    private PlayerInput _playerInput;
 
     private void Start()
     {
         _canvas = GetComponent<Canvas>();
-        _playerEntity = PlayerInventory.instance.GetComponent<EntityInfo>();
+        _playerEntity = PlayerInventory.instance.GetComponent<PlayerEntity>();
+        _playerInput = PlayerInventory.instance.GetComponent<PlayerInput>();
         Close(false);
         CloseAllWindow();
     }
@@ -30,6 +33,7 @@ public class UIWindow : MonoBehaviour
     public void Close(bool closeWindow = true)
     {
         _canvas.enabled = false;
+
         if(closeWindow)
             _playerEntity.canMove = CloseWindow();
     }

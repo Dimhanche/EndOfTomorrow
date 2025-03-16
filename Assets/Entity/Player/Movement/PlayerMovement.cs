@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 _inputDirection;
     private Rigidbody _rb;
-    private EntityInfo _entityInfo;
+    private PlayerEntity _entityInfo;
     private Stats _stats;
 
     private void Awake()
@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        _entityInfo = GetComponent<EntityInfo>();
+        _entityInfo = GetComponent<PlayerEntity>();
         _rb = GetComponent<Rigidbody>();
         _stats = _entityInfo.entity.entityStats;
         _camera = Camera.main;
