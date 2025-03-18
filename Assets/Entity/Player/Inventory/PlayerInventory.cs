@@ -121,7 +121,7 @@ public class PlayerInventory : MonoBehaviour
             if (items[i].item && (items[i].item.itemLabel == itemLabel || displayAll))
             {
                 GameObject itemVisualizer = Instantiate(_itemVisualizerPrefab,
-                    GetComponentsInChildren<GridLayoutGroup>()[currentIndex + 1].transform);
+                    GetComponentInChildren<GridLayoutGroup>().transform);
                 itemVisualizer.GetComponent<ItemVisualizerButton>().SetItem(items[i]);
                 items[i].item.isEquipped = false;
             }

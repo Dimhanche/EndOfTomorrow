@@ -86,7 +86,6 @@ public class NodeCompetence : MonoBehaviour
             {
                 if (node.soNode == nextNode)
                 {
-                    Debug.Log(nextNode.name);
                     GenerateArrow(node.transform.position);
                 }
             }
