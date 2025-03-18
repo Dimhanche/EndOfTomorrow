@@ -7,13 +7,13 @@ public class NodeCompetence : MonoBehaviour
     public SONodeCompetencePoint soNode;
     private Button _nodeButton;
     public Image nodeImagePrefabs;
-    private Entity _entity;
+    private PlayerEntity _entity;
 
     private void Start()
     {
         _nodeButton = GetComponent<Button>();
         _nodeButton.onClick.AddListener(UnlockNode);
-        _entity = GetComponentInParent<EntityInfo>().entity;
+        _entity = GetComponentInParent<PlayerEntity>();
         CheckNextNodes();
     }
 

@@ -5,10 +5,11 @@ using UnityEngine.InputSystem;
 public class PlayerInteract : MonoBehaviour
 {
     public float cooldown = 0;
+    public bool canInteract => GetComponent<PlayerEntity>().canInterract;
 
     public void PlayerInteractInput(InputAction.CallbackContext ctx)
     {
-        if(ctx.performed && cooldown <= 0)
+        if(ctx.performed && cooldown <= 0 && canInteract)
         {
             RaycastHit hit;
             if(Camera.main != null && Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 5f))

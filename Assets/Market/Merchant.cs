@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Merchant : MonoBehaviour, IInteract
+public class Merchant : MonoBehaviour
 {
     public UIWindow merchantCanvas;
     private InfoDisplayer _infoDisplayer;
@@ -23,7 +23,7 @@ public class Merchant : MonoBehaviour, IInteract
         _playerInventory = PlayerInventory.instance;
     }
 
-    public void Interact(ref float cooldown)
+    public void OpenShop()
     {
         if (!merchantCanvas.CheckOpened())
         {
@@ -31,8 +31,6 @@ public class Merchant : MonoBehaviour, IInteract
             DisplayMerchantInfo();
             DisplayAllItems();
         }
-
-        cooldown = 0;
     }
 
     public void DisplayMerchantInfo()
@@ -111,5 +109,11 @@ public class Merchant : MonoBehaviour, IInteract
         _playerInventory.AddItem(new ItemStack(item.item));
         MerchantInfoUpdater();
         DisplayAllItems();
+    }
+
+    public void CloseShop()
+    {
+        merchantCanvas.Close();
+        GetComponent<ResidentDialogue>().canTalk = true;
     }
 }

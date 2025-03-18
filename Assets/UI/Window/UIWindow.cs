@@ -21,6 +21,7 @@ public class UIWindow : MonoBehaviour
     public void Show(bool closeWindow = true)
     {
         _canvas.enabled =true;
+
         if(closeWindow)
             _playerEntity.canMove = OpenWindow();
     }
