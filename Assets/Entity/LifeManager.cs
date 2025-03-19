@@ -32,7 +32,7 @@ public class LifeManager : MonoBehaviour
         }
         else if(TryGetComponent(out EnemyEntity enemy))
         {
-            _lastCaster.GetComponent<PlayerEntity>().experience += enemy.entity.experienceDrop;
+            _lastCaster.GetComponent<PlayerLeveling>().AddExperience(enemy.entity.experienceDrop);
             Destroy(gameObject);
         }
     }
