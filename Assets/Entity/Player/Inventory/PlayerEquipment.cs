@@ -1,12 +1,11 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerEquipment : MonoBehaviour
+public class PlayerEquipment : EntityEquipment
 {
     public UIWindow equipmentCanvas;
     private EquipmentDisplayer _equipmentDisplayer;
-    public WeaponsItem weapon;
-    public ArmorsItem[] armor;
+
 
     private void Start()
     {
@@ -22,7 +21,7 @@ public class PlayerEquipment : MonoBehaviour
     }
 
     /// <summary>
-    /// Equip Weapon to the player
+    /// Equip Weapon
     /// </summary>
     /// <param name="newWeapon">weapon To Equip</param>
     public void EquipWeapon(WeaponsItem newWeapon)
@@ -32,7 +31,7 @@ public class PlayerEquipment : MonoBehaviour
     }
 
     /// <summary>
-    /// Equip Armor to the player
+    /// Equip Armor
     /// </summary>
     /// <param name="newArmor">armor To Equip</param>
     public void EquipArmor(ArmorsItem newArmor)
@@ -51,7 +50,7 @@ public class PlayerEquipment : MonoBehaviour
 
 
     /// <summary>
-    /// Equip an item to the player Armor or Weapon
+    /// Equip an item  Armor or Weapon
     /// </summary>
     /// <param name="item">item To Equip</param>
     public void EquipItem(Item item)
@@ -75,7 +74,7 @@ public class PlayerEquipment : MonoBehaviour
 
 
     /// <summary>
-    /// Unequip an item from the player Armor or Weapon
+    /// Unequip an item  Armor or Weapon
     /// </summary>
     /// <param name="item">item to Unequip</param>
     public void UnequipItem(Item item)
@@ -99,7 +98,7 @@ public class PlayerEquipment : MonoBehaviour
 
 
     /// <summary>
-    /// Unequip Armor to the player
+    /// Unequip Armor
     /// </summary>
     /// <param name="newArmor">armor To Unequip</param>
     private void UnequipArmor(ArmorsItem item)
@@ -117,7 +116,7 @@ public class PlayerEquipment : MonoBehaviour
     }
 
     /// <summary>
-    /// Unequip Weapon to the player
+    /// Unequip Weapon
     /// </summary>
     /// <param name="newArmor">weapon To Unequip</param>
     private void UnequipWeapon(WeaponsItem item)
@@ -125,18 +124,5 @@ public class PlayerEquipment : MonoBehaviour
         Debug.Log("Unequipping weapon " + item.itemName);
         weapon = null;
         _equipmentDisplayer.DisplayEquipment(item,true);
-    }
-
-    public int GetArmorValue()
-    {
-        int armorValue = 0;
-        foreach (ArmorsItem item in armor)
-        {
-            if (item != null)
-            {
-                armorValue += item.defense;
-            }
-        }
-        return armorValue;
     }
 }

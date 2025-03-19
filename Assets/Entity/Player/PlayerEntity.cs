@@ -5,7 +5,7 @@ public class PlayerEntity : EntityInfo
 {
     public int reputation;
     public int competencePoint;
-
+    public int experience;
 
     public bool canMove;
     public bool canInterract;

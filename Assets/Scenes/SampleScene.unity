@@ -271,6 +271,8 @@ GameObject:
   - component: {fileID: 94710584}
   - component: {fileID: 94710590}
   - component: {fileID: 94710591}
+  - component: {fileID: 94710592}
+  - component: {fileID: 94710593}
   m_Layer: 0
   m_Name: Prowler
   m_TagString: Untagged
@@ -432,13 +434,43 @@ MonoBehaviour:
       luck: 0
       jumpForce: 0
       oratory: 0
-    experienceDrop: 0
+    experienceDrop: 25
     nbEnemyKill: 0
     nbDeath: 0
     money: 0
-  attackRange: 2
-  damage: 10
   fovRange: 5
+  timeForSearching: 5
+--- !u!114 &94710592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94710583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1010174799326184ea16b0e772f8ea15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 11400000, guid: c08331ebedf1ead448f58ec76b945bf1, type: 2}
+  armor:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &94710593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94710583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0f51a3486f578642936b3e160e5dad4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &146437823
 GameObject:
   m_ObjectHideFlags: 0
@@ -4591,7 +4623,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bfd37ad0e12e0349a942320baf4f94a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equipmentCanvas: {fileID: 860120860}
   weapon: {fileID: 0}
   armor:
   - {fileID: 0}
@@ -4599,6 +4630,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  equipmentCanvas: {fileID: 860120860}
 --- !u!114 &1220255992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4671,6 +4703,7 @@ MonoBehaviour:
     money: 1000
   reputation: 0
   competencePoint: 0
+  experience: 0
   canMove: 1
   canInterract: 1
   isDead: 0
@@ -6811,7 +6844,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1817824092}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}

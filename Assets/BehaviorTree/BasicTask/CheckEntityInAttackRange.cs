@@ -22,8 +22,6 @@ public class CheckEntityInAttackRange : Node
         Transform target = (Transform)t;
         if (Vector3.Distance(_transform.position, target.position) < _attackRange)
         {
-
-
             state = NodeState.SUCCESS;
             return state;
         }

@@ -20,7 +20,7 @@ MonoBehaviour:
   consumable: 0
   usable: 0
   equipable: 1
-  isEquipped: 0
+  isEquipped: 1
   itemLabel: 0
-  defense: 0
+  defense: 6
   armorType: 1

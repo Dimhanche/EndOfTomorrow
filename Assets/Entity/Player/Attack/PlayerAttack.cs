@@ -24,7 +24,7 @@ public class PlayerAttack : MonoBehaviour
         {
             if(hit.collider.TryGetComponent(out EntityInfo entity))
             {
-                entity.GetComponent<LifeManager>().TakeDamage(CalculateDamage());
+                entity.GetComponent<LifeManager>().TakeDamage(CalculateDamage(),this.GetComponent<EntityInfo>());
             }
         }
         Debug.Log("Attack");
