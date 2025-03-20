@@ -13,5 +13,9 @@ public class DebugFrontItem : MonoBehaviour
         {
                 text.text = hit.collider.gameObject.name;
         }
+        else
+        {
+            text.text = "";
+        }
     }
 }

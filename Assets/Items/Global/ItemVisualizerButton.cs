@@ -16,11 +16,47 @@ public class ItemVisualizerButton : MonoBehaviour
     //Selector
     private ItemActionSelector _itemActionSelector;
 
+    // Double-click detection
+    private float _lastClickTime;
+    private const float DoubleClickThreshold = 0.5f;
     
     private void Awake()
     {
-        itemButton.onClick.AddListener(ShowItemActions);
+        itemButton.onClick.AddListener(OnItemClick);
         _itemActionSelector = FindObjectsByType<ItemActionSelector>(FindObjectsInactive.Include, FindObjectsSortMode.None)[0];
+    }
+
+    private void OnItemClick()
+    {
+        if (Time.time - _lastClickTime < DoubleClickThreshold)
+        {
+            OnItemDoubleClick();
+            _itemActionSelector.HideItemActions();
+            _itemActionSelector.enabled = false;
+        }
+        else
+        {
+            ShowItemActions();
+        }
+        _lastClickTime = Time.time;
+    }
+    private void OnItemDoubleClick()
+    {
+        if (itemToDisplay)
+        {
+            if (itemToDisplay.usable)
+            {
+                itemToDisplay.UseItem(PlayerInventory.instance);
+            }
+            else if (itemToDisplay.equipable && !itemToDisplay.isEquipped)
+            {
+                itemToDisplay.EquipItem(PlayerInventory.instance.GetComponent<PlayerEquipment>());
+            }
+            else if (itemToDisplay.equipable && itemToDisplay.isEquipped)
+            {
+                itemToDisplay.UnequipItem(PlayerInventory.instance.GetComponent<PlayerEquipment>());
+            }
+        }
     }
 
     private void ShowItemActions()

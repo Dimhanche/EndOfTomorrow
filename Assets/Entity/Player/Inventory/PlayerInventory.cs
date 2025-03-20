@@ -17,6 +17,7 @@ public class PlayerInventory : MonoBehaviour
     private int currentIndex = -1;
 
 
+
     private void Awake()
     {
         if (instance == null)
@@ -83,10 +84,15 @@ public class PlayerInventory : MonoBehaviour
     {
         if (ctx.performed)
         {
-            _inventoryCanvas.Toggle();
-            _inventorySections[0].Select();
-            DisplayInventory(currentIndex = -1);
+            OpenInventory();
         }
+    }
+
+    public void OpenInventory()
+    {
+        _inventoryCanvas.Toggle();
+        _inventorySections[0].Select();
+        DisplayInventory(currentIndex = -1);
     }
 
     private void DisplayInventory(int index)

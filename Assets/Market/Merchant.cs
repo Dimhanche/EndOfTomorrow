@@ -28,6 +28,7 @@ public class Merchant : MonoBehaviour
         if (!merchantCanvas.CheckOpened())
         {
             merchantCanvas.Show();
+            _playerInventory.OpenInventory();
             DisplayMerchantInfo();
             DisplayAllItems();
         }
