@@ -34,5 +34,6 @@ public class Lootable : MonoBehaviour,IInteract
         ItemStack[] tempItem = tempItemList.ToArray();
         IInteract.AddInInventory(tempItem);
         _isOpened = true;
+        gameObject.name = gameObject.name +"  Opened " ;
     }
 }

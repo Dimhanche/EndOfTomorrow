@@ -54,9 +54,9 @@ MonoBehaviour:
     entityName: Merchant
     male: 0
     entityStats:
-      life: 0
-      lifeRegen: 0
       maxLife: 0
+      currentLife: 0
+      lifeRegen: 0
       speed: 1
       luck: 0
       jumpForce: 1
@@ -78,16 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueWindow: {fileID: 5396997693614446317}
-  dialogues:
-  - sentence: Bonjour chef
-    isLast: 0
-    responses: []
-    actions: 
-  - sentence: Bien ?
-    isLast: 1
-    responses:
-    - non
-    actions: 00000000
+  dialogues: []
   nameText: {fileID: 1117360395499957340}
   dialogueText: {fileID: 4183318604895305168}
   isShow: 0
