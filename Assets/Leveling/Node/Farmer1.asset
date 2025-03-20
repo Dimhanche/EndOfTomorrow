@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soNodeRequired: {fileID: 11400000, guid: 39f5246ccc47eff44a0a543e9ade43b6, type: 2}
   nextNodes: []
-  isUnlocked: 1
+  isUnlocked: 0
   competencePointCost: 0

@@ -8,6 +8,12 @@ public class SkillTree : MonoBehaviour
     public UIWindow skillTreeWindow;
     private Vector3 _initialMousePosition;
     private bool _isDragging;
+    private RectTransform _nodeParent;
+
+    private void Start()
+    {
+        _nodeParent = skillTreeWindow.transform.GetComponentInChildren<RectMask2D>().transform.GetChild(0).GetComponent<RectTransform>();
+    }
 
     public void PlayerOpenSkillTreeInput(InputAction.CallbackContext cxt)
     {
@@ -15,6 +21,7 @@ public class SkillTree : MonoBehaviour
         {
             skillTreeWindow.Toggle();
             DisplaySkillTree();
+            _nodeParent.localPosition = Vector3.zero;
         }
     }
 
@@ -28,8 +35,6 @@ public class SkillTree : MonoBehaviour
                 nodeComp.UnlockButton();
             }
         }
-
-        skillTreeWindow.transform.GetComponentInChildren<RectMask2D>().transform.GetChild(0).position = Vector3.zero;
     }
 
     private void Update()
@@ -57,7 +62,7 @@ public class SkillTree : MonoBehaviour
     {
         Vector3 currentMousePosition = Input.mousePosition;
         Vector3 difference = currentMousePosition - _initialMousePosition;
-        skillTreeWindow.transform.GetComponentInChildren<RectMask2D>().transform.GetChild(0).position += difference;
+        _nodeParent.position += difference;
         _initialMousePosition = currentMousePosition;
     }
 }

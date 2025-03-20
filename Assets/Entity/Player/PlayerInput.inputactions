@@ -1,5 +1,5 @@
 {
-    "name": "InputSystem_Actions",
+    "name": "PlayerInput",
     "maps": [
         {
             "name": "Player",
@@ -90,6 +90,15 @@
                     "name": "SkillTree",
                     "type": "Button",
                     "id": "e71c1b64-6b42-422a-8cfe-fb2d2dfbbd85",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PauseGame",
+                    "type": "Button",
+                    "id": "f74fe824-ce4a-498e-870e-d415412eadf9",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -314,6 +323,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "SkillTree",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "38c4cdaa-1d13-4f92-bfdd-61d4e07f12d2",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "PauseGame",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

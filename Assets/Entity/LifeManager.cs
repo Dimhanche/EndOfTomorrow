@@ -1,23 +1,29 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LifeManager : MonoBehaviour
 {
-    private Stats _entityStats;
+    private EntityInfo _entityInfo;
+    private Stats _stats;
     private float _armorValue => GetComponent<EntityEquipment>().GetArmorValue();
 
     private EntityInfo _lastCaster;
 
     private void Start()
     {
-        _entityStats = GetComponent<EntityInfo>().entity.entityStats;
+        _stats = GetComponent<EntityInfo>().entity.entityStats;
     }
 
     public void TakeDamage(int damage,EntityInfo lastCaster)
     {
         if(lastCaster != _lastCaster)
             _lastCaster = lastCaster;
-        _entityStats.life = (damage - _armorValue) > 0 ? _entityStats.life - (damage - _armorValue) : _entityStats.life;
-        if(_entityStats.life <= 0)
+        _stats.currentLife = (damage - _armorValue) > 0 ? _stats.currentLife - (damage - _armorValue) : _stats.currentLife;
+        if(TryGetComponent(out PlayerEntity player))
+        {
+            player.lifeChanged.Invoke();
+        }
+        if(_stats.currentLife <= 0)
         {
             Die();
         }
@@ -25,7 +31,7 @@ public class LifeManager : MonoBehaviour
 
     public void Die()
     {
-        _entityStats.life = 0;
+        _stats.currentLife = 0;
         if(TryGetComponent(out PlayerEntity player))
         {
             player.canMove = false;

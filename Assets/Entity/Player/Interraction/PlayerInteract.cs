@@ -17,7 +17,6 @@ public class PlayerInteract : MonoBehaviour
                 if(hit.collider.TryGetComponent(out IInteract interactable))
                 {
                     interactable.Interact(ref cooldown);
-                    Debug.Log("interract with " + hit.collider.name + " with cooldown " + cooldown);
                 }
             }
         }

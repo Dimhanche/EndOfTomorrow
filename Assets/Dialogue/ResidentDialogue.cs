@@ -46,7 +46,6 @@ public class ResidentDialogue : MonoBehaviour,IInteract
 
     public void StartDialogue()
     {
-        Debug.Log("Starting conversation with " + GetComponent<EntityInfo>().entity.entityName);
         dialogueText.text = dialogues[_index].sentence;
         _index++;
     }
@@ -96,7 +95,6 @@ public class ResidentDialogue : MonoBehaviour,IInteract
 
     private void OpenShop()
     {
-        Debug.Log("Opening shop");
         canTalk = false;
         GetComponent<Merchant>().OpenShop();
     }

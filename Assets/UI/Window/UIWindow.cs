@@ -14,16 +14,15 @@ public class UIWindow : MonoBehaviour
         _canvas = GetComponent<Canvas>();
         _playerEntity = PlayerInventory.instance.GetComponent<PlayerEntity>();
         _playerInput = PlayerInventory.instance.GetComponent<PlayerInput>();
-        Close(false);
+        Close();
         CloseAllWindow();
     }
 
-    public void Show(bool closeWindow = true)
+    public void Show()
     {
-        _canvas.enabled =true;
+        _canvas.enabled = true;
 
-        if(closeWindow)
-            _playerEntity.canMove = OpenWindow();
+        _playerEntity.canMove = OpenWindow();
     }
 
     public bool CheckOpened()
@@ -31,12 +30,10 @@ public class UIWindow : MonoBehaviour
         return _canvas.enabled;
     }
 
-    public void Close(bool closeWindow = true)
+    public void Close()
     {
         _canvas.enabled = false;
-
-        if(closeWindow)
-            _playerEntity.canMove = CloseWindow();
+        _playerEntity.canMove = CloseWindow();
     }
 
     public void Toggle()

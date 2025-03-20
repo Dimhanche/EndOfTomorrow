@@ -27,7 +27,6 @@ public class PlayerAttack : MonoBehaviour
                 entity.GetComponent<LifeManager>().TakeDamage(CalculateDamage(),this.GetComponent<EntityInfo>());
             }
         }
-        Debug.Log("Attack");
     }
 
     private void Update()

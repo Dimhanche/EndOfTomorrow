@@ -16,5 +16,5 @@ MonoBehaviour:
   nextNodes:
   - {fileID: 11400000, guid: 8619850fbd6ecaa43b49858eeeb08436, type: 2}
   - {fileID: 11400000, guid: c5e1264b5eb0b5f49be063a162f3ed87, type: 2}
-  isUnlocked: 1
+  isUnlocked: 0
   competencePointCost: 0

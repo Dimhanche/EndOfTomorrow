@@ -72,20 +72,17 @@ public class ItemActionSelector : MonoBehaviour
 
     public void UseItem()
     {
-        Debug.Log("Use item");
         HideItemActions();
     }
 
     public void EquipItem()
     {
-        Debug.Log("Equip item");
         _playerEquipment.EquipItem(_item);
         HideItemActions();
     }
 
     public void UnequipItem()
     {
-        Debug.Log("Unequip item");
         _playerEquipment.UnequipItem(_item);
         HideItemActions();
     }
@@ -93,7 +90,6 @@ public class ItemActionSelector : MonoBehaviour
 
     public void DescriptionItem()
     {
-        Debug.Log("Description item");
         _descriptionItem.window.Show();
         _descriptionItem.DisplayItemDescription(_item);
         HideItemActions();
@@ -101,7 +97,6 @@ public class ItemActionSelector : MonoBehaviour
 
     public void DestroyItem()
     {
-        Debug.Log("Destroy item");
         PlayerInventory.instance.RemoveItem(new ItemStack(_item));
         HideItemActions();
     }

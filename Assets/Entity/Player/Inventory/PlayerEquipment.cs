@@ -36,7 +36,6 @@ public class PlayerEquipment : EntityEquipment
     /// <param name="newArmor">armor To Equip</param>
     public void EquipArmor(ArmorsItem newArmor)
     {
-        Debug.Log("Equipping armor " + newArmor.itemName);
         for (int i = 0; i < armor.Length; i++)
         {
             if (armor[i] == null || (armor[i].armorType == newArmor.armorType))
@@ -55,7 +54,6 @@ public class PlayerEquipment : EntityEquipment
     /// <param name="item">item To Equip</param>
     public void EquipItem(Item item)
     {
-        Debug.Log("Equipping item " + item.itemName);
         item.isEquipped = true;
         PlayerInventory.instance.RemoveItem(new ItemStack(item, 1));
         if(item is WeaponsItem)
@@ -79,7 +77,6 @@ public class PlayerEquipment : EntityEquipment
     /// <param name="item">item to Unequip</param>
     public void UnequipItem(Item item)
     {
-        Debug.Log("Unequipping item " + item.itemName);
         item.isEquipped = false;
         PlayerInventory.instance.AddItem(new ItemStack(item, 1));
         if(item is WeaponsItem)
@@ -103,7 +100,6 @@ public class PlayerEquipment : EntityEquipment
     /// <param name="newArmor">armor To Unequip</param>
     private void UnequipArmor(ArmorsItem item)
     {
-        Debug.Log("Unequipping armor " + item.itemName);
         for (int i = 0; i < armor.Length; i++)
         {
             if (armor[i] == item)
@@ -121,7 +117,6 @@ public class PlayerEquipment : EntityEquipment
     /// <param name="newArmor">weapon To Unequip</param>
     private void UnequipWeapon(WeaponsItem item)
     {
-        Debug.Log("Unequipping weapon " + item.itemName);
         weapon = null;
         _equipmentDisplayer.DisplayEquipment(item,true);
     }
