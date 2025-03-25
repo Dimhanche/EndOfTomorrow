@@ -7,6 +7,7 @@ public class PlayerEquipment : EntityEquipment
     private EquipmentDisplayer _equipmentDisplayer;
 
 
+
     private void Start()
     {
         _equipmentDisplayer = equipmentCanvas.GetComponentInChildren<EquipmentDisplayer>();
