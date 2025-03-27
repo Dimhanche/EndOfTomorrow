@@ -9,7 +9,7 @@ public interface IInteract
     {
         for (int i = 0; i < soItemToAdd.Length; i++)
         {
-            PlayerInventory.instance.AddItem(soItemToAdd[i]);
+            PlayerEntity.Instance.GetComponent<PlayerInventory>().AddItem(soItemToAdd[i]);
         }
     }
 
@@ -17,7 +17,7 @@ public interface IInteract
     {
         for (int i = 0; i < soItemToRemove.Length; i++)
         {
-            PlayerInventory.instance.RemoveItem(soItemToRemove[i]);
+            PlayerEntity.Instance.GetComponent<PlayerInventory>().RemoveItem(soItemToRemove[i]);
         }
     }
 }

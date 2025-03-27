@@ -5,11 +5,11 @@ using UnityEngine.Serialization;
 [Serializable]
 public class Stats
 {
-    public float maxLife;
-    public float currentLife;
+    public float maxLife =100;
+    public float currentLife =100;
     public float lifeRegen;
-    public float speed;
+    public float speed =6;
     public float luck;
-    public float jumpForce;
+    public float jumpForce =4;
     public float oratory;
 }

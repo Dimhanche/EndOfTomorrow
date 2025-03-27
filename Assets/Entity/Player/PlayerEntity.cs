@@ -19,11 +19,23 @@ public class PlayerEntity : EntityInfo
     [HideInInspector]public UnityEvent lifeChanged = new UnityEvent();
     [HideInInspector]public UnityEvent<int,int> xpChanged = new UnityEvent<int,int>();
 
+    public static PlayerEntity Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
+
     private void Start()
     {
         lifeChanged.AddListener(OnLifeChaneged);
         xpChanged.AddListener(OnXpChanged);
         _windows = FindObjectsByType<UIWindow>(FindObjectsSortMode.None);
+
+
     }
 
     public void OnXpChanged(int currentExperience, int nextLevelExperience)

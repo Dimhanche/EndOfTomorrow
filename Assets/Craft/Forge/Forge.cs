@@ -17,7 +17,7 @@ public class Forge : MonoBehaviour, IInteract
 
     private void Start()
     {
-        _playerInventory = PlayerInventory.instance;
+        _playerInventory = PlayerEntity.Instance.GetComponent<PlayerInventory>();
     }
 
     public void Interact(ref float cooldown)

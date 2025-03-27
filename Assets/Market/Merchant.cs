@@ -19,8 +19,8 @@ public class Merchant : MonoBehaviour
     private void Start()
     {
         _infoDisplayer = merchantCanvas.GetComponent<InfoDisplayer>();
-        _playerEntityInfo = PlayerInventory.instance.GetComponent<EntityInfo>();
-        _playerInventory = PlayerInventory.instance;
+        _playerEntityInfo = PlayerEntity.Instance;
+        _playerInventory = _playerEntityInfo.GetComponent<PlayerInventory>();
     }
 
     public void OpenShop()
@@ -56,9 +56,9 @@ public class Merchant : MonoBehaviour
             // Merchant is selling
             foreach (ItemStack item in itemToBuy)
             {
-                GameObject itemGO = Instantiate(itemPrefab, _infoDisplayer.sellMenu.GetChild(0));
-                itemGO.GetComponent<ItemVisualizerButton>().SetItemToSold(item, entityInfo.entity.money,_playerInventory);
-                itemGO.GetComponent<ItemVisualizerButton>().itemButton.onClick.AddListener(() => BuyItem(item));
+                GameObject itemGo = Instantiate(itemPrefab, _infoDisplayer.sellMenu.GetChild(0));
+                itemGo.GetComponent<ItemVisualizerButton>().SetItemToSold(item, entityInfo.entity.money,_playerInventory);
+                itemGo.GetComponent<ItemVisualizerButton>().itemButton.onClick.AddListener(() => BuyItem(item));
             }
         }
         else
@@ -66,9 +66,9 @@ public class Merchant : MonoBehaviour
             // Merchant is buying
             foreach (ItemStack item in itemToSell)
             {
-                GameObject itemGO = Instantiate(itemPrefab, _infoDisplayer.buyMenu.GetChild(0));
-                itemGO.GetComponent<ItemVisualizerButton>().SetItemToBuy(item, _playerEntityInfo.entity.money);
-                itemGO.GetComponent<ItemVisualizerButton>().itemButton.onClick.AddListener(() => SellItem(item));
+                GameObject itemGo = Instantiate(itemPrefab, _infoDisplayer.buyMenu.GetChild(0));
+                itemGo.GetComponent<ItemVisualizerButton>().SetItemToBuy(item, _playerEntityInfo.entity.money);
+                itemGo.GetComponent<ItemVisualizerButton>().itemButton.onClick.AddListener(() => SellItem(item));
             }
         }
     }

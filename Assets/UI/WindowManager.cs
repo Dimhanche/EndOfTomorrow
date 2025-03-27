@@ -7,13 +7,12 @@ public static class WindowManager
     public static bool OpenWindow()
     {
         nbWindowsOpen++;
-
         return CheckAllWindowClose();
     }
 
     public static bool CloseWindow()
     {
-        nbWindowsOpen = Mathf.Max(0, nbWindowsOpen - 1);
+        nbWindowsOpen = nbWindowsOpen > 0 ? nbWindowsOpen - 1 : 0;
         return CheckAllWindowClose();
     }
 

@@ -54,7 +54,7 @@ public class Item : ScriptableObject
 
     public void DestroyItem()
     {
-        PlayerInventory.instance.RemoveItem(new ItemStack(this));
+        PlayerEntity.Instance.GetComponent<PlayerInventory>().RemoveItem(new ItemStack(this));
     }
 }
 

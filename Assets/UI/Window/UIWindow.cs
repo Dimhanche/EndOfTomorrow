@@ -11,9 +11,9 @@ public class UIWindow : MonoBehaviour
 
     private void Start()
     {
+        _playerEntity = PlayerEntity.Instance;
         _canvas = GetComponent<Canvas>();
-        _playerEntity = PlayerInventory.instance.GetComponent<PlayerEntity>();
-        _playerInput = PlayerInventory.instance.GetComponent<PlayerInput>();
+        _playerInput = _playerEntity.GetComponent<PlayerInput>();
         Close();
         CloseAllWindow();
     }
@@ -21,7 +21,6 @@ public class UIWindow : MonoBehaviour
     public void Show()
     {
         _canvas.enabled = true;
-
         _playerEntity.canMove = OpenWindow();
     }
 

@@ -97,7 +97,7 @@ public class ItemActionSelector : MonoBehaviour
 
     public void DestroyItem()
     {
-        PlayerInventory.instance.RemoveItem(new ItemStack(_item));
+        PlayerEntity.Instance.GetComponent<PlayerInventory>().RemoveItem(new ItemStack(_item));
         HideItemActions();
     }
 }

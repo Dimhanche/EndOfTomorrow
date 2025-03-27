@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -7,7 +8,6 @@ using UnityEngine.UI;
 public class PlayerInventory : MonoBehaviour
 {
     public ItemStack[] items;
-    public static PlayerInventory instance;
     [SerializeField] private UIWindow _inventoryCanvas;
     [SerializeField] private GameObject _itemVisualizerPrefab;
 
@@ -16,15 +16,10 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private Button[] _inventorySections;
     private int currentIndex = -1;
 
+    //EntityInfo
+    private int _currentMoney => GetComponent<PlayerEntity>().entity.money;
+    [SerializeField]  private TextMeshProUGUI _moneyText;
 
-
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-    }
 
     public void AddItem(ItemStack item)
     {
@@ -47,6 +42,8 @@ public class PlayerInventory : MonoBehaviour
                 return;
             }
         }
+
+        UpdateCurrentMoney();
     }
 
     public void RemoveItem(ItemStack item)
@@ -65,6 +62,8 @@ public class PlayerInventory : MonoBehaviour
                 return;
             }
         }
+
+        UpdateCurrentMoney();
     }
 
     public int GetItemCount(ItemStack item)
@@ -88,8 +87,22 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
+    public bool HasItem(Item item)
+    {
+        Debug.Log(item.itemName);
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i].item == item)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void OpenInventory()
     {
+        UpdateCurrentMoney();
         _inventoryCanvas.Toggle();
         _inventorySections[0].Select();
         DisplayInventory(currentIndex = -1);
@@ -166,6 +179,11 @@ public class PlayerInventory : MonoBehaviour
         }
 
         return false;
+    }
+
+    private void UpdateCurrentMoney()
+    {
+        _moneyText.text = _currentMoney.ToString();
     }
 
     public void SetIndexSection(int index)

@@ -5,12 +5,14 @@ public class PlayerEquipment : EntityEquipment
 {
     public UIWindow equipmentCanvas;
     private EquipmentDisplayer _equipmentDisplayer;
+    private PlayerInventory _playerInventory;
 
 
 
     private void Start()
     {
         _equipmentDisplayer = equipmentCanvas.GetComponentInChildren<EquipmentDisplayer>();
+        _playerInventory = GetComponent<PlayerInventory>();
     }
 
     public void PlayerOpenEquipment(InputAction.CallbackContext ctx)
@@ -56,7 +58,7 @@ public class PlayerEquipment : EntityEquipment
     public void EquipItem(Item item)
     {
         item.isEquipped = true;
-        PlayerInventory.instance.RemoveItem(new ItemStack(item, 1));
+        _playerInventory.RemoveItem(new ItemStack(item, 1));
         if(item is WeaponsItem)
         {
             EquipWeapon(item as WeaponsItem);
@@ -79,7 +81,7 @@ public class PlayerEquipment : EntityEquipment
     public void UnequipItem(Item item)
     {
         item.isEquipped = false;
-        PlayerInventory.instance.AddItem(new ItemStack(item, 1));
+        _playerInventory.AddItem(new ItemStack(item, 1));
         if(item is WeaponsItem)
         {
             UnequipWeapon(item as WeaponsItem);

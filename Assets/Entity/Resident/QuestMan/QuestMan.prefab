@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1193564266426003568
+--- !u!1 &306459479576374052
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,102 +8,124 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1237151472352235751}
-  - component: {fileID: 705047255041428871}
-  - component: {fileID: 8794830746901072761}
-  - component: {fileID: 1550822433777271299}
-  - component: {fileID: 5194435570424854007}
-  - component: {fileID: 9180823325097169816}
+  - component: {fileID: 834062809908985822}
+  - component: {fileID: 7108248594925662036}
+  - component: {fileID: 6473634253669428634}
+  - component: {fileID: 669590596213538849}
+  - component: {fileID: 5672508771396093472}
+  - component: {fileID: 4550813924754645994}
   m_Layer: 0
-  m_Name: Resident
+  m_Name: QuestMan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1237151472352235751
+--- !u!4 &834062809908985822
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1193564266426003568}
+  m_GameObject: {fileID: 306459479576374052}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: -16.981915, y: 0.9999995, z: 15.797653}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8936141992624093582}
+  - {fileID: 6842014451034274911}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &705047255041428871
+--- !u!114 &7108248594925662036
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1193564266426003568}
+  m_GameObject: {fileID: 306459479576374052}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ebb80ed138b4224a8cd0d1b53227acd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   entity:
-    entityName: SAMMMY
+    entityName: Jean Quete
     male: 1
     entityStats:
-      maxLife: 0
-      currentLife: 0
+      maxLife: 100
+      currentLife: 100
       lifeRegen: 0
-      speed: 1
+      speed: 6
       luck: 0
-      jumpForce: 1
-      oratory: 1
+      jumpForce: 4
+      oratory: 0
     experienceDrop: 0
     nbEnemyKill: 0
     nbDeath: 0
-    money: 1000
---- !u!114 &8794830746901072761
+    money: 0
+--- !u!114 &6473634253669428634
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1193564266426003568}
+  m_GameObject: {fileID: 306459479576374052}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b213c74e4aef38346b6f892d52226c4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueWindow: {fileID: 5396997693614446317}
-  dialogues:
-  - sentence: Je ne suis qu'un simple PNJ
-    isLast: 1
-    responses:
-    - Ok
-    actions: 00000000
-  nameText: {fileID: 1117360395499957340}
-  dialogueText: {fileID: 4183318604895305168}
-  isShow: 0
+  dialogueWindow: {fileID: 0}
   responsePrefab: {fileID: 3083820239686671831, guid: e7985fbd96024074fb5af8994630f5f0, type: 3}
-  responseParent: {fileID: 1630428132183052699}
+  responseParent: {fileID: 0}
+  currentDialogue:
+    dialogueEntries:
+    - dialogueID: 0
+      dialogueText: 'hey toi j''ai besoin de pain, tu peux aller m''en chercher ? '
+      choices:
+      - choiceText: Non pas maintenant
+        nextDialogueId: 1
+        actionType: 0
+        questToAdd:
+          questSprite: {fileID: 0}
+          questTitle: 
+          questDescription: 
+          requiredItem:
+            item: {fileID: 0}
+            currentStack: 0
+          rewardItem: {fileID: 0}
+      - choiceText: Ok pas de soucis
+        nextDialogueId: -1
+        actionType: 2
+        questToAdd:
+          questSprite: {fileID: 0}
+          questTitle: Chercher un couteau
+          questDescription: Il faut que j'aille chercher un couteau
+          requiredItem:
+            item: {fileID: 11400000, guid: c08331ebedf1ead448f58ec76b945bf1, type: 2}
+            currentStack: 1
+          rewardItem: {fileID: 0}
+    - dialogueID: 1
+      dialogueText: Ok pas de soucis
+      choices: []
   canTalk: 1
---- !u!33 &1550822433777271299
+  isShow: 0
+--- !u!33 &669590596213538849
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1193564266426003568}
+  m_GameObject: {fileID: 306459479576374052}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &5194435570424854007
+--- !u!23 &5672508771396093472
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1193564266426003568}
+  m_GameObject: {fileID: 306459479576374052}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -142,13 +164,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &9180823325097169816
+--- !u!136 &4550813924754645994
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1193564266426003568}
+  m_GameObject: {fileID: 306459479576374052}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -165,46 +187,14 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1001 &908734997363444765
+--- !u!1001 &3345122862576142796
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1237151472352235751}
+    m_TransformParent: {fileID: 834062809908985822}
     m_Modifications:
-    - target: {fileID: 224565312678076481, guid: 83ac1db7031be6a49b2b39708a0ec192, type: 3}
-      propertyPath: m_text
-      value: Name
-      objectReference: {fileID: 0}
-    - target: {fileID: 1882021788311901605, guid: 83ac1db7031be6a49b2b39708a0ec192, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2193753534907637125, guid: 83ac1db7031be6a49b2b39708a0ec192, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2193753534907637125, guid: 83ac1db7031be6a49b2b39708a0ec192, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2193753534907637125, guid: 83ac1db7031be6a49b2b39708a0ec192, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2193753534907637125, guid: 83ac1db7031be6a49b2b39708a0ec192, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3932306241417736653, guid: 83ac1db7031be6a49b2b39708a0ec192, type: 3}
-      propertyPath: m_text
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3932306241417736653, guid: 83ac1db7031be6a49b2b39708a0ec192, type: 3}
-      propertyPath: m_fontStyle
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7350581330234661083, guid: 83ac1db7031be6a49b2b39708a0ec192, type: 3}
       propertyPath: m_Name
       value: DialogueUI
@@ -290,51 +280,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 1586113316176271646, guid: 83ac1db7031be6a49b2b39708a0ec192, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83ac1db7031be6a49b2b39708a0ec192, type: 3}
---- !u!114 &1117360395499957340 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 224565312678076481, guid: 83ac1db7031be6a49b2b39708a0ec192, type: 3}
-  m_PrefabInstance: {fileID: 908734997363444765}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!224 &1630428132183052699 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1890394830585159046, guid: 83ac1db7031be6a49b2b39708a0ec192, type: 3}
-  m_PrefabInstance: {fileID: 908734997363444765}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &4183318604895305168 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3932306241417736653, guid: 83ac1db7031be6a49b2b39708a0ec192, type: 3}
-  m_PrefabInstance: {fileID: 908734997363444765}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5396997693614446317 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5078236721891351280, guid: 83ac1db7031be6a49b2b39708a0ec192, type: 3}
-  m_PrefabInstance: {fileID: 908734997363444765}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a72cd14f4f5a484c9244f88e44928fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!224 &8936141992624093582 stripped
+--- !u!224 &6842014451034274911 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8115473754015872403, guid: 83ac1db7031be6a49b2b39708a0ec192, type: 3}
-  m_PrefabInstance: {fileID: 908734997363444765}
+  m_PrefabInstance: {fileID: 3345122862576142796}
   m_PrefabAsset: {fileID: 0}

@@ -93,9 +93,9 @@ MonoBehaviour:
     entityName: Deaunnassien
     male: 0
     entityStats:
-      life: 0
-      lifeRegen: 0
       maxLife: 0
+      currentLife: 0
+      lifeRegen: 0
       speed: 1
       luck: 0
       jumpForce: 1
@@ -117,23 +117,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueWindow: {fileID: 6445206216987564907}
-  dialogues:
-  - sentence: Hello toi
-    isLast: 0
-    responses: []
-    actions: 
-  - sentence: Tu veux voir mes objets de famille
-    isLast: 1
-    responses:
-    - Oui
-    - Non
-    actions: 0100000000000000
-  nameText: {fileID: 2023714326217384410}
   dialogueText: {fileID: 2997750499597496406}
-  isShow: 0
-  index: 0
+  characterNameText: {fileID: 2023714326217384410}
   responsePrefab: {fileID: 3083820239686671831, guid: e7985fbd96024074fb5af8994630f5f0, type: 3}
   responseParent: {fileID: 375053957229190173}
+  isShow: 0
   canTalk: 1
 --- !u!114 &5929804904200536384
 MonoBehaviour:
@@ -154,6 +142,8 @@ MonoBehaviour:
     currentStack: 3
   - item: {fileID: 11400000, guid: 9c94bea63c6cf274094642d18b82dc27, type: 2}
     currentStack: 12
+  - item: {fileID: 11400000, guid: c08331ebedf1ead448f58ec76b945bf1, type: 2}
+    currentStack: 1
   itemToBuy:
   - item: {fileID: 11400000, guid: 7669ba3f987b9954194d852ba0beeaf5, type: 2}
     currentStack: 1
@@ -872,7 +862,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5537842193298323646}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -1717,6 +1707,10 @@ PrefabInstance:
     - target: {fileID: 224565312678076481, guid: 83ac1db7031be6a49b2b39708a0ec192, type: 3}
       propertyPath: m_text
       value: Name
+      objectReference: {fileID: 0}
+    - target: {fileID: 1882021788311901605, guid: 83ac1db7031be6a49b2b39708a0ec192, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2193753534907637125, guid: 83ac1db7031be6a49b2b39708a0ec192, type: 3}
       propertyPath: m_AnchorMax.y

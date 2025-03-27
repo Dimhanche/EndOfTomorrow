@@ -19,12 +19,16 @@ public class ItemVisualizerButton : MonoBehaviour
     // Double-click detection
     private float _lastClickTime;
     private const float DoubleClickThreshold = 0.5f;
+
+    private PlayerInventory _playerInventory;
     
-    private void Awake()
+    private void Start()
     {
         itemButton.onClick.AddListener(OnItemClick);
         _itemActionSelector = FindObjectsByType<ItemActionSelector>(FindObjectsInactive.Include, FindObjectsSortMode.None)[0];
+        _playerInventory = PlayerEntity.Instance.GetComponent<PlayerInventory>();
     }
+
 
     private void OnItemClick()
     {
@@ -46,15 +50,15 @@ public class ItemVisualizerButton : MonoBehaviour
         {
             if (itemToDisplay.usable)
             {
-                itemToDisplay.UseItem(PlayerInventory.instance);
+                itemToDisplay.UseItem(_playerInventory);
             }
             else if (itemToDisplay.equipable && !itemToDisplay.isEquipped)
             {
-                itemToDisplay.EquipItem(PlayerInventory.instance.GetComponent<PlayerEquipment>());
+                itemToDisplay.EquipItem(_playerInventory.GetComponent<PlayerEquipment>());
             }
             else if (itemToDisplay.equipable && itemToDisplay.isEquipped)
             {
-                itemToDisplay.UnequipItem(PlayerInventory.instance.GetComponent<PlayerEquipment>());
+                itemToDisplay.UnequipItem(_playerInventory.GetComponent<PlayerEquipment>());
             }
         }
     }

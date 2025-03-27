@@ -1,114 +1,190 @@
+using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ResidentDialogue : MonoBehaviour,IInteract
+public class ResidentDialogue : MonoBehaviour, IInteract
 {
-
     public UIWindow dialogueWindow;
-    public Dialogue[] dialogues;
-
-    public TextMeshProUGUI nameText;
-    public TextMeshProUGUI dialogueText;
-    public bool isShow;
-    private int _index = 0;
-
+    public bool questGived;
     public GameObject responsePrefab;
     public Transform responseParent;
-    private bool _waitingForResponse = false;
-
+    public DialogueData currentDialogue;
     public bool canTalk = true;
+    public bool isShow;
+
+    private int _currentIndex = 0;
+    private DisplayDialogue _displayDialogue;
+    public int indexCheckQuest;
+    public int indexAfterQuest;
+    bool _questCompleted;
+    private bool _questFailed;
+
+    private void Start()
+    {
+        _displayDialogue = dialogueWindow.GetComponent<DisplayDialogue>();
+    }
 
     public void Interact(ref float cooldownMax)
     {
-        if (canTalk)
+        if (!canTalk) return;
+
+        if (!questGived || _questCompleted)
         {
-            if (!isShow)
-            {
-                _index = 0;
-                StartDialogue();
-                dialogueWindow.Show();
-                isShow = true;
-                nameText.text = GetComponent<EntityInfo>().entity.entityName;
-            }
-            else if (dialogues[_index-1].isLast && !_waitingForResponse)
-            {
-                EndDialogue();
-            }
-            else if(!_waitingForResponse)
-            {
-                ContinueDialogue();
-            }
+            HandleDialogue();
         }
+        else
+        {
+            HandleQuest();
+        }
+
         cooldownMax = 0.2f;
     }
 
-    public void StartDialogue()
+    private void HandleDialogue()
     {
-        dialogueText.text = dialogues[_index].sentence;
-        _index++;
+        if (!dialogueWindow.CheckOpened())
+        {
+            dialogueWindow.Show();
+            StartDialogue(currentDialogue);
+        }
+        else
+        {
+            _currentIndex++;
+            ShowDialogue();
+        }
     }
 
-    public void ContinueDialogue()
+    private void HandleQuest()
     {
-        dialogueText.text = dialogues[_index].sentence;
-        int currentIndex = _index;
-        if(dialogues[_index].responses != null)
+        if (!dialogueWindow.CheckOpened())
         {
-            SpawnButtons(currentIndex);
+            dialogueWindow.Show();
         }
-        _index++;
 
+        var quest = currentDialogue.dialogueEntries[0].questToAdd;
+        quest.CheckQuest(PlayerEntity.Instance);
+        if (quest.isCompleted)
+        {
+            ShowDialogue(currentDialogue.dialogueEntries[indexCheckQuest + 1]);
+            _questCompleted = true;
+            _currentIndex = indexAfterQuest;
+            PlayerEntity.Instance.GetComponent<PlayerQuest>().RemoveQuest(quest);
+        }
+        else
+        {
+            if(_questFailed)
+            {
+                EndDialogue();
+                _questFailed = false;
+            }
+            else
+            {
+                ShowDialogue(currentDialogue.dialogueEntries[indexCheckQuest]);
+                _questFailed = true;
+            }
+        }
     }
 
-    private void SpawnButtons(int currentIndex)
+    public void StartDialogue(DialogueData dialogue)
     {
-        for (int i = 0; i < dialogues[currentIndex].responses.Length; i++)
+        currentDialogue = dialogue;
+        if (_questCompleted)
+            _currentIndex = indexAfterQuest;
+        ShowDialogue();
+    }
+
+    private void ShowDialogue()
+    {
+        if (_currentIndex >= currentDialogue.dialogueEntries.Count || currentDialogue.dialogueEntries[_currentIndex].isLast)
         {
-            GameObject answerButton = Instantiate(responsePrefab, responseParent);
-            int currentWay = i;
-            answerButton.GetComponent<ResponseButton>().SetResponse(dialogues[_index].responses[i], this);
-            answerButton.GetComponent<Button>().onClick.AddListener(() => {
-                _waitingForResponse = false;
-                RemoveAllButton();
-                if(dialogues[currentIndex].actions[currentWay] == DialogueAction.OpenShop)
-                {
-                    OpenShop();
-                }
-                if (dialogues[currentIndex].isLast)
-                {
-                    EndDialogue();
-                }
-                else
-                {
-                    ContinueDialogue();
-                }
-
-
-            });
-            _waitingForResponse = true;
-
+            EndDialogue();
+            return;
         }
 
+        var entry = currentDialogue.dialogueEntries[_currentIndex];
+        DisplayEntry(entry);
+    }
+
+    private void ShowDialogue(DialogueData.DialogueEntry entry)
+    {
+        DisplayEntry(entry);
+    }
+
+    private void DisplayEntry(DialogueData.DialogueEntry entry)
+    {
+        _displayDialogue.Display(entry.dialogueText, GetComponent<EntityInfo>().entity.entityName);
+        ClearOldChoices();
+        AddNewChoices(entry.choices);
+    }
+
+    private void ClearOldChoices()
+    {
+        foreach (Transform child in responseParent)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
+    private void AddNewChoices(List<DialogueData.DialogueChoice> choices)
+    {
+        foreach (var choice in choices)
+        {
+            var buttonObj = Instantiate(responsePrefab, responseParent);
+            var button = buttonObj.GetComponent<ResponseButton>();
+            button.SetResponse(choice.choiceText, this);
+            button.GetComponent<Button>().onClick.AddListener(() => ChooseOption(choice));
+        }
+    }
+
+    private void ChooseOption(DialogueData.DialogueChoice choice)
+    {
+        switch (choice.actionType)
+        {
+            case DialogueActionType.OpenShop:
+                OpenShop();
+                return;
+            case DialogueActionType.AddQuest:
+                AddQuest();
+                break;
+            case DialogueActionType.GiveItem:
+                Debug.Log("Give item");
+                break;
+        }
+
+        if (choice.nextDialogueId == -1)
+        {
+            EndDialogue();
+        }
+        else
+        {
+            _currentIndex = choice.nextDialogueId;
+            ShowDialogue();
+        }
     }
 
     private void OpenShop()
     {
         canTalk = false;
         GetComponent<Merchant>().OpenShop();
+        EndDialogue();
     }
 
-    public void EndDialogue()
+    private void AddQuest()
+    {
+        var questToAdd = currentDialogue.dialogueEntries[0].questToAdd;
+        if (questToAdd != null)
+        {
+            PlayerEntity.Instance.GetComponent<PlayerQuest>().AddQuest(questToAdd);
+        }
+
+        questGived = true;
+    }
+
+    private void EndDialogue()
     {
         dialogueWindow.Close();
-        isShow = false;
-    }
-
-    public void RemoveAllButton()
-    {
-        for (int i = 0; i < responseParent.childCount; i++)
-        {
-            Destroy(responseParent.GetChild(i).gameObject);
-        }
+        _displayDialogue.Display("", "");
     }
 }
