@@ -62,9 +62,21 @@ public class PlayerInventory : MonoBehaviour
                 return;
             }
         }
-
         UpdateCurrentMoney();
     }
+
+    public void RemoveItem(ItemStack[] itemsToRemove)
+    {
+        for (int i = 0; i < items.Length; i++)
+        {
+            foreach (ItemStack item in itemsToRemove)
+            {
+                RemoveItem(item);
+            }
+        }
+        UpdateCurrentMoney();
+    }
+
 
     public int GetItemCount(ItemStack item)
     {
@@ -87,17 +99,28 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    public bool HasItem(Item item)
+    public bool HasItem(ItemStack item)
     {
-        Debug.Log(item.itemName);
         for (int i = 0; i < items.Length; i++)
         {
-            if (items[i].item == item)
+            if (items[i].item == item.item && items[i].currentStack >= item.currentStack)
             {
                 return true;
             }
         }
         return false;
+    }
+
+    public bool HasItem(ItemStack[] itemsChecked)
+    {
+        foreach (ItemStack item in itemsChecked)
+        {
+            if (!HasItem(item))
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void OpenInventory()

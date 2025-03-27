@@ -6,7 +6,7 @@ public class Quest :ScriptableObject
     public Sprite questSprite;
     public string questTitle;
     public string questDescription;
-    public ItemStack requiredItem;
+    public ItemStack[] requiredItem;
 
 
     //Reward
@@ -25,7 +25,7 @@ public class Quest :ScriptableObject
     public void CheckQuest (PlayerEntity playerEntity)
     {
         PlayerInventory playerInventory = playerEntity.GetComponent<PlayerInventory>();
-        if (playerInventory.HasItem(requiredItem.item))
+        if (playerInventory.HasItem(requiredItem))
         {
             playerInventory.RemoveItem(requiredItem);
             if(rewardItem.Length > 0)
