@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BehaviorTree
 {
-    public enum NodeState
+    public enum ENodeState
     {
         RUNNING,
         SUCCESS,
@@ -13,7 +13,7 @@ namespace BehaviorTree
 
     public class Node
     {
-        public NodeState state;
+        public ENodeState state;
         public Node parent;
         protected List<Node> children = new List<Node>();
 
@@ -38,9 +38,9 @@ namespace BehaviorTree
             children.Add(node);
         }
 
-        public virtual NodeState Evaluate()
+        public virtual ENodeState Evaluate()
         {
-            return NodeState.FAILURE;
+            return ENodeState.FAILURE;
         }
 
         public void SetData(string key, object value)

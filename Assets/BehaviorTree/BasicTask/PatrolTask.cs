@@ -20,7 +20,7 @@ public class PatrolTask : Node
         this._speed = speed;
     }
 
-    public override NodeState Evaluate()
+    public override ENodeState Evaluate()
     {
         if (_waiting)
         {
@@ -46,7 +46,7 @@ public class PatrolTask : Node
             transform.LookAt(wp.position);
         }
 
-        state = NodeState.RUNNING;
+        state = ENodeState.RUNNING;
         return state;
     }
 }

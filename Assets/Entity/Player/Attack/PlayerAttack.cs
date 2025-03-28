@@ -39,6 +39,6 @@ public class PlayerAttack : MonoBehaviour
 
     private int CalculateDamage()
     {
-        return currentWeapon.damage;
+        return currentWeapon.damage + (int)GetComponent<PlayerEntity>().baseDamage;
     }
 }

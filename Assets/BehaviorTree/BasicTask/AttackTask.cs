@@ -18,7 +18,7 @@ public class AttackTask : Node
         _caster = caster;
     }
 
-    public override NodeState Evaluate()
+    public override ENodeState Evaluate()
     {
         Transform target = (Transform)GetData("target");
         if (target != _lastTarget)
@@ -33,7 +33,7 @@ public class AttackTask : Node
             _attackCounter = 0;
         }
 
-        state = NodeState.RUNNING;
+        state = ENodeState.RUNNING;
         return state;
     }
 }

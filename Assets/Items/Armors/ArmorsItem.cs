@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public enum ArmorType
+public enum EArmorType
 {
     Helmet,
     Chestplate,
@@ -14,5 +15,5 @@ public class ArmorsItem : Item
 {
     [Header("Armor Stats")]
     public int defense;
-    public ArmorType armorType;
+    [FormerlySerializedAs("armorType")] public EArmorType eArmorType;
 }

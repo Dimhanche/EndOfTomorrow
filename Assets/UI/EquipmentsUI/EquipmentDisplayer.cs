@@ -13,21 +13,21 @@ public class EquipmentDisplayer : MonoBehaviour
 
     public void DisplayEquipment(ArmorsItem armorToDisplay,bool unequip = false)
     {
-        switch (armorToDisplay.armorType)
+        switch (armorToDisplay.eArmorType)
         {
-            case ArmorType.Helmet:
+            case EArmorType.Helmet:
                 _currentItemVisualizer = helmetPlacement;
                 break;
-            case ArmorType.Chestplate:
+            case EArmorType.Chestplate:
                 _currentItemVisualizer = chestplatePlacement;
                 break;
-            case ArmorType.Leggings:
+            case EArmorType.Leggings:
                 _currentItemVisualizer = leggingsPlacement;
                 break;
-            case ArmorType.Belt:
+            case EArmorType.Belt:
                 _currentItemVisualizer = beltPlacement;
                 break;
-            case ArmorType.Gauntlet:
+            case EArmorType.Gauntlet:
                 _currentItemVisualizer = gauntletPlacement;
                 break;
             default:

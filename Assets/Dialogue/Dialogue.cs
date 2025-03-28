@@ -18,13 +18,13 @@ public class DialogueData
     {
         public string choiceText;
         public int nextDialogueId;
-        public DialogueActionType actionType;
+        public EDialogueActionType actionType;
     }
 
     public List<DialogueEntry> dialogueEntries;
 }
 
-public enum DialogueActionType
+public enum EDialogueActionType
 {
     None,
     OpenShop,

@@ -10,9 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2bccb4b6d4c5484e8dd56596cf8d51d, type: 3}
-  m_Name: Farmer1
+  m_Name: Oratory I
   m_EditorClassIdentifier: 
-  soNodeRequired: {fileID: 11400000, guid: 39f5246ccc47eff44a0a543e9ade43b6, type: 2}
-  nextNodes: []
+  soNodeRequired:
+  - {fileID: 11400000, guid: 39f5246ccc47eff44a0a543e9ade43b6, type: 2}
+  nextNodes:
+  - {fileID: 11400000, guid: a18f45d7c19725546b836995db469592, type: 2}
+  - {fileID: 11400000, guid: 75df5f65b35ed0e4abd0a2b44f1ff9ad, type: 2}
+  - {fileID: 11400000, guid: 39de3c0a6de9d4e439948084bcd5c3cd, type: 2}
   isUnlocked: 0
-  competencePointCost: 0
+  competencePointCost: 1
+  nodeType: 2
+  nodeValue: 1

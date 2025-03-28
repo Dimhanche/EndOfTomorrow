@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class SkillTree : MonoBehaviour
+public class PlayerSkillTree : MonoBehaviour
 {
     public UIWindow skillTreeWindow;
     private Vector3 _initialMousePosition;
@@ -39,22 +39,22 @@ public class SkillTree : MonoBehaviour
 
     private void Update()
     {
-        if (skillTreeWindow.CheckOpened())
-        {
-            if (Input.GetMouseButtonDown(1))
-            {
-                _isDragging = true;
-                _initialMousePosition = Input.mousePosition;
-            }
-            else if (Input.GetMouseButtonUp(1))
-            {
-                _isDragging = false;
-            }
+        if (!skillTreeWindow.CheckOpened())
+            return;
 
-            if (_isDragging)
-            {
-                MoveWindow();
-            }
+        if (Input.GetMouseButtonDown(1))
+        {
+            _isDragging = true;
+            _initialMousePosition = Input.mousePosition;
+        }
+        else if (Input.GetMouseButtonUp(1))
+        {
+            _isDragging = false;
+        }
+
+        if (_isDragging)
+        {
+            MoveWindow();
         }
     }
 

@@ -14,12 +14,12 @@ public class GoToTargetTask : Node
         _speed = speed;
     }
 
-    public override NodeState Evaluate()
+    public override ENodeState Evaluate()
     {
         Transform target = (Transform)GetData("target");
         _transform.position = Vector3.MoveTowards(_transform.position, target.position, Time.deltaTime*_speed);
         _transform.LookAt(target.position);
-        state = NodeState.RUNNING;
+        state = ENodeState.RUNNING;
         return state;
     }
 }

@@ -41,7 +41,7 @@ public class PlayerEquipment : EntityEquipment
     {
         for (int i = 0; i < armor.Length; i++)
         {
-            if (armor[i] == null || (armor[i].armorType == newArmor.armorType))
+            if (armor[i] == null || (armor[i].eArmorType == newArmor.eArmorType))
             {
                 armor[i] = newArmor;
                 _equipmentDisplayer.DisplayEquipment(newArmor);

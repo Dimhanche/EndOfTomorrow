@@ -1,7 +1,9 @@
 using System;
 using UnityEditor;
 using UnityEngine;
-public enum OreType
+using UnityEngine.Serialization;
+
+public enum EOreType
 {
     Copper,
     Iron,
@@ -11,7 +13,7 @@ public enum OreType
 
 public class Ore :  MonoBehaviour,IInteract
 {
-    public OreType oreType;
+    public EOreType eOreType;
     [SerializeField] private ItemStack _itemsToDrop;
     [SerializeField] [Range(1, 10)] private int _oreMaxAmountDroppable = 3;
     private int _oreLife = 5;

@@ -142,13 +142,13 @@ public class ResidentDialogue : MonoBehaviour, IInteract
     {
         switch (choice.actionType)
         {
-            case DialogueActionType.OpenShop:
+            case EDialogueActionType.OpenShop:
                 OpenShop();
                 return;
-            case DialogueActionType.AddQuest:
+            case EDialogueActionType.AddQuest:
                 AddQuest();
                 break;
-            case DialogueActionType.GiveItem:
+            case EDialogueActionType.GiveItem:
                 Debug.Log("Give item");
                 break;
         }

@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2bccb4b6d4c5484e8dd56596cf8d51d, type: 3}
-  m_Name: Base
+  m_Name: Speed I
   m_EditorClassIdentifier: 
-  soNodeRequired: {fileID: 0}
+  soNodeRequired:
+  - {fileID: 11400000, guid: 39f5246ccc47eff44a0a543e9ade43b6, type: 2}
   nextNodes:
-  - {fileID: 11400000, guid: 1d529d285907cf0438b00d414550d7f6, type: 2}
-  - {fileID: 11400000, guid: 81c807e9271995944811076d729a0783, type: 2}
-  - {fileID: 11400000, guid: 50f72a0bb160cb24b8c024edb836406b, type: 2}
+  - {fileID: 11400000, guid: 45a0b2468a746f4418d17feaa1847ad9, type: 2}
   isUnlocked: 0
-  competencePointCost: 0
-  nodeType: 6
+  competencePointCost: 1
+  nodeType: 1
   nodeValue: 1

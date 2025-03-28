@@ -8,27 +8,27 @@ namespace BehaviorTree
         public Sequence() : base() { }
         public Sequence(List<Node> children) : base(children) { }
 
-        public override NodeState Evaluate()
+        public override ENodeState Evaluate()
         {
             bool anyChildRunning = false;
             foreach (Node node in children)
             {
                 switch (node.Evaluate())
                 {
-                    case NodeState.FAILURE:
-                        state = NodeState.FAILURE;
+                    case ENodeState.FAILURE:
+                        state = ENodeState.FAILURE;
                         return state;
-                    case NodeState.SUCCESS:
+                    case ENodeState.SUCCESS:
                         continue;
-                    case NodeState.RUNNING:
+                    case ENodeState.RUNNING:
                         anyChildRunning = true;
                         continue;
                     default:
-                        state = NodeState.SUCCESS;
+                        state = ENodeState.SUCCESS;
                         return state;
                 }
             }
-            state = anyChildRunning ? NodeState.RUNNING : NodeState.SUCCESS;
+            state = anyChildRunning ? ENodeState.RUNNING : ENodeState.SUCCESS;
             return state;
         }
     }

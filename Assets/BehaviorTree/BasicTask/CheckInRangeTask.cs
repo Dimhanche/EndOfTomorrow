@@ -12,18 +12,18 @@ public class CheckInRangeTask : Node
         _fovRange = fovRange;
     }
 
-    public override NodeState Evaluate()
+    public override ENodeState Evaluate()
     {
         object target = GetData("target");
         Collider[] colliders = Physics.OverlapSphere(_transform.position, _fovRange, LayerMask.GetMask("Player"));
         if (colliders.Length > 0)
         {
             parent.parent.SetData("target", colliders[0].transform);
-            state = NodeState.SUCCESS;
+            state = ENodeState.SUCCESS;
             return state;
         }
 
-        state = NodeState.FAILURE;
+        state = ENodeState.FAILURE;
         return state;
 
     }

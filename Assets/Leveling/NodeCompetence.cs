@@ -15,31 +15,32 @@ public class NodeCompetence : MonoBehaviour
         _nodeButton.onClick.AddListener(UnlockNode);
         _entity = GetComponentInParent<PlayerEntity>();
         CheckNextNodes();
+
+        if (soNode.isUnlocked)
+        {
+            UnlockButton();
+        }
     }
 
     public void UnlockNode()
     {
-        if (soNode.isUnlocked)
+        if (soNode.isUnlocked || soNode.competencePointCost <= _entity.competencePoint)
         {
             return;
         }
 
-        if (soNode.competencePointCost <= _entity.competencePoint)
+        if (soNode.soNodeRequired.Length > 0)
         {
-            if (soNode.soNodeRequired != null)
+            foreach (SONodeCompetencePoint requiredNode in soNode.soNodeRequired)
             {
-                if (soNode.soNodeRequired.isUnlocked)
+                if (!requiredNode.isUnlocked)
                 {
-                    UnlockButton();
-                    _entity.competencePoint -= soNode.competencePointCost;
+                    return;
                 }
             }
-            else
-            {
-                UnlockButton();
-                _entity.competencePoint -= soNode.competencePointCost;
-            }
         }
+        UnlockButton();
+        _entity.competencePoint -= soNode.competencePointCost;
     }
 
     public void UnlockButton()
@@ -48,29 +49,23 @@ public class NodeCompetence : MonoBehaviour
         _nodeButton.interactable = false;
     }
 
-    private void GenerateArrow(Vector3 nextNode)
+    private void GenerateArrow(Vector3 nextNode, float thickness)
     {
         Image nodeImage = Instantiate(nodeImagePrefabs, transform);
 
         Vector3 anchorPos = transform.position;
-
         Vector3 currentPos = nextNode;
-
         currentPos.z = 0;
 
         Vector3 midPointVector = (currentPos + anchorPos) / 2;
-
         nodeImage.transform.position = midPointVector;
 
         Vector3 relative = currentPos - anchorPos;
         float maggy = relative.magnitude;
 
-
-        nodeImage.transform.localScale = new Vector3(maggy / 2, 1, 0);
-        Quaternion rotationVector = Quaternion.LookRotation(relative);
-        rotationVector.z = 0;
-        rotationVector.w = 0;
-        nodeImage.transform.rotation = rotationVector;
+        nodeImage.transform.localScale = new Vector3(maggy, thickness, 1);
+        float angle = Mathf.Atan2(relative.y, relative.x) * Mathf.Rad2Deg;
+        nodeImage.transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
     private void CheckNextNodes()
@@ -86,7 +81,7 @@ public class NodeCompetence : MonoBehaviour
             {
                 if (node.soNode == nextNode)
                 {
-                    GenerateArrow(node.transform.position);
+                    GenerateArrow(node.transform.position,4);
                 }
             }
         }

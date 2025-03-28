@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2bccb4b6d4c5484e8dd56596cf8d51d, type: 3}
-  m_Name: Base
+  m_Name: Guild III
   m_EditorClassIdentifier: 
-  soNodeRequired: {fileID: 0}
-  nextNodes:
-  - {fileID: 11400000, guid: 1d529d285907cf0438b00d414550d7f6, type: 2}
-  - {fileID: 11400000, guid: 81c807e9271995944811076d729a0783, type: 2}
-  - {fileID: 11400000, guid: 50f72a0bb160cb24b8c024edb836406b, type: 2}
+  soNodeRequired:
+  - {fileID: 11400000, guid: 6fc9bbb02fb7fbc449cf0d79f4b02d11, type: 2}
+  - {fileID: 11400000, guid: 75df5f65b35ed0e4abd0a2b44f1ff9ad, type: 2}
+  nextNodes: []
   isUnlocked: 0
-  competencePointCost: 0
+  competencePointCost: 9
   nodeType: 6
-  nodeValue: 1
+  nodeValue: 2

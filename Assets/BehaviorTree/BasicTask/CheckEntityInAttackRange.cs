@@ -11,21 +11,21 @@ public class CheckEntityInAttackRange : Node
         _attackRange = attackRange;
     }
 
-    public override NodeState Evaluate()
+    public override ENodeState Evaluate()
     {
         object t = GetData("target");
         if (t == null)
         {
-            state = NodeState.FAILURE;
+            state = ENodeState.FAILURE;
             return state;
         }
         Transform target = (Transform)t;
         if (Vector3.Distance(_transform.position, target.position) < _attackRange)
         {
-            state = NodeState.SUCCESS;
+            state = ENodeState.SUCCESS;
             return state;
         }
-        state = NodeState.FAILURE;
+        state = ENodeState.FAILURE;
         return state;
     }
 }
