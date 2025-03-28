@@ -24,7 +24,7 @@ public class NodeCompetence : MonoBehaviour
 
     public void UnlockNode()
     {
-        if (soNode.isUnlocked || soNode.competencePointCost <= _entity.competencePoint)
+        if (soNode.isUnlocked || soNode.competencePointCost > _entity.competencePoint)
         {
             return;
         }
@@ -39,6 +39,7 @@ public class NodeCompetence : MonoBehaviour
                 }
             }
         }
+
         UnlockButton();
         _entity.competencePoint -= soNode.competencePointCost;
     }
@@ -47,6 +48,27 @@ public class NodeCompetence : MonoBehaviour
     {
         soNode.isUnlocked = true;
         _nodeButton.interactable = false;
+
+        switch (soNode.nodeType)
+        {
+            case ENodeAmelirationType.Damage:
+                _entity.baseDamage += soNode.nodeValue;
+                break;
+            case ENodeAmelirationType.Luck:
+                _entity.entity.entityStats.luck += soNode.nodeValue;
+                break;
+            case ENodeAmelirationType.Speed:
+                _entity.entity.entityStats.speed += soNode.nodeValue;
+                break;
+            case ENodeAmelirationType.Oratory:
+                _entity.entity.entityStats.oratory += soNode.nodeValue;
+                break;
+            case ENodeAmelirationType.WorkSpeed:
+                _entity.workSpeed += soNode.nodeValue;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
 
     private void GenerateArrow(Vector3 nextNode, float thickness)
@@ -81,7 +103,7 @@ public class NodeCompetence : MonoBehaviour
             {
                 if (node.soNode == nextNode)
                 {
-                    GenerateArrow(node.transform.position,4);
+                    GenerateArrow(node.transform.position, 4);
                 }
             }
         }

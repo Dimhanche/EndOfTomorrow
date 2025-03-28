@@ -18,5 +18,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8b6413e8a5e3ce546a2071a0a67bd267, type: 2}
   isUnlocked: 0
   competencePointCost: 6
-  nodeType: 1
+  nodeType: 0
   nodeValue: 2

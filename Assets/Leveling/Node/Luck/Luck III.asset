@@ -18,5 +18,5 @@ MonoBehaviour:
   nextNodes: []
   isUnlocked: 0
   competencePointCost: 6
-  nodeType: 4
+  nodeType: 3
   nodeValue: 3

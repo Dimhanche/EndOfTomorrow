@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -7,7 +8,7 @@ using UnityEngine.UI;
 
 public class PlayerInventory : MonoBehaviour
 {
-    public ItemStack[] items;
+    public List<ItemStack> items;
     [SerializeField] private UIWindow _inventoryCanvas;
     [SerializeField] private GameObject _itemVisualizerPrefab;
 
@@ -19,11 +20,12 @@ public class PlayerInventory : MonoBehaviour
     //EntityInfo
     private int _currentMoney => GetComponent<PlayerEntity>().entity.money;
     [SerializeField]  private TextMeshProUGUI _moneyText;
+    [SerializeField]  private TextMeshProUGUI _lvlText;
 
 
     public void AddItem(ItemStack item)
     {
-        for (int j = 0; j < items.Length; j++)
+        for (int j = 0; j < items.Count; j++)
         {
             if (items[j].item == item.item)
             {
@@ -33,7 +35,7 @@ public class PlayerInventory : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < items.Length; i++)
+        for (int i = 0; i < items.Count; i++)
         {
             if (!items[i].item)
             {
@@ -48,7 +50,7 @@ public class PlayerInventory : MonoBehaviour
 
     public void RemoveItem(ItemStack item)
     {
-        for (int i = 0; i < items.Length; i++)
+        for (int i = 0; i < items.Count; i++)
         {
             if (items[i].item == item.item)
             {
@@ -67,7 +69,7 @@ public class PlayerInventory : MonoBehaviour
 
     public void RemoveItem(ItemStack[] itemsToRemove)
     {
-        for (int i = 0; i < items.Length; i++)
+        for (int i = 0; i < items.Count; i++)
         {
             foreach (ItemStack item in itemsToRemove)
             {
@@ -80,7 +82,7 @@ public class PlayerInventory : MonoBehaviour
 
     public int GetItemCount(ItemStack item)
     {
-        for (int i = 0; i < items.Length; i++)
+        for (int i = 0; i < items.Count; i++)
         {
             if (items[i].item == item.item)
             {
@@ -101,7 +103,7 @@ public class PlayerInventory : MonoBehaviour
 
     public bool HasItem(ItemStack item)
     {
-        for (int i = 0; i < items.Length; i++)
+        for (int i = 0; i < items.Count; i++)
         {
             if (items[i].item == item.item && items[i].currentStack >= item.currentStack)
             {
@@ -126,9 +128,15 @@ public class PlayerInventory : MonoBehaviour
     public void OpenInventory()
     {
         UpdateCurrentMoney();
+        UpdatePlayerLevel();
         _inventoryCanvas.Toggle();
         _inventorySections[0].Select();
         DisplayInventory(currentIndex = -1);
+    }
+
+    private void UpdatePlayerLevel()
+    {
+        _lvlText.text = $"LVL {GetComponent<PlayerLeveling>().currentLevel.ToString()}";
     }
 
     private void DisplayInventory(int index)
@@ -156,7 +164,7 @@ public class PlayerInventory : MonoBehaviour
 
     private void DisplayItemByLabel(EItemLabel itemLabel, bool displayAll = false)
     {
-        for (int i = 0; i < items.Length; i++)
+        for (int i = 0; i < items.Count; i++)
         {
             if (items[i].item && (items[i].item.itemLabel == itemLabel || displayAll))
             {
@@ -182,7 +190,7 @@ public class PlayerInventory : MonoBehaviour
     public bool CanCraft(Craft craft)
     {
         int ItemNeeded = 0;
-        for (int j = 0; j < items.Length; j++)
+        for (int j = 0; j < items.Count; j++)
         {
             if (items[j].item != null)
             {

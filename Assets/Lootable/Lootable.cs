@@ -18,10 +18,7 @@ public class Lootable : MonoBehaviour,IInteract
 
     public void Loot()
     {
-        for (int i = 0; i < guaranteedLootItems.Length; i++)
-        {
-            IInteract.AddInInventory(guaranteedLootItems);
-        }
+        IInteract.AddInInventory(guaranteedLootItems);
 
         List<ItemStack> tempItemList = new List<ItemStack>();
         for (int i = 0; i < possibleLootItems.Length; i++)

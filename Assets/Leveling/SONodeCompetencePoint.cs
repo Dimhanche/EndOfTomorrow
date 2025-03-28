@@ -14,11 +14,9 @@ public class SONodeCompetencePoint : ScriptableObject
 
 public enum ENodeAmelirationType
 {
-    InventorySpace,
     Speed,
     Oratory,
     WorkSpeed,
     Luck,
     Damage,
-    GuildReputation
 }

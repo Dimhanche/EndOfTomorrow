@@ -16,9 +16,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 39f5246ccc47eff44a0a543e9ade43b6, type: 2}
   nextNodes:
   - {fileID: 11400000, guid: a18f45d7c19725546b836995db469592, type: 2}
-  - {fileID: 11400000, guid: 75df5f65b35ed0e4abd0a2b44f1ff9ad, type: 2}
-  - {fileID: 11400000, guid: 39de3c0a6de9d4e439948084bcd5c3cd, type: 2}
   isUnlocked: 0
   competencePointCost: 1
-  nodeType: 2
+  nodeType: 1
   nodeValue: 1

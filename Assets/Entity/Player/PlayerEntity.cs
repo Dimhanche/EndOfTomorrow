@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerEntity : EntityInfo
 {
     public float baseDamage = 10;
+    public float workSpeed = 10;
     public int reputation;
     public int competencePoint;
 
