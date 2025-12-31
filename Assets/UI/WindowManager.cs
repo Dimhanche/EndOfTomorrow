@@ -7,6 +7,7 @@ public static class WindowManager
     public static bool OpenWindow()
     {
         nbWindowsOpen++;
+        PlayerEntity.Instance.canInterract = false;
         return CheckAllWindowClose();
     }
 
@@ -24,12 +25,12 @@ public static class WindowManager
             Cursor.visible = true;
             return false;
         }
-        else
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-            return true;
-        }
+
+        PlayerEntity.Instance.canInterract = true;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        return true;
     }
 
     public static void CloseAllWindow()

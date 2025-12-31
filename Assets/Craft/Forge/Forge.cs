@@ -1,16 +1,16 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Forge : MonoBehaviour, IInteract
 {
     public UIWindow forgeCanvas;
+    public Image cookImage;
     public Craft[] crafts;
     [SerializeField] private ItemStack _itemInput;
     private float _cooldown;
-    private bool isCooking;
+    private bool _isCooking;
     [SerializeField] private Transform _craftParent;
     [SerializeField] private GameObject _craftPrefab;
     private PlayerInventory _playerInventory;
@@ -32,19 +32,20 @@ public class Forge : MonoBehaviour, IInteract
 
     public IEnumerator Cook(Craft currentCraft)
     {
-       if(!isCooking)
+       if(!_isCooking)
        {
            IInteract.RemoveFromInventory(currentCraft.itemInputs);
-           isCooking = true;
+           _isCooking = true;
            _itemInput = currentCraft.itemInputs[0];
            _cooldown = currentCraft.craftTime;
            while (_cooldown > 0)
            {
-               yield return new WaitForSecondsRealtime(1);
-               _cooldown--;
+               yield return new WaitForSecondsRealtime(0.25f);
+               cookImage.fillAmount = 1-(_cooldown / currentCraft.craftTime);
+               _cooldown-=.25f;
            }
-
-           isCooking = false;
+           cookImage.fillAmount = 0;
+           _isCooking = false;
            ItemStack[] copiedItems = new ItemStack[currentCraft.itemOutputs.Length];
            for (int i = 0; i < currentCraft.itemOutputs.Length; i++)
            {
@@ -61,7 +62,7 @@ public class Forge : MonoBehaviour, IInteract
         {
             Destroy(child.gameObject);
         }
-
+        cookImage.fillAmount = 0;
         for (int i = 0; i < crafts.Length; i++)
         {
             GameObject craftVisualizer = Instantiate(_craftPrefab, _craftParent);

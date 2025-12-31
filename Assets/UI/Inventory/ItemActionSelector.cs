@@ -15,20 +15,24 @@ public class ItemActionSelector : MonoBehaviour
     private Item _item;
     private DescriptionItem _descriptionItem;
 
+    private UIWindow _window;
+
     private void Awake()
     {
+        _playerEquipment = GetComponentInParent<PlayerEquipment>();
+        _descriptionItem = GetComponentInParent<DescriptionItem>();
+        _window = GetComponentInParent<UIWindow>();
+
         _itemActionButton = GetComponentsInChildren<Button>();
         _itemActionButton[1].onClick.AddListener(DescriptionItem);
         _itemActionButton[2].onClick.AddListener(DestroyItem);
-        HideItemActions();
-        _playerEquipment = GetComponentInParent<PlayerEquipment>();
-        _descriptionItem = GetComponentInParent<DescriptionItem>();
     }
 
     public void DisplayItemActions(Vector3 itemPos ,bool usable = false, bool equipable = false,bool isEquipped= false,Item item = null)
     {
+
         // Display the item actions
-        itemActionObject.SetActive(true);
+        _window.Show();
         itemActionObject.transform.position = itemPos+offest;
         _itemActionButton[0].interactable = true;
         _item = item;
@@ -56,17 +60,14 @@ public class ItemActionSelector : MonoBehaviour
 
     public void HideItemActions()
     {
-        itemActionObject.SetActive(false);
+        _window.Close();
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && _window.CheckOpened())
         {
-            if (!EventSystem.current.IsPointerOverGameObject())
-            {
-                HideItemActions();
-            }
+            HideItemActions();
         }
     }
 

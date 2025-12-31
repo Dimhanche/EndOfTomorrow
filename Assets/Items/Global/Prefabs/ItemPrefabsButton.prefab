@@ -185,8 +185,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -227,10 +227,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 5625812215504247151}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 40, y: -10}
-  m_SizeDelta: {x: -13.400002, y: -35.3}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -12.5, y: 0}
+  m_SizeDelta: {x: 36.6, y: 14.699997}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &7924316909960700943
 CanvasRenderer:
@@ -523,3 +523,4 @@ MonoBehaviour:
   itemButton: {fileID: 6003461441798806769}
   lockImage: {fileID: 7553157609028802406}
   nbItem: {fileID: 1540574143144364003}
+  itemToDisplay: {fileID: 0}

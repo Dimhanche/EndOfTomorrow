@@ -25,13 +25,11 @@ public class Merchant : MonoBehaviour
 
     public void OpenShop()
     {
-        if (!merchantCanvas.CheckOpened())
-        {
-            merchantCanvas.Show();
-            _playerInventory.OpenInventory();
-            DisplayMerchantInfo();
-            DisplayAllItems();
-        }
+        if (merchantCanvas.CheckOpened()) return;
+        merchantCanvas.Show();
+        _playerInventory.OpenInventory();
+        DisplayMerchantInfo();
+        DisplayAllItems();
     }
 
     public void DisplayMerchantInfo()
@@ -88,7 +86,7 @@ public class Merchant : MonoBehaviour
     /// <summary>
     /// Merchant Buy Item
     /// </summary>
-    /// <param name="item">item buy</param>
+    /// <param name="item">Item buy</param>
     private void BuyItem(ItemStack item)
     {
         item.currentStack++;
@@ -101,10 +99,11 @@ public class Merchant : MonoBehaviour
 /// <summary>
 /// Merchant Sell Item
 /// </summary>
-/// <param name="item"> item sell</param>
+/// <param name="item"> Item sell</param>
     private void SellItem(ItemStack item)
     {
         item.currentStack--;
+        print(item.currentStack);
         entityInfo.entity.money += item.item.itemValue;
         _playerEntityInfo.entity.money -= item.item.itemValue;
         _playerInventory.AddItem(new ItemStack(item.item));
@@ -115,6 +114,7 @@ public class Merchant : MonoBehaviour
     public void CloseShop()
     {
         merchantCanvas.Close();
+        _playerInventory.CloseInventory();
         GetComponent<ResidentDialogue>().canTalk = true;
     }
 }

@@ -25,6 +25,7 @@ public class PlayerInventory : MonoBehaviour
 
     public void AddItem(ItemStack item)
     {
+        UpdateCurrentMoney();
         for (int j = 0; j < items.Count; j++)
         {
             if (items[j].item == item.item)
@@ -45,11 +46,11 @@ public class PlayerInventory : MonoBehaviour
             }
         }
 
-        UpdateCurrentMoney();
     }
 
     public void RemoveItem(ItemStack item)
     {
+        UpdateCurrentMoney();
         for (int i = 0; i < items.Count; i++)
         {
             if (items[i].item == item.item)
@@ -64,7 +65,6 @@ public class PlayerInventory : MonoBehaviour
                 return;
             }
         }
-        UpdateCurrentMoney();
     }
 
     public void RemoveItem(ItemStack[] itemsToRemove)
@@ -132,6 +132,11 @@ public class PlayerInventory : MonoBehaviour
         _inventoryCanvas.Toggle();
         _inventorySections[0].Select();
         DisplayInventory(currentIndex = -1);
+    }
+
+    public void CloseInventory()
+    {
+        _inventoryCanvas.Toggle();
     }
 
     private void UpdatePlayerLevel()
@@ -212,7 +217,7 @@ public class PlayerInventory : MonoBehaviour
         return false;
     }
 
-    private void UpdateCurrentMoney()
+    public  void UpdateCurrentMoney()
     {
         _moneyText.text = _currentMoney.ToString();
     }

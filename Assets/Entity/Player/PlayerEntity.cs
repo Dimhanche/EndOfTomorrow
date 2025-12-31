@@ -33,7 +33,7 @@ public class PlayerEntity : EntityInfo
 
     private void Start()
     {
-        lifeChanged.AddListener(OnLifeChaneged);
+        lifeChanged.AddListener(OnLifeChanged);
         xpChanged.AddListener(OnXpChanged);
         _windows = FindObjectsByType<UIWindow>(FindObjectsSortMode.None);
 
@@ -44,40 +44,35 @@ public class PlayerEntity : EntityInfo
     {
         GetComponentInChildren<PlayerXpDisplayer>().UpdateXpBar(currentExperience, nextLevelExperience);
     }
-    public void OnLifeChaneged()
+    public void OnLifeChanged()
     {
         GetComponentInChildren<PlayerLifeDisplayer>().UpdateLifeBar( entity.entityStats.currentLife,entity.entityStats.maxLife);
     }
     
     public void PlayerOpenPauseMenuInput(InputAction.CallbackContext cxt)
     {
-        if (cxt.performed)
+        if (!cxt.performed) return;
+        int nbWindowsOpen = 0;
+        foreach (UIWindow window in _windows)
         {
-            int nbWindowsOpen = 0;
-            foreach (UIWindow window in _windows)
-            {
-                if(window.CheckOpened())
-                {
-                    nbWindowsOpen++;
-                    window.Close();
-                }
-            }
-            if(nbWindowsOpen == 0)
-            {
-                isPaused = !isPaused;
-                if(isPaused)
-                {
-                    Time.timeScale = 0;
-                    Cursor.lockState = CursorLockMode.Confined;
-                    Cursor.visible = true;
-                }
-                else
-                {
-                    Time.timeScale = 1;
-                    Cursor.lockState = CursorLockMode.Locked;
-                    Cursor.visible = false;
-                }
-            }
+            if (!window.CheckOpened()) continue;
+            nbWindowsOpen++;
+            window.Close();
+        }
+
+        if (nbWindowsOpen != 0) return;
+        isPaused = !isPaused;
+        if(isPaused)
+        {
+            Time.timeScale = 0;
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
+        }
+        else
+        {
+            Time.timeScale = 1;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
     }
 }
