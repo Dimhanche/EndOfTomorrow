@@ -2,7 +2,6 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class ItemActionSelector : MonoBehaviour
@@ -16,6 +15,7 @@ public class ItemActionSelector : MonoBehaviour
     private DescriptionItem _descriptionItem;
 
     private UIWindow _window;
+    public static ItemActionSelector Instance;
 
     private void Awake()
     {
@@ -26,6 +26,15 @@ public class ItemActionSelector : MonoBehaviour
         _itemActionButton = GetComponentsInChildren<Button>();
         _itemActionButton[1].onClick.AddListener(DescriptionItem);
         _itemActionButton[2].onClick.AddListener(DestroyItem);
+        if (Instance != null)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+            print(Instance.name);
+        }
     }
 
     public void DisplayItemActions(Vector3 itemPos ,bool usable = false, bool equipable = false,bool isEquipped= false,Item item = null)
@@ -100,5 +109,13 @@ public class ItemActionSelector : MonoBehaviour
     {
         PlayerEntity.Instance.GetComponent<PlayerInventory>().RemoveItem(new ItemStack(_item));
         HideItemActions();
+    }
+
+    public bool CheckOpenedWindow()
+    {
+        if(!_window)
+            return false;
+        print(_window.CheckOpened() + "noefnozq");
+        return _window.CheckOpened();
     }
 }

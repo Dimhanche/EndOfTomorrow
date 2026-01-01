@@ -86,7 +86,7 @@ public class Merchant : MonoBehaviour
     /// <summary>
     /// Merchant Buy Item
     /// </summary>
-    /// <param name="item">Item buy</param>
+    /// <param name="item">Item to buy</param>
     private void BuyItem(ItemStack item)
     {
         item.currentStack++;
@@ -99,7 +99,7 @@ public class Merchant : MonoBehaviour
 /// <summary>
 /// Merchant Sell Item
 /// </summary>
-/// <param name="item"> Item sell</param>
+/// <param name="item"> Item to sell</param>
     private void SellItem(ItemStack item)
     {
         item.currentStack--;

@@ -1,7 +1,5 @@
-using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class ItemVisualizerButton : MonoBehaviour
@@ -25,7 +23,7 @@ public class ItemVisualizerButton : MonoBehaviour
     private void Start()
     {
         itemButton.onClick.AddListener(OnItemClick);
-        _itemActionSelector = FindObjectsByType<ItemActionSelector>(FindObjectsInactive.Include, FindObjectsSortMode.None)[0];
+        _itemActionSelector = ItemActionSelector.Instance;
         _playerInventory = PlayerEntity.Instance.GetComponent<PlayerInventory>();
     }
 
