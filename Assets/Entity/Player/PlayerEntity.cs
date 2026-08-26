@@ -36,8 +36,6 @@ public class PlayerEntity : EntityInfo
         lifeChanged.AddListener(OnLifeChanged);
         xpChanged.AddListener(OnXpChanged);
         _windows = FindObjectsByType<UIWindow>(FindObjectsSortMode.None);
-
-
     }
 
     public void OnXpChanged(int currentExperience, int nextLevelExperience)
@@ -52,27 +50,22 @@ public class PlayerEntity : EntityInfo
     public void PlayerOpenPauseMenuInput(InputAction.CallbackContext cxt)
     {
         if (!cxt.performed) return;
-        int nbWindowsOpen = 0;
-        foreach (UIWindow window in _windows)
-        {
-            if (!window.CheckOpened()) continue;
-            nbWindowsOpen++;
-            window.Close();
-        }
 
-        if (nbWindowsOpen != 0) return;
-        isPaused = !isPaused;
-        if(isPaused)
+        if (WindowManager.CheckAllWindowClose())
         {
-            Time.timeScale = 0;
-            Cursor.lockState = CursorLockMode.Confined;
-            Cursor.visible = true;
+            isPaused = !isPaused;
+            if(isPaused)
+            {
+                Time.timeScale = 0;
+            }
+            else
+            {
+                Time.timeScale = 1;
+            }
         }
         else
         {
-            Time.timeScale = 1;
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            WindowManager.CloseAllWindow();
         }
     }
 }

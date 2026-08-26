@@ -21,10 +21,14 @@ public class ResidentDialogue : MonoBehaviour, IInteract
     bool _questCompleted;
     private bool _questFailed;
 
-    private void Start()
+    public void Start()
     {
         _displayDialogue = dialogueWindow.GetComponent<DisplayDialogue>();
+        canTalk = true;
+        isShow = false;
     }
+
+    public void SetIndex(int i)=>_currentIndex = i;
 
     public void Interact(ref float cooldownMax)
     {

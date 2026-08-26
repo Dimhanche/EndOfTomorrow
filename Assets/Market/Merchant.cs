@@ -21,6 +21,18 @@ public class Merchant : MonoBehaviour
         _infoDisplayer = merchantCanvas.GetComponent<InfoDisplayer>();
         _playerEntityInfo = PlayerEntity.Instance;
         _playerInventory = _playerEntityInfo.GetComponent<PlayerInventory>();
+        if (merchantCanvas != null)
+        {
+            merchantCanvas.onClosed.AddListener(OnShopClosed);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (merchantCanvas != null)
+        {
+            merchantCanvas.onClosed.RemoveListener(OnShopClosed);
+        }
     }
 
     public void OpenShop()
@@ -114,7 +126,14 @@ public class Merchant : MonoBehaviour
     public void CloseShop()
     {
         merchantCanvas.Close();
-        _playerInventory.CloseInventory();
-        GetComponent<ResidentDialogue>().canTalk = true;
+    }
+
+    private void OnShopClosed()
+    {
+        var rd = GetComponent<ResidentDialogue>();
+        if (rd != null)
+        {
+            rd.canTalk = true;
+        }
     }
 }

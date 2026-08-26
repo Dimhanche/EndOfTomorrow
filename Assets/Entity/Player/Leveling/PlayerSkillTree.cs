@@ -1,4 +1,4 @@
-using System;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -6,13 +6,15 @@ using UnityEngine.UI;
 public class PlayerSkillTree : MonoBehaviour
 {
     public UIWindow skillTreeWindow;
-    private Vector3 _initialMousePosition;
+    private Vector2 _initialMousePosition;
     private bool _isDragging;
     private RectTransform _nodeParent;
+    private PlayerInput _playerInput;
 
     private void Start()
     {
         _nodeParent = skillTreeWindow.transform.GetComponentInChildren<RectMask2D>().transform.GetChild(0).GetComponent<RectTransform>();
+        _playerInput = GetComponent<PlayerInput>();
     }
 
     public void PlayerOpenSkillTreeInput(InputAction.CallbackContext cxt)
@@ -39,30 +41,34 @@ public class PlayerSkillTree : MonoBehaviour
 
     private void Update()
     {
-        if (!skillTreeWindow.CheckOpened())
-            return;
-
-        if (Input.GetMouseButtonDown(1))
-        {
-            _isDragging = true;
-            _initialMousePosition = Input.mousePosition;
-        }
-        else if (Input.GetMouseButtonUp(1))
+        if (!skillTreeWindow.CheckOpened() || Mouse.current == null)
         {
             _isDragging = false;
+            return;
         }
 
-        if (_isDragging)
+        if (!_playerInput.actions.FindAction("Click").IsPressed())
         {
-            MoveWindow();
+            _isDragging = false;
+            return;
         }
+
+        Vector2 mousePosition = Mouse.current.position.ReadValue();
+
+        if (!_isDragging)
+        {
+            _isDragging = true;
+            _initialMousePosition = mousePosition;
+            return;
+        }
+
+        MoveWindow(mousePosition);
     }
 
-    private void MoveWindow()
+    private void MoveWindow(Vector2 currentMousePosition)
     {
-        Vector3 currentMousePosition = Input.mousePosition;
-        Vector3 difference = currentMousePosition - _initialMousePosition;
-        _nodeParent.position += difference;
+        Vector2 difference = currentMousePosition - _initialMousePosition;
+        _nodeParent.position += (Vector3)difference;
         _initialMousePosition = currentMousePosition;
     }
 }

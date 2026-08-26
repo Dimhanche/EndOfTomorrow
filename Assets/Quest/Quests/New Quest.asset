@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b54cc8e7210f8e438654b9db67b3e7a, type: 3}
+  m_Name: New Quest
+  m_EditorClassIdentifier: Assembly-CSharp::Quest
+  questSprite: {fileID: 0}
+  questTitle: 
+  questDescription: 
+  requiredItem:
+  - item: {fileID: 11400000, guid: 868e4ca04a15e1f429927cf9db978db8, type: 2}
+    currentStack: 2
+  rewardItem:
+  - item: {fileID: 11400000, guid: 446c591639bb20a4e963acc364219604, type: 2}
+    currentStack: 5
+  xpReward: 0
+  isCompleted: 0

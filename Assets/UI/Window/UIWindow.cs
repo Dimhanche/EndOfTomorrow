@@ -1,43 +1,54 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 using static WindowManager;
 
 public class UIWindow : MonoBehaviour
 {
     private Canvas _canvas;
-    private PlayerEntity _playerEntity;
-    private PlayerInput _playerInput;
+    public UnityEvent onClosed = new UnityEvent();
 
-    private void Start()
+    private void Awake()
     {
-        _playerEntity = PlayerEntity.Instance;
         _canvas = GetComponent<Canvas>();
-        _playerInput = _playerEntity.GetComponent<PlayerInput>();
-        Close();
-        CloseAllWindow();
+        if (_canvas != null) _canvas.enabled = false;
     }
 
     public void Show()
     {
-        _canvas.enabled = true;
-        _playerEntity.canMove = OpenWindow();
+        Debug.Log($"[UIWindow] Show => {gameObject.name}");
+        if (_canvas != null) _canvas.enabled = true;
+        WindowManager.OpenWindow(this);
     }
 
     public bool CheckOpened()
     {
-        if(_canvas != null)
-            return _canvas.enabled;
-        return false;
+        return _canvas && _canvas.enabled;
     }
 
+    // normal close (called by window itself)
     public void Close()
     {
-        _canvas.enabled = false;
-        _playerEntity.canMove = CloseWindow();
-        print("lag cause of " + ItemActionSelector.Instance);
+        Debug.Log($"[UIWindow] Close => {gameObject.name}");
+        if (_canvas) _canvas.enabled = false;
+        WindowManager.CloseWindow(this);
+        onClosed?.Invoke();
+
         if (ItemActionSelector.Instance && ItemActionSelector.Instance.CheckOpenedWindow())
         {
-            print("Close");
+            ItemActionSelector.Instance.HideItemActions();
+        }
+    }
+
+    // called by WindowManager when popping the top window to avoid re-registering
+    public void CloseWithoutManager()
+    {
+        Debug.Log($"[UIWindow] CloseWithoutManager => {gameObject.name}");
+        if (_canvas != null) _canvas.enabled = false;
+        onClosed?.Invoke();
+
+        if (ItemActionSelector.Instance && ItemActionSelector.Instance.CheckOpenedWindow())
+        {
             ItemActionSelector.Instance.HideItemActions();
         }
     }
@@ -45,12 +56,13 @@ public class UIWindow : MonoBehaviour
     public void Toggle()
     {
         if (!_canvas.enabled)
-        {
             Show();
-        }
         else
-        {
             Close();
-        }
     }
+    public void OnClosePerformed()
+    {
+        WindowManager.CloseAllWindow();
+    }
+
 }

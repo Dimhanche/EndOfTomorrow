@@ -2,6 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class ItemActionSelector : MonoBehaviour
@@ -74,7 +75,7 @@ public class ItemActionSelector : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && _window.CheckOpened())
+        if ( Mouse.current.leftButton.wasPressedThisFrame && !EventSystem.current.IsPointerOverGameObject() && _window.CheckOpened())
         {
             HideItemActions();
         }
@@ -115,7 +116,6 @@ public class ItemActionSelector : MonoBehaviour
     {
         if(!_window)
             return false;
-        print(_window.CheckOpened() + "noefnozq");
         return _window.CheckOpened();
     }
 }

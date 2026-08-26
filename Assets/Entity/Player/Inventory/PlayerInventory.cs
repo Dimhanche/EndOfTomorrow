@@ -11,6 +11,7 @@ public class PlayerInventory : MonoBehaviour
     public List<ItemStack> items;
     [SerializeField] private UIWindow _inventoryCanvas;
     [SerializeField] private GameObject _itemVisualizerPrefab;
+    private bool isOpen = false;
 
 
     //InventorySection
@@ -95,11 +96,19 @@ public class PlayerInventory : MonoBehaviour
 
     public void PlayerOpenInventoryInput(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed)
+        if (!ctx.started)
+            return;
+        if (isOpen)
+        {
+            CloseInventory();
+        }
+        else
         {
             OpenInventory();
         }
     }
+
+
 
     public bool HasItem(ItemStack item)
     {
@@ -127,16 +136,19 @@ public class PlayerInventory : MonoBehaviour
 
     public void OpenInventory()
     {
+        Debug.Log($"[PlayerInventory] OpenInventory on {gameObject.name}");
+        isOpen = true;
         UpdateCurrentMoney();
         UpdatePlayerLevel();
-        _inventoryCanvas.Toggle();
+        _inventoryCanvas.Show();
         _inventorySections[0].Select();
         DisplayInventory(currentIndex = -1);
     }
 
     public void CloseInventory()
     {
-        _inventoryCanvas.Toggle();
+        isOpen = false;
+        _inventoryCanvas.Close();
     }
 
     private void UpdatePlayerLevel()
