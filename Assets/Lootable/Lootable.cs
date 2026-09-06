@@ -11,7 +11,8 @@ public class Lootable : MonoBehaviour,IInteract
     {
         if (!_isOpened)
         {
-            cooldown = 0.25f;
+            cooldown = 0.5f;
+            GetComponentInChildren<Animation>().Play();
             Loot();
         }
     }

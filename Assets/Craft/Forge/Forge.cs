@@ -8,6 +8,7 @@ public class Forge : MonoBehaviour, IInteract
     public UIWindow forgeCanvas;
     public Image cookImage;
     public Craft[] crafts;
+    public Image itemUsedImage;
     [SerializeField] private ItemStack _itemInput;
     private float _cooldown;
     private bool _isCooking;
@@ -34,6 +35,7 @@ public class Forge : MonoBehaviour, IInteract
     {
        if(!_isCooking)
        {
+           itemUsedImage.sprite = currentCraft.craftIcon;
            IInteract.RemoveFromInventory(currentCraft.itemInputs);
            _isCooking = true;
            _itemInput = currentCraft.itemInputs[0];

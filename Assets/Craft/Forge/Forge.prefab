@@ -52,6 +52,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a72cd14f4f5a484c9244f88e44928fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onClosed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!223 &4745719327002662015
 Canvas:
   m_ObjectHideFlags: 0
@@ -303,9 +306,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forgeCanvas: {fileID: 2629468919208055160}
+  cookImage: {fileID: 0}
   crafts:
   - {fileID: 11400000, guid: b2f7f116e9e31d046a117e9d629a217f, type: 2}
   - {fileID: 11400000, guid: b3238a312a4a32c46804d00ed78d34dc, type: 2}
+  itemUsedImage: {fileID: 7767779899622627046}
   _itemInput:
     item: {fileID: 0}
     currentStack: 0
@@ -339,6 +344,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -361,9 +368,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &5818351864287590957
 BoxCollider:

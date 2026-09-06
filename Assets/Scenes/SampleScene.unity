@@ -315,9 +315,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1490536620484142000, guid: 8c45310cda366ec49af65ab49a92ccec, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 130388076183661328, guid: b5756a047e74c2e4b8afd5f6c44a56f3, type: 3}
     - target: {fileID: 3532515663606680869, guid: 8c45310cda366ec49af65ab49a92ccec, type: 3}
       propertyPath: m_Name
       value: ToolBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745533137710729473, guid: 8c45310cda366ec49af65ab49a92ccec, type: 3}
+      propertyPath: m_Name
+      value: capot
       objectReference: {fileID: 0}
     - target: {fileID: 5961205060804568508, guid: 8c45310cda366ec49af65ab49a92ccec, type: 3}
       propertyPath: possibleLootItems.Array.size
@@ -400,12 +408,24 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8080824595510163043, guid: 8c45310cda366ec49af65ab49a92ccec, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8080824595510163043, guid: 8c45310cda366ec49af65ab49a92ccec, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8080824595510163043, guid: 8c45310cda366ec49af65ab49a92ccec, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8080824595510163043, guid: 8c45310cda366ec49af65ab49a92ccec, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.703186
       objectReference: {fileID: 0}
     - target: {fileID: 8080824595510163043, guid: 8c45310cda366ec49af65ab49a92ccec, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 8080824595510163043, guid: 8c45310cda366ec49af65ab49a92ccec, type: 3}
       propertyPath: m_LocalPosition.z
@@ -438,6 +458,10 @@ PrefabInstance:
     - target: {fileID: 8080824595510163043, guid: 8c45310cda366ec49af65ab49a92ccec, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8080824595510163043, guid: 8c45310cda366ec49af65ab49a92ccec, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -915,7 +939,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4745719327002662015, guid: a6f5a81c902338547b1323ea6ccdcb67, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6064133165119955966, guid: a6f5a81c902338547b1323ea6ccdcb67, type: 3}
       propertyPath: m_Name
@@ -1692,19 +1716,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1105899252641062047, guid: cb4ff0d3643f0754b9ed3056955e23b1, type: 3}
       propertyPath: m_Name
-      value: Ore
+      value: IronOre
       objectReference: {fileID: 0}
     - target: {fileID: 2719381706591717150, guid: cb4ff0d3643f0754b9ed3056955e23b1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.63579
+      value: 13.567
       objectReference: {fileID: 0}
     - target: {fileID: 2719381706591717150, guid: cb4ff0d3643f0754b9ed3056955e23b1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.49999952
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2719381706591717150, guid: cb4ff0d3643f0754b9ed3056955e23b1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 19.617817
+      value: 19.696
       objectReference: {fileID: 0}
     - target: {fileID: 2719381706591717150, guid: cb4ff0d3643f0754b9ed3056955e23b1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1733,6 +1757,26 @@ PrefabInstance:
     - target: {fileID: 2719381706591717150, guid: cb4ff0d3643f0754b9ed3056955e23b1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2771056570286683462, guid: cb4ff0d3643f0754b9ed3056955e23b1, type: 3}
+      propertyPath: m_Center.y
+      value: 0.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 3831500212657276957, guid: cb4ff0d3643f0754b9ed3056955e23b1, type: 3}
+      propertyPath: _oreLife
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3831500212657276957, guid: cb4ff0d3643f0754b9ed3056955e23b1, type: 3}
+      propertyPath: eOreType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3831500212657276957, guid: cb4ff0d3643f0754b9ed3056955e23b1, type: 3}
+      propertyPath: _oreColor
+      value: 
+      objectReference: {fileID: 2100000, guid: da45f8068edf1c0458d082ea2db81bac, type: 2}
+    - target: {fileID: 3831500212657276957, guid: cb4ff0d3643f0754b9ed3056955e23b1, type: 3}
+      propertyPath: _cooldownOreRecolt
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
