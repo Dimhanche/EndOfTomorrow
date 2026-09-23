@@ -12,7 +12,7 @@ public class PlayerInteract : MonoBehaviour
         if(ctx.performed && cooldown <= 0 && canInteract)
         {
             RaycastHit hit;
-            if(Camera.main != null && Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 5f))
+            if(Camera.main != null && Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 5f,LayerMask.GetMask("Default")))
             {
                 if(hit.collider.TryGetComponent(out IInteract interactable))
                 {

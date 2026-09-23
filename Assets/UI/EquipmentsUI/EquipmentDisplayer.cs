@@ -9,64 +9,48 @@ public class EquipmentDisplayer : MonoBehaviour
     public ItemVisualizerButton gauntletPlacement;
     public ItemVisualizerButton weaponPlacement;
 
-    private ItemVisualizerButton _currentItemVisualizer;
-
-    public void DisplayEquipment(ArmorsItem armorToDisplay,bool unequip = false)
+    public void DisplayEquipment(ItemStack stack, bool unequip = false)
     {
-        switch (armorToDisplay.eArmorType)
-        {
-            case EArmorType.Helmet:
-                _currentItemVisualizer = helmetPlacement;
-                break;
-            case EArmorType.Chestplate:
-                _currentItemVisualizer = chestplatePlacement;
-                break;
-            case EArmorType.Leggings:
-                _currentItemVisualizer = leggingsPlacement;
-                break;
-            case EArmorType.Belt:
-                _currentItemVisualizer = beltPlacement;
-                break;
-            case EArmorType.Gauntlet:
-                _currentItemVisualizer = gauntletPlacement;
-                break;
-            default:
-                Debug.LogError("Armor Type not found");
-                break;
-        }
+        ItemVisualizerButton currentItemVisualizer = GetPlacement(stack.item);
+        if (currentItemVisualizer == null)
+            return;
 
         if (unequip)
         {
-            _currentItemVisualizer.itemToDisplay = null;
-            _currentItemVisualizer.itemName.text = "";
-            _currentItemVisualizer.itemButton.image.sprite = null;
-            _currentItemVisualizer.lockImage.gameObject.SetActive(false);
-            _currentItemVisualizer.nbItem.text = "";
+            currentItemVisualizer.Clear();
             return;
         }
-        _currentItemVisualizer.itemToDisplay = armorToDisplay;
-        _currentItemVisualizer.itemName.text = armorToDisplay.itemName;
-        _currentItemVisualizer.itemButton.image.sprite = armorToDisplay.itemSprite;
-        _currentItemVisualizer.lockImage.gameObject.SetActive(false);
-        _currentItemVisualizer.nbItem.text = "";
+
+        currentItemVisualizer.itemStack = stack;
+        currentItemVisualizer.itemToDisplay = stack.item;
+        currentItemVisualizer.itemName.text = stack.item.itemName;
+        currentItemVisualizer.itemButton.image.sprite = stack.item.itemSprite;
+        currentItemVisualizer.lockImage.gameObject.SetActive(false);
+        currentItemVisualizer.nbItem.text = "";
     }
 
-    public void DisplayEquipment(WeaponsItem weaponToDisplay,bool unequip = false)
+    private ItemVisualizerButton GetPlacement(Item item)
     {
-        _currentItemVisualizer = weaponPlacement;
-        if (unequip)
+        if (item is ArmorsItem armorItem)
         {
-            _currentItemVisualizer.itemToDisplay = null;
-            _currentItemVisualizer.itemName.text = "";
-            _currentItemVisualizer.itemButton.image.sprite = null;
-            _currentItemVisualizer.lockImage.gameObject.SetActive(false);
-            _currentItemVisualizer.nbItem.text = "";
-            return;
+            switch (armorItem.eArmorType)
+            {
+                case EArmorType.Helmet:
+                    return helmetPlacement;
+                case EArmorType.Chestplate:
+                    return chestplatePlacement;
+                case EArmorType.Leggings:
+                    return leggingsPlacement;
+                case EArmorType.Belt:
+                    return beltPlacement;
+                case EArmorType.Gauntlet:
+                    return gauntletPlacement;
+                default:
+                    Debug.LogError("Armor Type not found");
+                    return null;
+            }
         }
-        _currentItemVisualizer.itemToDisplay = weaponToDisplay;
-        _currentItemVisualizer.itemName.text = weaponToDisplay.itemName;
-        _currentItemVisualizer.itemButton.image.sprite = weaponToDisplay.itemSprite;
-        _currentItemVisualizer.lockImage.gameObject.SetActive(false);
-        _currentItemVisualizer.nbItem.text = "";
+
+        return weaponPlacement;
     }
 }

@@ -24,16 +24,19 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField]  private TextMeshProUGUI _lvlText;
 
 
-    public void AddItem(ItemStack item)
+    public bool AddItem(ItemStack item)
     {
         UpdateCurrentMoney();
-        for (int j = 0; j < items.Count; j++)
+        if (item.item.isStackable)
         {
-            if (items[j].item == item.item)
+            for (int j = 0; j < items.Count; j++)
             {
-                items[j].currentStack += item.currentStack;
-                DisplayInventory(currentIndex);
-                return;
+                if (items[j].item == item.item)
+                {
+                    items[j].currentStack += item.currentStack;
+                    DisplayInventory(currentIndex);
+                    return true;
+                }
             }
         }
 
@@ -41,12 +44,13 @@ public class PlayerInventory : MonoBehaviour
         {
             if (!items[i].item)
             {
-                items[i] = item;
+                items[i] = new ItemStack(item.item, item.item.isStackable ? item.currentStack : 1);
                 DisplayInventory(currentIndex);
-                return;
+                return true;
             }
         }
 
+        return false;
     }
 
     public void RemoveItem(ItemStack item)
@@ -70,16 +74,20 @@ public class PlayerInventory : MonoBehaviour
 
     public void RemoveItem(ItemStack[] itemsToRemove)
     {
-        for (int i = 0; i < items.Count; i++)
-        {
-            foreach (ItemStack item in itemsToRemove)
-            {
-                RemoveItem(item);
-            }
-        }
+        foreach (ItemStack item in itemsToRemove)
+            RemoveItem(item);
         UpdateCurrentMoney();
     }
 
+    public void RemoveStack(ItemStack stack)
+    {
+        int i = items.IndexOf(stack);
+        if (i < 0) return;
+
+        items[i] = new ItemStack(null, 0);
+        DisplayInventory(currentIndex);
+        UpdateCurrentMoney();
+    }
 
     public int GetItemCount(ItemStack item)
     {
@@ -188,7 +196,6 @@ public class PlayerInventory : MonoBehaviour
                 GameObject itemVisualizer = Instantiate(_itemVisualizerPrefab,
                     GetComponentInChildren<GridLayoutGroup>().transform);
                 itemVisualizer.GetComponent<ItemVisualizerButton>().SetItem(items[i]);
-                items[i].item.isEquipped = false;
             }
         }
     }

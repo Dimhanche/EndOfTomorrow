@@ -33,7 +33,6 @@ public class Ore :  MonoBehaviour,IInteract
         _meshRenderers = new List<MeshRenderer>(GetComponentsInChildren<MeshRenderer>());
         _oreAmount = Random.Range(1, _oreMaxAmountDroppable + 1);
         _oreToGive = _oreAmount;
-        print(_oreAmount);
         int i = 0;
         while (i < _oreAmount)
         {

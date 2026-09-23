@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EntityEquipment : MonoBehaviour
 {
-    public WeaponsItem weapon;
+    public WeaponItem weapon;
     public ArmorsItem[] armor;
 
     public int GetArmorValue()

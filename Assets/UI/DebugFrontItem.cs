@@ -9,7 +9,7 @@ public class DebugFrontItem : MonoBehaviour
     private void Update()
     {
         RaycastHit hit;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 10))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 5,LayerMask.GetMask("Default")))
         {
                 text.text = hit.collider.gameObject.name;
         }

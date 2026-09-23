@@ -12,7 +12,7 @@ public class ItemActionSelector : MonoBehaviour
     public Vector3 offest;
 
     private PlayerEquipment _playerEquipment;
-    private Item _item;
+    private ItemStack _itemStack;
     private DescriptionItem _descriptionItem;
 
     private UIWindow _window;
@@ -34,18 +34,17 @@ public class ItemActionSelector : MonoBehaviour
         else
         {
             Instance = this;
-            print(Instance.name);
         }
     }
 
-    public void DisplayItemActions(Vector3 itemPos ,bool usable = false, bool equipable = false,bool isEquipped= false,Item item = null)
+    public void DisplayItemActions(Vector3 itemPos ,bool usable = false, bool equipable = false,bool isEquipped= false,ItemStack itemStack = null)
     {
 
         // Display the item actions
         _window.Show();
         itemActionObject.transform.position = itemPos+offest;
         _itemActionButton[0].interactable = true;
-        _item = item;
+        _itemStack = itemStack;
         if(usable)
         {
             _itemActionButton[0].GetComponentInChildren<TextMeshProUGUI>().text = "Use";
@@ -83,18 +82,19 @@ public class ItemActionSelector : MonoBehaviour
 
     public void UseItem()
     {
+        _itemStack.Use(PlayerEntity.Instance.GetComponent<PlayerInventory>());
         HideItemActions();
     }
 
     public void EquipItem()
     {
-        _playerEquipment.EquipItem(_item);
+        _itemStack.Equip(_playerEquipment);
         HideItemActions();
     }
 
     public void UnequipItem()
     {
-        _playerEquipment.UnequipItem(_item);
+        _itemStack.Unequip(_playerEquipment);
         HideItemActions();
     }
 
@@ -102,13 +102,13 @@ public class ItemActionSelector : MonoBehaviour
     public void DescriptionItem()
     {
         _descriptionItem.window.Show();
-        _descriptionItem.DisplayItemDescription(_item);
+        _descriptionItem.DisplayItemDescription(_itemStack.item);
         HideItemActions();
     }
 
     public void DestroyItem()
     {
-        PlayerEntity.Instance.GetComponent<PlayerInventory>().RemoveItem(new ItemStack(_item));
+        _itemStack.Destroy();
         HideItemActions();
     }
 

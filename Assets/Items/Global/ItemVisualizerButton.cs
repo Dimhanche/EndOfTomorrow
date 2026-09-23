@@ -10,6 +10,7 @@ public class ItemVisualizerButton : MonoBehaviour
     public TextMeshProUGUI nbItem;
 
     public Item itemToDisplay;
+    public ItemStack itemStack;
 
     //Selector
     private ItemActionSelector _itemActionSelector;
@@ -19,7 +20,7 @@ public class ItemVisualizerButton : MonoBehaviour
     private const float DoubleClickThreshold = 0.5f;
 
     private PlayerInventory _playerInventory;
-    
+
     private void Start()
     {
         itemButton.onClick.AddListener(OnItemClick);
@@ -44,19 +45,19 @@ public class ItemVisualizerButton : MonoBehaviour
     }
     private void OnItemDoubleClick()
     {
-        if (itemToDisplay)
+        if (itemStack != null && itemToDisplay)
         {
             if (itemToDisplay.usable)
             {
-                itemToDisplay.UseItem(_playerInventory);
+                itemStack.Use(_playerInventory);
             }
-            else if (itemToDisplay.equipable && !itemToDisplay.isEquipped)
+            else if (itemToDisplay.equipable && !itemStack.isEquipped)
             {
-                itemToDisplay.EquipItem(_playerInventory.GetComponent<PlayerEquipment>());
+                itemStack.Equip(_playerInventory.GetComponent<PlayerEquipment>());
             }
-            else if (itemToDisplay.equipable && itemToDisplay.isEquipped)
+            else if (itemToDisplay.equipable && itemStack.isEquipped)
             {
-                itemToDisplay.UnequipItem(_playerInventory.GetComponent<PlayerEquipment>());
+                itemStack.Unequip(_playerInventory.GetComponent<PlayerEquipment>());
             }
         }
     }
@@ -64,10 +65,10 @@ public class ItemVisualizerButton : MonoBehaviour
     private void ShowItemActions()
     {
         _itemActionSelector.enabled = true;
-        if (itemToDisplay)
+        if (itemStack != null && itemToDisplay)
         {
             _itemActionSelector.DisplayItemActions(
-                this.transform.position, itemToDisplay.usable, itemToDisplay.equipable,itemToDisplay.isEquipped,itemToDisplay);
+                this.transform.position, itemToDisplay.usable, itemToDisplay.equipable,itemStack.isEquipped,itemStack);
         }
     }
 
@@ -82,6 +83,7 @@ public class ItemVisualizerButton : MonoBehaviour
 
     public void SetItem(ItemStack item)
     {
+        itemStack = item;
         itemToDisplay = item.item;
         itemName.text = itemToDisplay.itemName;
         itemButton.image.sprite = itemToDisplay.itemSprite;
@@ -108,5 +110,15 @@ public class ItemVisualizerButton : MonoBehaviour
     public void CheckItem(Craft craft)
     {
         lockImage.gameObject.SetActive(craft.isLocked);
+    }
+
+    public void Clear()
+    {
+        itemStack = null;
+        itemToDisplay = null;
+        itemName.text = "";
+        itemButton.image.sprite = null;
+        lockImage.gameObject.SetActive(false);
+        nbItem.text = "";
     }
 }

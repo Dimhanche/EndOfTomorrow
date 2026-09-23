@@ -26,10 +26,13 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion
 
+    [SerializeField] private Transform _model;
     private Vector2 _inputDirection;
     private Rigidbody _rb;
     private PlayerEntity _entityInfo;
     private Stats _stats;
+    private PlayerAnimation _animation;
+
 
     private void Awake()
     {
@@ -43,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _stats = _entityInfo.entity.entityStats;
         _camera = Camera.main;
+        _animation = GetComponent<PlayerAnimation>();
     }
 
 
@@ -69,29 +73,31 @@ public class PlayerMovement : MonoBehaviour
     {
         if (ctx.performed && _isGrounded && _canMove)
         {
+            _animation.SetPlayerAnimationJumping();
             _rb.AddForce(Vector3.up * _stats.jumpForce, ForceMode.Impulse);
         }
     }
     public void PlayerLookInput(InputAction.CallbackContext ctx)
     {
-        if(_canMove)
-            _inputRotation = ctx.ReadValue<Vector2>();
-        else
-        {
-            _inputRotation = Vector2.zero;
-        }
+        _inputRotation = _canMove ? ctx.ReadValue<Vector2>() : Vector2.zero;
     }
 
     private void Movement()
     {
-        if (!_rb || _inputDirection.Equals(Vector2.zero) && !_isGrounded) return;
+        if (!_rb || _inputDirection.Equals(Vector2.zero) || !_isGrounded)
+        {
+            _animation.SetPlayerAnimationIdling();
+            return;
+        }
 
+    //Movement
+        _animation.SetPlayerAnimationWalking();
         float curSpeedX = _stats.speed * _inputDirection.y;
         float curSpeedY = _stats.speed * _inputDirection.x;
 
         _moveDirection = _orientation.forward * curSpeedX + _orientation.right * curSpeedY;
-
         _rb.linearVelocity = _moveDirection + new Vector3(0, _rb.linearVelocity.y, 0);
+
     }
 
     private void CheckGrounded()
@@ -111,5 +117,6 @@ public class PlayerMovement : MonoBehaviour
 
         _camera.transform.rotation = Quaternion.Euler(_xRotation, _yRotation, 0);
         _orientation.rotation = Quaternion.Euler(0, _yRotation, 0);
+        _model.rotation =  _orientation.rotation;
     }
 }

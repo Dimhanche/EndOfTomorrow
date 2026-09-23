@@ -27,24 +27,26 @@ public class PlayerEquipment : EntityEquipment
     /// Equip Weapon
     /// </summary>
     /// <param name="newWeapon">weapon To Equip</param>
-    public void EquipWeapon(WeaponsItem newWeapon)
+    /// <param name="stack">the exemplar being equipped</param>
+    public void EquipWeapon(WeaponItem newWeapon, ItemStack stack)
     {
         weapon = newWeapon;
-        _equipmentDisplayer.DisplayEquipment(newWeapon);
+        _equipmentDisplayer.DisplayEquipment(stack);
     }
 
     /// <summary>
     /// Equip Armor
     /// </summary>
     /// <param name="newArmor">armor To Equip</param>
-    public void EquipArmor(ArmorsItem newArmor)
+    /// <param name="stack">the exemplar being equipped</param>
+    public void EquipArmor(ArmorsItem newArmor, ItemStack stack)
     {
         for (int i = 0; i < armor.Length; i++)
         {
             if (armor[i] == null || (armor[i].eArmorType == newArmor.eArmorType))
             {
                 armor[i] = newArmor;
-                _equipmentDisplayer.DisplayEquipment(newArmor);
+                _equipmentDisplayer.DisplayEquipment(stack);
                 return;
             }
         }
@@ -52,20 +54,20 @@ public class PlayerEquipment : EntityEquipment
 
 
     /// <summary>
-    /// Equip an item  Armor or Weapon
+    /// Equip an item exemplar, Armor or Weapon
     /// </summary>
-    /// <param name="item">item To Equip</param>
-    public void EquipItem(Item item)
+    /// <param name="stack">exemplar To Equip</param>
+    public void EquipItem(ItemStack stack)
     {
-        item.isEquipped = true;
-        _playerInventory.RemoveItem(new ItemStack(item, 1));
-        if(item is WeaponsItem)
+        stack.isEquipped = true;
+        _playerInventory.RemoveStack(stack);
+        if(stack.item is WeaponItem weaponItem)
         {
-            EquipWeapon(item as WeaponsItem);
+            EquipWeapon(weaponItem, stack);
         }
-        else if(item is ArmorsItem)
+        else if(stack.item is ArmorsItem armorItem)
         {
-            EquipArmor(item as ArmorsItem);
+            EquipArmor(armorItem, stack);
         }
         else
         {
@@ -75,20 +77,20 @@ public class PlayerEquipment : EntityEquipment
 
 
     /// <summary>
-    /// Unequip an item  Armor or Weapon
+    /// Unequip an item exemplar, Armor or Weapon
     /// </summary>
-    /// <param name="item">item to Unequip</param>
-    public void UnequipItem(Item item)
+    /// <param name="stack">exemplar to Unequip</param>
+    public void UnequipItem(ItemStack stack)
     {
-        item.isEquipped = false;
-        _playerInventory.AddItem(new ItemStack(item, 1));
-        if(item is WeaponsItem)
+        stack.isEquipped = false;
+        _playerInventory.AddItem(stack);
+        if(stack.item is WeaponItem)
         {
-            UnequipWeapon(item as WeaponsItem);
+            UnequipWeapon(stack);
         }
-        else if(item is ArmorsItem)
+        else if(stack.item is ArmorsItem)
         {
-            UnequipArmor(item as ArmorsItem);
+            UnequipArmor(stack);
         }
         else
         {
@@ -100,15 +102,16 @@ public class PlayerEquipment : EntityEquipment
     /// <summary>
     /// Unequip Armor
     /// </summary>
-    /// <param name="newArmor">armor To Unequip</param>
-    private void UnequipArmor(ArmorsItem item)
+    /// <param name="stack">exemplar To Unequip</param>
+    private void UnequipArmor(ItemStack stack)
     {
+        ArmorsItem item = stack.item as ArmorsItem;
         for (int i = 0; i < armor.Length; i++)
         {
             if (armor[i] == item)
             {
                 armor[i] = null;
-                _equipmentDisplayer.DisplayEquipment(item,true);
+                _equipmentDisplayer.DisplayEquipment(stack, true);
                 return;
             }
         }
@@ -117,10 +120,10 @@ public class PlayerEquipment : EntityEquipment
     /// <summary>
     /// Unequip Weapon
     /// </summary>
-    /// <param name="newArmor">weapon To Unequip</param>
-    private void UnequipWeapon(WeaponsItem item)
+    /// <param name="stack">exemplar To Unequip</param>
+    private void UnequipWeapon(ItemStack stack)
     {
         weapon = null;
-        _equipmentDisplayer.DisplayEquipment(item,true);
+        _equipmentDisplayer.DisplayEquipment(stack, true);
     }
 }
