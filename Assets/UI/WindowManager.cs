@@ -9,10 +9,8 @@ public static class WindowManager
 
     private static readonly string[] WindowToggleActions = { "Inventory", "Equipment", "SkillTree", "QuestBook" };
 
-    // Rest of the "Player" map: real gameplay, only relevant with no window open.
     private static readonly string[] GameplayActions = { "Move", "Look", "Jump", "Sprint", "Crouch", "Attack", "Interract", "PauseGame" };
 
-    // "UI" map: only relevant while a window is open (menu navigation/clicks).
     private static readonly string[] UIActions = { "Navigate", "Submit", "Cancel", "Point", "Click", "ScrollWheel", "MiddleClick", "RightClick", "TrackedDevicePosition", "TrackedDeviceOrientation" };
 
     private static bool _dirty = true;
@@ -30,22 +28,16 @@ public static class WindowManager
 
     public static void OpenWindow(UIWindow w)
     {
-        Debug.Log($"[WindowManager] OpenWindow called: {(w != null ? w.gameObject.name : "NULL")}");
         if (w == null || _windowStack.Contains(w)) return;
         _windowStack.Add(w);
-        Debug.Log($"[WindowManager] Stack count: {_windowStack.Count}");
-        // Immediate, unlike the rest: interaction is polled in Update, which
-        // runs before the state below is applied.
         PlayerEntity.Instance.canInterract = false;
         _dirty = true;
     }
 
     public static void CloseWindow(UIWindow w)
     {
-        Debug.Log($"[WindowManager] CloseWindow called: {(w != null ? w.gameObject.name : "NULL")}");
         if (!w) return;
 
-        // If top, just pop. Otherwise remove the window wherever it is.
         int last = _windowStack.Count - 1;
         if (last >= 0 && _windowStack[last] == w)
             _windowStack.RemoveAt(last);
@@ -57,7 +49,6 @@ public static class WindowManager
 
     public static void CloseTopWindow()
     {
-        Debug.Log($"[WindowManager] CloseTopWindow - Stack count before: {_windowStack.Count}");
         if (_windowStack.Count == 0)
         {
             _dirty = true;
@@ -66,16 +57,13 @@ public static class WindowManager
 
         int last = _windowStack.Count - 1;
         var top = _windowStack[last];
-        Debug.Log($"[WindowManager] Closing: {top.gameObject.name}");
         _windowStack.RemoveAt(last);
         _dirty = true;
         top.CloseWithoutManager();
-        Debug.Log($"[WindowManager] Stack count after: {_windowStack.Count}");
     }
 
     public static void CloseAllWindow()
     {
-        Debug.Log($"[WindowManager] CloseAllWindow - Stack count before: {_windowStack.Count}");
         if (_windowStack.Count == 0)
         {
             _dirty = true;

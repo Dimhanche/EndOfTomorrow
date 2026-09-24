@@ -16,7 +16,10 @@ public class WeaponItem : Item
         {
             if(hit.collider.TryGetComponent(out EntityInfo entity))
             {
-                entity.GetComponent<LifeManager>().TakeDamage(CalculateDamage(baseDamage),entityInfo);
+                if (!entity.isActiveAndEnabled)
+                    return;
+                Debug.Log("Shooting " + entity.name);
+                entity.TakeDamage(CalculateDamage(baseDamage),entityInfo,entity.GetComponent<EntityEquipment>().GetArmorValue());
             }
         }
     }

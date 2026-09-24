@@ -3,7 +3,7 @@ using BehaviorTree;
 public class AttackTask : Node
 {
     private Transform _lastTarget;
-    private LifeManager _lifeManager;
+    private EntityInfo _entityInfo;
     private EntityInfo _caster;
 
     private float _attackTimer;
@@ -23,13 +23,13 @@ public class AttackTask : Node
         Transform target = (Transform)GetData("target");
         if (target != _lastTarget)
         {
-            _lifeManager = target.GetComponent<LifeManager>();
+            _entityInfo = target.GetComponent<EntityInfo>();
             _lastTarget = target;
         }
         _attackCounter  += Time.deltaTime;
         if (_attackCounter >= _attackTimer)
         {
-            _lifeManager.TakeDamage(_damage, _caster);
+            _entityInfo.TakeDamage(_damage, _caster, target.GetComponent<EntityEquipment>().GetArmorValue());
             _attackCounter = 0;
         }
 

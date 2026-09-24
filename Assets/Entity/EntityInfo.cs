@@ -1,11 +1,17 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
 
 public class EntityInfo : MonoBehaviour
 {
     public Entity entity;
+
+    public virtual void TakeDamage(int pdamage,EntityInfo caster,int armorValue)
+    {
+        Debug.Log($"Take damage {pdamage} from {caster.name} with armor value {armorValue}");
+    }
+
+
+    protected virtual void Die(EntityInfo caster)
+    {
+        entity.entityStats.currentLife = 0;
+    }
 }

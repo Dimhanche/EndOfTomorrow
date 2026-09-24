@@ -68,4 +68,22 @@ public class PlayerEntity : EntityInfo
             WindowManager.CloseAllWindow();
         }
     }
+
+    public override void TakeDamage(int pdamage, EntityInfo caster, int armorValue)
+    {
+        base.TakeDamage(pdamage, caster, armorValue);
+        Stats stats = entity.entityStats;
+        stats.currentLife = (pdamage - armorValue) > 0 ? stats.currentLife - (pdamage - armorValue) : stats.currentLife;
+        lifeChanged.Invoke();
+        if(stats.currentLife <= 0)
+            Die(caster);
+
+    }
+
+    protected override void Die(EntityInfo caster)
+    {
+        base.Die(caster);
+        print("Player Died");
+        isDead = true;
+    }
 }

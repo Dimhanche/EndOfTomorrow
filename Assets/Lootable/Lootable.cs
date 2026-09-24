@@ -9,10 +9,13 @@ public class Lootable : MonoBehaviour,IInteract
 
     public void Interact(ref float cooldown)
     {
-        if (!_isOpened)
+        if (!_isOpened && isActiveAndEnabled)
         {
             cooldown = 0.5f;
-            GetComponentInChildren<Animation>().Play();
+            if (GetComponentInChildren<Animation>())
+            {
+                GetComponentInChildren<Animation>().Play();
+            }
             Loot();
         }
     }

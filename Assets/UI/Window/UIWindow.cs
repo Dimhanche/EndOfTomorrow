@@ -16,7 +16,6 @@ public class UIWindow : MonoBehaviour
 
     public void Show()
     {
-        Debug.Log($"[UIWindow] Show => {gameObject.name}");
         if (_canvas != null) _canvas.enabled = true;
         WindowManager.OpenWindow(this);
     }
@@ -29,7 +28,6 @@ public class UIWindow : MonoBehaviour
     // normal close (called by window itself)
     public void Close()
     {
-        Debug.Log($"[UIWindow] Close => {gameObject.name}");
         if (_canvas) _canvas.enabled = false;
         WindowManager.CloseWindow(this);
         onClosed?.Invoke();
@@ -43,7 +41,6 @@ public class UIWindow : MonoBehaviour
     // called by WindowManager when popping the top window to avoid re-registering
     public void CloseWithoutManager()
     {
-        Debug.Log($"[UIWindow] CloseWithoutManager => {gameObject.name}");
         if (_canvas != null) _canvas.enabled = false;
         onClosed?.Invoke();
 

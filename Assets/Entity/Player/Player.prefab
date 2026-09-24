@@ -3888,7 +3888,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3163744951222930017}
   - component: {fileID: 7286217260139077983}
-  - component: {fileID: 7967371927426634303}
   - component: {fileID: 2019465392327060949}
   - component: {fileID: 4718671635910871584}
   - component: {fileID: 480597614513233470}
@@ -3947,18 +3946,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillTreeWindow: {fileID: 4778094654691038133}
---- !u!114 &7967371927426634303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4661106106291474498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0f51a3486f578642936b3e160e5dad4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2019465392327060949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4008,204 +3995,404 @@ MonoBehaviour:
   items:
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 11400000, guid: 446c591639bb20a4e963acc364219604, type: 2}
     currentStack: 2
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 0}
     currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
   _inventoryCanvas: {fileID: 7198660608262012921}
   _itemVisualizerPrefab: {fileID: 8446887303198283174, guid: e1ae7d71f21936b48976c363f0e7562c, type: 3}
   _inventorySections:
@@ -4283,6 +4470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldownAttack: 0
+  cooldownReload: 0
 --- !u!114 &9198280391953122078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4303,6 +4491,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   equipmentCanvas: {fileID: 5422724197390048203}
+  weaponStack:
+    item: {fileID: 0}
+    currentStack: 0
+    isEquipped: 0
+    currentAmmo: 0
 --- !u!114 &1378744686146047458
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -37,7 +37,7 @@ public class Item : ScriptableObject
 public class ItemStack
 {
     public Item item;
-    public int currentStack;
+    public int currentStack = 1;
 
     public bool isEquipped;
     public int currentAmmo;
