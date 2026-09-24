@@ -8,7 +8,7 @@ public class WeaponItem : Item
     public float range;
 
 
-    public virtual void Attack(ref float cooldownAttack,int baseDamage,EntityInfo entityInfo)
+    public virtual void Attack(ref float cooldownAttack,int baseDamage,EntityInfo entityInfo,ItemStack stack)
     {
         cooldownAttack = attackSpeed;
         RaycastHit hit;

@@ -319,6 +319,22 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 130388076183661328, guid: b5756a047e74c2e4b8afd5f6c44a56f3, type: 3}
+    - target: {fileID: 2295120140321723327, guid: 8c45310cda366ec49af65ab49a92ccec, type: 3}
+      propertyPath: guaranteedLootItems.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2295120140321723327, guid: 8c45310cda366ec49af65ab49a92ccec, type: 3}
+      propertyPath: guaranteedLootItems.Array.data[2].item
+      value: 
+      objectReference: {fileID: 11400000, guid: 64344c2632816964ca81e90f908275a6, type: 2}
+    - target: {fileID: 2295120140321723327, guid: 8c45310cda366ec49af65ab49a92ccec, type: 3}
+      propertyPath: guaranteedLootItems.Array.data[2].currentAmmo
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2295120140321723327, guid: 8c45310cda366ec49af65ab49a92ccec, type: 3}
+      propertyPath: guaranteedLootItems.Array.data[2].currentStack
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3532515663606680869, guid: 8c45310cda366ec49af65ab49a92ccec, type: 3}
       propertyPath: m_Name
       value: ToolBox

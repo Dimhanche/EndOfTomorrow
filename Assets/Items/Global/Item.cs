@@ -71,6 +71,16 @@ public class ItemStack
     {
         PlayerEntity.Instance.GetComponent<PlayerInventory>().RemoveStack(this);
     }
+
+    public void Reload()
+    {
+        if (item is RangeWeaponItem rangeWeapon)
+        {
+            // TODO: once bullet ItemStacks exist, consume them from PlayerInventory here instead of
+            // refilling for free, and cap currentAmmo by how many matching bullets are available.
+            currentAmmo = rangeWeapon.ammoCapacity;
+        }
+    }
 }
 
 

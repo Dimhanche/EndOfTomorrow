@@ -6,6 +6,7 @@ public class PlayerEquipment : EntityEquipment
     public UIWindow equipmentCanvas;
     private EquipmentDisplayer _equipmentDisplayer;
     private PlayerInventory _playerInventory;
+    public ItemStack weaponStack;
 
 
 
@@ -31,6 +32,7 @@ public class PlayerEquipment : EntityEquipment
     public void EquipWeapon(WeaponItem newWeapon, ItemStack stack)
     {
         weapon = newWeapon;
+        weaponStack = stack;
         _equipmentDisplayer.DisplayEquipment(stack);
     }
 
@@ -124,6 +126,7 @@ public class PlayerEquipment : EntityEquipment
     private void UnequipWeapon(ItemStack stack)
     {
         weapon = null;
+        weaponStack = null;
         _equipmentDisplayer.DisplayEquipment(stack, true);
     }
 }
