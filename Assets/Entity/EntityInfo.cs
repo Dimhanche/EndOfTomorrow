@@ -3,7 +3,7 @@ using UnityEngine;
 public class EntityInfo : MonoBehaviour
 {
     public Entity entity;
-
+    public Material deadMaterial;
     public virtual void TakeDamage(int pdamage,EntityInfo caster,int armorValue)
     {
         Debug.Log($"Take damage {pdamage} from {caster.name} with armor value {armorValue}");

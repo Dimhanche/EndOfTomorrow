@@ -1,11 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Lootable : MonoBehaviour,IInteract
 {
     public ItemStack[] guaranteedLootItems;
     public ItemLootable[] possibleLootItems;
     [SerializeField]private bool _isOpened;
+
+    public UnityEvent onLooted;
+
 
     public void Interact(ref float cooldown)
     {
@@ -36,5 +40,6 @@ public class Lootable : MonoBehaviour,IInteract
         IInteract.AddInInventory(tempItem);
         _isOpened = true;
         gameObject.name = gameObject.name +"  Opened " ;
+        onLooted.Invoke();
     }
 }

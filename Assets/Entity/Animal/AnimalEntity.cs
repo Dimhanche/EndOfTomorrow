@@ -1,7 +1,36 @@
+using System.Collections.Generic;
 using UnityEngine;
+using GOAP;
+using UnityEngine.AI;
 
 public class AnimalEntity : EntityInfo
 {
+    public AnimalStat animalStats;
+    public float cooldownDespawn = 1.5f;
+    public GameObject foodTarget;
+    public float foodDetectionRadius = 5f;
+    public FoodType foodType= FoodType.None;
+    public float hunger = 0f;
+    [HideInInspector]public NavMeshAgent navMeshAgent;
+
+    #region GOAP
+    protected static readonly GOAP_Planner planner = new GOAP_Planner();
+
+    protected GOAP_Goal eatGoal;
+    protected List<GOAP_Action> availableActions;
+    protected Queue<GOAP_Action> plan;
+    protected GOAP_Action currentAction;
+
+
+    protected virtual void Awake()
+    {
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        navMeshAgent.speed = animalStats.speed;
+    }
+    protected virtual void Update()
+    {
+    }
+    #endregion
 
     public override void TakeDamage(int pdamage,EntityInfo caster,int armorValue)
     {
@@ -17,8 +46,28 @@ public class AnimalEntity : EntityInfo
     protected override void Die(EntityInfo caster)
     {
         base.Die(caster);
-        caster.GetComponent<PlayerLeveling>().AddExperience(entity.experienceDrop);
+        if(caster != null)
+            caster.GetComponent<PlayerLeveling>().AddExperience(entity.experienceDrop);
         GetComponent<Lootable>().enabled = true;
+        GetComponent<Renderer>().material = deadMaterial;
+        GetComponent<Lootable>().onLooted.AddListener(() => { Destroy(gameObject, cooldownDespawn); });
         enabled = false;
     }
+
+    private void OnDestroy()
+    {
+        GetComponent<Lootable>().onLooted.RemoveAllListeners();
+    }
+
+    public void OnEat()
+    {
+        Destroy(foodTarget);
+    }
+}
+
+public enum FoodType
+{
+    None,
+    Plant,
+    Meat
 }
