@@ -5,7 +5,7 @@ using BehaviorTree;
 public class ProwlerBT : Tree
 {
     public UnityEngine.Transform[] waypoints;
-    private float _speed => GetComponent<EnemyEntity>().entity.entityStats.speed;
+    private float _speed => GetComponent<EnemyEntity>().entityStats.entityStats.speed;
     private float _attackRange => GetComponent<EnemyEntity>().attackRange;
     private int _damage => GetComponent<EnemyEntity>().damage;
     private float _fovRange => GetComponent<EnemyEntity>().fovRange;
@@ -19,7 +19,7 @@ public class ProwlerBT : Tree
             new Sequence(new List<Node>
             {
                 new CheckEntityInAttackRange(transform,_attackRange),
-                new AttackTask(transform,this.GetComponent<EntityInfo>(),_damage,_attackSpeed),
+                new AttackTask(transform,this.GetComponent<Entity>(),_damage,_attackSpeed),
             }),
 
             new Sequence(new List<Node>

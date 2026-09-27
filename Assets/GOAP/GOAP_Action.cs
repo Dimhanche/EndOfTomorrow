@@ -15,7 +15,7 @@ namespace GOAP
             Effects = new Dictionary<string, bool>();
         }
 
-        public abstract GOAP_State Perform(EntityInfo entity);
-        public abstract bool CheckProceduralPrecondition(EntityInfo entity);
+        public abstract GOAP_State Perform(Entity entity);
+        public abstract bool CheckProceduralPrecondition(Entity entity);
     }
 }

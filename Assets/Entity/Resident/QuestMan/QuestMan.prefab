@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 834062809908985822}
-  - component: {fileID: 7108248594925662036}
   - component: {fileID: 6473634253669428634}
   - component: {fileID: 669590596213538849}
   - component: {fileID: 5672508771396093472}
   - component: {fileID: 4550813924754645994}
+  - component: {fileID: 235663523730914218}
   m_Layer: 0
   m_Name: QuestMan
   m_TagString: Untagged
@@ -37,33 +37,6 @@ Transform:
   - {fileID: 6842014451034274911}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7108248594925662036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 306459479576374052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ebb80ed138b4224a8cd0d1b53227acd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entity:
-    entityName: Jean Quete
-    male: 1
-    entityStats:
-      maxLife: 100
-      currentLife: 100
-      lifeRegen: 0
-      speed: 6
-      luck: 0
-      jumpForce: 4
-      oratory: 0
-    experienceDrop: 0
-    nbEnemyKill: 0
-    nbDeath: 0
-    money: 0
 --- !u!114 &6473634253669428634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,41 +49,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b213c74e4aef38346b6f892d52226c4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueWindow: {fileID: 0}
+  dialogueWindow: {fileID: 7500119426881950524}
+  questGived: 0
   responsePrefab: {fileID: 3083820239686671831, guid: e7985fbd96024074fb5af8994630f5f0, type: 3}
-  responseParent: {fileID: 0}
+  responseParent: {fileID: 3769595970420003914}
   currentDialogue:
     dialogueEntries:
-    - dialogueID: 0
-      dialogueText: 'hey toi j''ai besoin de pain, tu peux aller m''en chercher ? '
+    - dialogueText: 'hey toi j''ai besoin d''un couteau, tu peux aller m''en chercher
+        1 ? '
       choices:
       - choiceText: Non pas maintenant
         nextDialogueId: 1
         actionType: 0
-        questToAdd:
-          questSprite: {fileID: 0}
-          questTitle: 
-          questDescription: 
-          requiredItem:
-            item: {fileID: 0}
-            currentStack: 0
-          rewardItem: {fileID: 0}
       - choiceText: Ok pas de soucis
         nextDialogueId: -1
         actionType: 2
-        questToAdd:
-          questSprite: {fileID: 0}
-          questTitle: Chercher un couteau
-          questDescription: Il faut que j'aille chercher un couteau
-          requiredItem:
-            item: {fileID: 11400000, guid: c08331ebedf1ead448f58ec76b945bf1, type: 2}
-            currentStack: 1
-          rewardItem: {fileID: 0}
-    - dialogueID: 1
-      dialogueText: Ok pas de soucis
+      isLast: 0
+      questToAdd: {fileID: 11400000, guid: 2af3fa0161286f745ac5fbde765668b2, type: 2}
+    - dialogueText: Ok pas de soucis
       choices: []
+      isLast: 1
+      questToAdd: {fileID: 0}
+    - dialogueText: Alors ce couteau, il vient?
+      choices: []
+      isLast: 1
+      questToAdd: {fileID: 0}
+    - dialogueText: Ah merci chef !
+      choices: []
+      isLast: 1
+      questToAdd: {fileID: 0}
+    - dialogueText: Bonjour chef
+      choices: []
+      isLast: 0
+      questToAdd: {fileID: 0}
   canTalk: 1
   isShow: 0
+  indexCheckQuest: 2
+  indexAfterQuest: 4
 --- !u!33 &669590596213538849
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -139,6 +114,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -160,9 +137,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!136 &4550813924754645994
 CapsuleCollider:
@@ -187,6 +166,34 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &235663523730914218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 306459479576374052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d886e1a9e1d942b09052eea6edfecd50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HumanoidEntity
+  deadMaterial: {fileID: 0}
+  entityStats:
+    entityName: 
+    male: 0
+    entityStats:
+      maxLife: 100
+      currentLife: 100
+      lifeRegen: 0
+      speed: 6
+      luck: 0
+      jumpForce: 4
+      oratory: 0
+    experienceDrop: 0
+    nbEnemyKill: 0
+    nbDeath: 0
+    money: 0
 --- !u!1001 &3345122862576142796
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -195,6 +202,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 834062809908985822}
     m_Modifications:
+    - target: {fileID: 1882021788311901605, guid: 83ac1db7031be6a49b2b39708a0ec192, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7350581330234661083, guid: 83ac1db7031be6a49b2b39708a0ec192, type: 3}
       propertyPath: m_Name
       value: DialogueUI
@@ -284,8 +295,24 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83ac1db7031be6a49b2b39708a0ec192, type: 3}
+--- !u!224 &3769595970420003914 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1890394830585159046, guid: 83ac1db7031be6a49b2b39708a0ec192, type: 3}
+  m_PrefabInstance: {fileID: 3345122862576142796}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &6842014451034274911 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8115473754015872403, guid: 83ac1db7031be6a49b2b39708a0ec192, type: 3}
   m_PrefabInstance: {fileID: 3345122862576142796}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7500119426881950524 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5078236721891351280, guid: 83ac1db7031be6a49b2b39708a0ec192, type: 3}
+  m_PrefabInstance: {fileID: 3345122862576142796}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a72cd14f4f5a484c9244f88e44928fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

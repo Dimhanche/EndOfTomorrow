@@ -3,14 +3,14 @@ using BehaviorTree;
 public class AttackTask : Node
 {
     private Transform _lastTarget;
-    private EntityInfo _entityInfo;
-    private EntityInfo _caster;
+    private Entity _entity;
+    private Entity _caster;
 
     private float _attackTimer;
     private float _attackCounter = 0;
     private int _damage;
 
-    public AttackTask(Transform transform, EntityInfo caster,int damage = 10, float attackSpeed = 1.0f)
+    public AttackTask(Transform transform, Entity caster,int damage = 10, float attackSpeed = 1.0f)
     {
         _damage = damage;
         _attackTimer = attackSpeed;
@@ -23,13 +23,13 @@ public class AttackTask : Node
         Transform target = (Transform)GetData("target");
         if (target != _lastTarget)
         {
-            _entityInfo = target.GetComponent<EntityInfo>();
+            _entity = target.GetComponent<Entity>();
             _lastTarget = target;
         }
         _attackCounter  += Time.deltaTime;
         if (_attackCounter >= _attackTimer)
         {
-            _entityInfo.TakeDamage(_damage, _caster, target.GetComponent<EntityEquipment>().GetArmorValue());
+            _entity.TakeDamage(_damage, _caster, target.GetComponent<EntityEquipment>().GetArmorValue());
             _attackCounter = 0;
         }
 

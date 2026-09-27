@@ -55,13 +55,13 @@ public class NodeCompetence : MonoBehaviour
                 _entity.baseDamage += soNode.nodeValue;
                 break;
             case ENodeAmelirationType.Luck:
-                _entity.entity.entityStats.luck += soNode.nodeValue;
+                _entity.entityStats.entityStats.luck += soNode.nodeValue;
                 break;
             case ENodeAmelirationType.Speed:
-                _entity.entity.entityStats.speed += soNode.nodeValue;
+                _entity.entityStats.entityStats.speed += soNode.nodeValue;
                 break;
             case ENodeAmelirationType.Oratory:
-                _entity.entity.entityStats.oratory += soNode.nodeValue;
+                _entity.entityStats.entityStats.oratory += soNode.nodeValue;
                 break;
             case ENodeAmelirationType.WorkSpeed:
                 _entity.workSpeed += soNode.nodeValue;

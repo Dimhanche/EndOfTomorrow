@@ -11,7 +11,7 @@ public class GA_GoFood: GOAP_Action
         Effects.Add("IsNearFood", true);
         Cost = 2;
     }
-    public override GOAP_State Perform(EntityInfo entity)
+    public override GOAP_State Perform(Entity entity)
     {
         if (entity is not AnimalEntity animalEntity)
         {
@@ -35,7 +35,7 @@ public class GA_GoFood: GOAP_Action
         return GOAP_State.Running;
     }
 
-    public override bool CheckProceduralPrecondition(EntityInfo entity)
+    public override bool CheckProceduralPrecondition(Entity entity)
     {
         return true;
     }

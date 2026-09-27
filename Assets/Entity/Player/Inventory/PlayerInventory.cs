@@ -19,7 +19,7 @@ public class PlayerInventory : MonoBehaviour
     private int currentIndex = -1;
 
     //EntityInfo
-    private int _currentMoney => GetComponent<PlayerEntity>().entity.money;
+    private int _currentMoney => GetComponent<PlayerEntity>().entityStats.money;
     [SerializeField]  private TextMeshProUGUI _moneyText;
     [SerializeField]  private TextMeshProUGUI _lvlText;
 

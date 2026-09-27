@@ -47,12 +47,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2239588358816521584}
-  - component: {fileID: 4903952752918947807}
   - component: {fileID: 2178700931447927501}
   - component: {fileID: 5929804904200536384}
   - component: {fileID: 2323481939713066948}
   - component: {fileID: 1142976915478319048}
   - component: {fileID: 4337330141777098413}
+  - component: {fileID: 2298238286725002560}
   m_Layer: 0
   m_Name: Merchant
   m_TagString: Untagged
@@ -77,33 +77,6 @@ Transform:
   - {fileID: 8041047267108221960}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4903952752918947807
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 728055035915776854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ebb80ed138b4224a8cd0d1b53227acd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entity:
-    entityName: Deaunnassien
-    male: 0
-    entityStats:
-      maxLife: 0
-      currentLife: 0
-      lifeRegen: 0
-      speed: 1
-      luck: 0
-      jumpForce: 1
-      oratory: 1
-    experienceDrop: 0
-    nbEnemyKill: 0
-    nbDeath: 0
-    money: 1000
 --- !u!114 &2178700931447927501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,12 +90,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueWindow: {fileID: 6445206216987564907}
-  dialogueText: {fileID: 2997750499597496406}
-  characterNameText: {fileID: 2023714326217384410}
+  questGived: 0
   responsePrefab: {fileID: 3083820239686671831, guid: e7985fbd96024074fb5af8994630f5f0, type: 3}
   responseParent: {fileID: 375053957229190173}
-  isShow: 0
+  currentDialogue:
+    dialogueEntries:
+    - dialogueText: Je vend des objets de valeur, t'en veux ?
+      choices:
+      - choiceText: Non
+        nextDialogueId: -1
+        actionType: 0
+      - choiceText: 'Oui '
+        nextDialogueId: -1
+        actionType: 1
+      isLast: 0
+      questToAdd: {fileID: 0}
   canTalk: 1
+  isShow: 0
+  indexCheckQuest: 0
+  indexAfterQuest: 0
 --- !u!114 &5929804904200536384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,17 +122,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   merchantCanvas: {fileID: 6973935237039424265}
-  entityInfo: {fileID: 4903952752918947807}
+  entity: {fileID: 0}
   itemToSell:
   - item: {fileID: 11400000, guid: 7669ba3f987b9954194d852ba0beeaf5, type: 2}
     currentStack: 3
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 11400000, guid: 9c94bea63c6cf274094642d18b82dc27, type: 2}
     currentStack: 12
+    isEquipped: 0
+    currentAmmo: 0
   - item: {fileID: 11400000, guid: c08331ebedf1ead448f58ec76b945bf1, type: 2}
     currentStack: 1
+    isEquipped: 0
+    currentAmmo: 0
   itemToBuy:
   - item: {fileID: 11400000, guid: 7669ba3f987b9954194d852ba0beeaf5, type: 2}
     currentStack: 1
+    isEquipped: 0
+    currentAmmo: 0
   itemPrefab: {fileID: 8446887303198283174, guid: e1ae7d71f21936b48976c363f0e7562c, type: 3}
 --- !u!33 &2323481939713066948
 MeshFilter:
@@ -176,6 +170,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -197,9 +193,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!136 &4337330141777098413
 CapsuleCollider:
@@ -224,6 +222,34 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2298238286725002560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728055035915776854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d886e1a9e1d942b09052eea6edfecd50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HumanoidEntity
+  deadMaterial: {fileID: 0}
+  entityStats:
+    entityName: 
+    male: 0
+    entityStats:
+      maxLife: 100
+      currentLife: 100
+      lifeRegen: 0
+      speed: 6
+      luck: 0
+      jumpForce: 4
+      oratory: 0
+    experienceDrop: 0
+    nbEnemyKill: 0
+    nbDeath: 0
+    money: 0
 --- !u!1 &2569439218032149621
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,6 +468,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -578,6 +605,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -714,6 +742,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -837,6 +866,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a72cd14f4f5a484c9244f88e44928fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onClosed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6709045434394672327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1567,6 +1599,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1831,28 +1864,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1890394830585159046, guid: 83ac1db7031be6a49b2b39708a0ec192, type: 3}
   m_PrefabInstance: {fileID: 2236175218429346203}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2023714326217384410 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 224565312678076481, guid: 83ac1db7031be6a49b2b39708a0ec192, type: 3}
-  m_PrefabInstance: {fileID: 2236175218429346203}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2997750499597496406 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3932306241417736653, guid: 83ac1db7031be6a49b2b39708a0ec192, type: 3}
-  m_PrefabInstance: {fileID: 2236175218429346203}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6445206216987564907 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5078236721891351280, guid: 83ac1db7031be6a49b2b39708a0ec192, type: 3}

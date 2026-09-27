@@ -6,7 +6,7 @@ namespace GOAP
 {
     public class GOAP_Planner
     {
-        public Queue<GOAP_Action> Plan(EntityInfo entity,GOAP_WorldState currentState, GOAP_Goal goal, List<GOAP_Action> availableActions)
+        public Queue<GOAP_Action> Plan(Entity entity,GOAP_WorldState currentState, GOAP_Goal goal, List<GOAP_Action> availableActions)
         {
             // Filtrer les actions pertinentes
             var usableActions = availableActions

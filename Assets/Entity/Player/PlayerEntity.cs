@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class PlayerEntity : EntityInfo
+public class PlayerEntity : HumanoidEntity
 {
     public float baseDamage = 10;
     public float workSpeed = 10;
@@ -44,7 +44,7 @@ public class PlayerEntity : EntityInfo
     }
     public void OnLifeChanged()
     {
-        GetComponentInChildren<PlayerLifeDisplayer>().UpdateLifeBar( entity.entityStats.currentLife,entity.entityStats.maxLife);
+        GetComponentInChildren<PlayerLifeDisplayer>().UpdateLifeBar( entityStats.entityStats.currentLife,entityStats.entityStats.maxLife);
     }
     
     public void PlayerOpenPauseMenuInput(InputAction.CallbackContext cxt)
@@ -69,10 +69,10 @@ public class PlayerEntity : EntityInfo
         }
     }
 
-    public override void TakeDamage(int pdamage, EntityInfo caster, int armorValue)
+    public override void TakeDamage(int pdamage, Entity caster, int armorValue)
     {
         base.TakeDamage(pdamage, caster, armorValue);
-        Stats stats = entity.entityStats;
+        Stats stats = entityStats.entityStats;
         stats.currentLife = (pdamage - armorValue) > 0 ? stats.currentLife - (pdamage - armorValue) : stats.currentLife;
         lifeChanged.Invoke();
         if(stats.currentLife <= 0)
@@ -80,7 +80,7 @@ public class PlayerEntity : EntityInfo
 
     }
 
-    protected override void Die(EntityInfo caster)
+    protected override void Die(Entity caster)
     {
         base.Die(caster);
         print("Player Died");

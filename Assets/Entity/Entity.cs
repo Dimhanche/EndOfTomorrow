@@ -1,16 +1,23 @@
-using System;
 using UnityEngine;
 
-[Serializable]
-public class Entity
+public class Entity : MonoBehaviour
 {
-        public string entityName;
-        public bool male;
-        public Stats entityStats;
-        public int experienceDrop;
-        public int nbEnemyKill;
-        public int nbDeath;
-        public int money;
+    public Material deadMaterial;
 
+    /// <summary>
+    /// This method is called when the entity takes damage.
+    /// </summary>
+    /// <param name="pdamage">Damage Taken</param>
+    /// <param name="caster">Damage Caster</param>
+    /// <param name="armorValue">Current Armor Value</param>
+    public virtual void TakeDamage(int pdamage,Entity caster,int armorValue)
+    {
+        Debug.Log($"Take damage {pdamage} from {caster.name} with armor value {armorValue}");
+    }
+
+    protected virtual void Die(Entity caster)
+    {
+        Debug.Log($"{name} has died by {caster.name}");
+    }
 
 }

@@ -30,7 +30,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void Attack()
     {
-        currentWeapon.Attack(ref cooldownAttack, (int)GetComponent<PlayerEntity>().baseDamage, GetComponent<EntityInfo>(), currentWeaponStack);
+        currentWeapon.Attack(ref cooldownAttack, (int)GetComponent<PlayerEntity>().baseDamage, GetComponent<Entity>(), currentWeaponStack);
     }
 
     private void Update()

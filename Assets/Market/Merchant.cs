@@ -7,8 +7,8 @@ public class Merchant : MonoBehaviour
     public UIWindow merchantCanvas;
     private InfoDisplayer _infoDisplayer;
 
-    public EntityInfo entityInfo;
-    private EntityInfo _playerEntityInfo;
+    public HumanoidEntity entity;
+    private PlayerEntity _playerEntity;
     private PlayerInventory _playerInventory;
 
     public ItemStack[] itemToSell;
@@ -19,11 +19,16 @@ public class Merchant : MonoBehaviour
     private void Start()
     {
         _infoDisplayer = merchantCanvas.GetComponent<InfoDisplayer>();
-        _playerEntityInfo = PlayerEntity.Instance;
-        _playerInventory = _playerEntityInfo.GetComponent<PlayerInventory>();
+        _playerEntity = PlayerEntity.Instance;
+        _playerInventory = _playerEntity.GetComponent<PlayerInventory>();
         if (merchantCanvas != null)
         {
             merchantCanvas.onClosed.AddListener(OnShopClosed);
+        }
+
+        if (!entity)
+        {
+            entity = GetComponent<HumanoidEntity>();
         }
     }
 
@@ -46,8 +51,8 @@ public class Merchant : MonoBehaviour
 
     public void DisplayMerchantInfo()
     {
-        _infoDisplayer.nameText.text = entityInfo.entity.entityName;
-        _infoDisplayer.moneyText.text = entityInfo.entity.money.ToString();
+        _infoDisplayer.nameText.text = entity.entityStats.entityName;
+        _infoDisplayer.moneyText.text = entity.entityStats.money.ToString();
         _infoDisplayer.ShowBuyMenu();
         _infoDisplayer.buyButton.onClick.AddListener(() => DisplayAllItems());
         _infoDisplayer.sellButton.onClick.AddListener(() => DisplayAllItems(true));
@@ -56,7 +61,7 @@ public class Merchant : MonoBehaviour
 
     private void MerchantInfoUpdater()
     {
-        _infoDisplayer.moneyText.text = entityInfo.entity.money.ToString();
+        _infoDisplayer.moneyText.text = entity.entityStats.money.ToString();
     }
     public void DisplayAllItems(bool merchantSelling = false)
     {
@@ -67,7 +72,7 @@ public class Merchant : MonoBehaviour
             foreach (ItemStack item in itemToBuy)
             {
                 GameObject itemGo = Instantiate(itemPrefab, _infoDisplayer.sellMenu.GetChild(0));
-                itemGo.GetComponent<ItemVisualizerButton>().SetItemToSold(item, entityInfo.entity.money,_playerInventory);
+                itemGo.GetComponent<ItemVisualizerButton>().SetItemToSold(item, entity.entityStats.money,_playerInventory);
                 itemGo.GetComponent<ItemVisualizerButton>().itemButton.onClick.AddListener(() => BuyItem(item));
             }
         }
@@ -77,7 +82,7 @@ public class Merchant : MonoBehaviour
             foreach (ItemStack item in itemToSell)
             {
                 GameObject itemGo = Instantiate(itemPrefab, _infoDisplayer.buyMenu.GetChild(0));
-                itemGo.GetComponent<ItemVisualizerButton>().SetItemToBuy(item, _playerEntityInfo.entity.money);
+                itemGo.GetComponent<ItemVisualizerButton>().SetItemToBuy(item, _playerEntity.entityStats.money);
                 itemGo.GetComponent<ItemVisualizerButton>().itemButton.onClick.AddListener(() => SellItem(item));
             }
         }
@@ -102,8 +107,8 @@ public class Merchant : MonoBehaviour
     private void BuyItem(ItemStack item)
     {
         item.currentStack++;
-        entityInfo.entity.money -= item.item.itemValue;
-        _playerEntityInfo.entity.money += item.item.itemValue;
+        entity.entityStats.money -= item.item.itemValue;
+        _playerEntity.entityStats.money += item.item.itemValue;
         _playerInventory.RemoveItem(item);
         MerchantInfoUpdater();
         DisplayAllItems(true);
@@ -116,8 +121,8 @@ public class Merchant : MonoBehaviour
     {
         item.currentStack--;
         print(item.currentStack);
-        entityInfo.entity.money += item.item.itemValue;
-        _playerEntityInfo.entity.money -= item.item.itemValue;
+        entity.entityStats.money += item.item.itemValue;
+        _playerEntity.entityStats.money -= item.item.itemValue;
         _playerInventory.AddItem(new ItemStack(item.item));
         MerchantInfoUpdater();
         DisplayAllItems();

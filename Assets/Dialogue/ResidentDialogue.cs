@@ -118,7 +118,7 @@ public class ResidentDialogue : MonoBehaviour, IInteract
 
     private void DisplayEntry(DialogueData.DialogueEntry entry)
     {
-        _displayDialogue.Display(entry.dialogueText, GetComponent<EntityInfo>().entity.entityName);
+        _displayDialogue.Display(entry.dialogueText, GetComponent<HumanoidEntity>().entityStats.entityName);
         ClearOldChoices();
         AddNewChoices(entry.choices);
     }

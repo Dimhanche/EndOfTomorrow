@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1237151472352235751}
-  - component: {fileID: 705047255041428871}
   - component: {fileID: 8794830746901072761}
   - component: {fileID: 1550822433777271299}
   - component: {fileID: 5194435570424854007}
   - component: {fileID: 9180823325097169816}
+  - component: {fileID: 6349121172464113521}
   m_Layer: 0
   m_Name: Resident
   m_TagString: Untagged
@@ -37,33 +37,6 @@ Transform:
   - {fileID: 8936141992624093582}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &705047255041428871
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1193564266426003568}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ebb80ed138b4224a8cd0d1b53227acd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entity:
-    entityName: SAMMMY
-    male: 1
-    entityStats:
-      maxLife: 0
-      currentLife: 0
-      lifeRegen: 0
-      speed: 1
-      luck: 0
-      jumpForce: 1
-      oratory: 1
-    experienceDrop: 0
-    nbEnemyKill: 0
-    nbDeath: 0
-    money: 1000
 --- !u!114 &8794830746901072761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,18 +50,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueWindow: {fileID: 5396997693614446317}
-  dialogues:
-  - sentence: Je ne suis qu'un simple PNJ
-    isLast: 1
-    responses:
-    - Ok
-    actions: 00000000
-  nameText: {fileID: 1117360395499957340}
-  dialogueText: {fileID: 4183318604895305168}
-  isShow: 0
+  questGived: 0
   responsePrefab: {fileID: 3083820239686671831, guid: e7985fbd96024074fb5af8994630f5f0, type: 3}
   responseParent: {fileID: 1630428132183052699}
+  currentDialogue:
+    dialogueEntries:
+    - dialogueText: je ne suis qu'un pnj
+      choices: []
+      isLast: 0
+      questToAdd: {fileID: 0}
   canTalk: 1
+  isShow: 0
+  indexCheckQuest: 0
+  indexAfterQuest: 0
 --- !u!33 &1550822433777271299
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -117,6 +91,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -138,9 +114,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!136 &9180823325097169816
 CapsuleCollider:
@@ -165,6 +143,34 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6349121172464113521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193564266426003568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d886e1a9e1d942b09052eea6edfecd50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HumanoidEntity
+  deadMaterial: {fileID: 0}
+  entityStats:
+    entityName: 
+    male: 0
+    entityStats:
+      maxLife: 100
+      currentLife: 100
+      lifeRegen: 0
+      speed: 6
+      luck: 0
+      jumpForce: 4
+      oratory: 0
+    experienceDrop: 0
+    nbEnemyKill: 0
+    nbDeath: 0
+    money: 0
 --- !u!1001 &908734997363444765
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -295,33 +301,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83ac1db7031be6a49b2b39708a0ec192, type: 3}
---- !u!114 &1117360395499957340 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 224565312678076481, guid: 83ac1db7031be6a49b2b39708a0ec192, type: 3}
-  m_PrefabInstance: {fileID: 908734997363444765}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &1630428132183052699 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1890394830585159046, guid: 83ac1db7031be6a49b2b39708a0ec192, type: 3}
   m_PrefabInstance: {fileID: 908734997363444765}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4183318604895305168 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3932306241417736653, guid: 83ac1db7031be6a49b2b39708a0ec192, type: 3}
-  m_PrefabInstance: {fileID: 908734997363444765}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5396997693614446317 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5078236721891351280, guid: 83ac1db7031be6a49b2b39708a0ec192, type: 3}

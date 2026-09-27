@@ -8,18 +8,18 @@ public class WeaponItem : Item
     public float range;
 
 
-    public virtual void Attack(ref float cooldownAttack,int baseDamage,EntityInfo entityInfo,ItemStack stack)
+    public virtual void Attack(ref float cooldownAttack,int baseDamage,Entity entity,ItemStack stack)
     {
         cooldownAttack = attackSpeed;
         RaycastHit hit;
         if(Physics.Raycast(Camera.main!.transform.position, Camera.main.transform.forward, out hit, range,LayerMask.GetMask("Default")))
         {
-            if(hit.collider.TryGetComponent(out EntityInfo entity))
+            if(hit.collider.TryGetComponent(out Entity entityScoped))
             {
-                if (!entity.isActiveAndEnabled)
+                if (!entityScoped.isActiveAndEnabled)
                     return;
-                Debug.Log("Shooting " + entity.name);
-                entity.TakeDamage(CalculateDamage(baseDamage),entityInfo,entity.GetComponent<EntityEquipment>().GetArmorValue());
+                Debug.Log("Shooting " + entityScoped.name);
+                entityScoped.TakeDamage(CalculateDamage(baseDamage),entity,entityScoped.GetComponent<EntityEquipment>().GetArmorValue());
             }
         }
     }

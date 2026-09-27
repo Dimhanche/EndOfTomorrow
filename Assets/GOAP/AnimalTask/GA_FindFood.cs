@@ -11,7 +11,7 @@ public class GA_FindFood:GOAP_Action
         Effects.Add("HasFoodTarget", true);
     }
 
-    public override GOAP_State Perform(EntityInfo entity)
+    public override GOAP_State Perform(Entity entity)
     {
         if (entity is not AnimalEntity animalEntity)
         {
@@ -29,7 +29,7 @@ public class GA_FindFood:GOAP_Action
         return GOAP_State.Failure;
     }
 
-    public override bool CheckProceduralPrecondition(EntityInfo entity)
+    public override bool CheckProceduralPrecondition(Entity entity)
     {
         return true;
     }

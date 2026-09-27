@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyEntity : EntityInfo
+public class EnemyEntity : HumanoidEntity
 {
     public float attackRange => GetComponent<EnemyEquipment>().weapon.range;
     public int damage => GetComponent<EnemyEquipment>().weapon.damage;
@@ -8,10 +8,10 @@ public class EnemyEntity : EntityInfo
     public float attackSpeed => GetComponent<EnemyEquipment>().weapon.attackSpeed;
     public float timeForSearching = 5.0f;
 
-    public override void TakeDamage(int pdamage,EntityInfo caster,int armorValue)
+    public override void TakeDamage(int pdamage,Entity caster,int armorValue)
     {
         base.TakeDamage(pdamage, caster, armorValue);
-        Stats stats = entity.entityStats;
+        Stats stats = entityStats.entityStats;
         stats.currentLife = (pdamage - armorValue) > 0 ? stats.currentLife - (pdamage - armorValue) : stats.currentLife;
         if(stats.currentLife <= 0)
         {
@@ -19,10 +19,10 @@ public class EnemyEntity : EntityInfo
         }
     }
 
-    protected override void Die(EntityInfo caster)
+    protected override void Die(Entity caster)
     {
         base.Die(caster);
-        caster.GetComponent<PlayerLeveling>().AddExperience(this.entity.experienceDrop);
+        caster.GetComponent<PlayerLeveling>().AddExperience(this.entityStats.experienceDrop);
         Destroy(gameObject);
     }
 }
