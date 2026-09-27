@@ -7,20 +7,21 @@ public class AnimalEntity : Entity
 {
     public AnimalStat animalStats;
     public float cooldownDespawn = 1.5f;
-    public GameObject foodTarget;
     public float foodDetectionRadius = 5f;
     public FoodType foodType= FoodType.None;
     public float hunger = 0f;
     [HideInInspector]public NavMeshAgent navMeshAgent;
+    [HideInInspector]public Vector3? wanderTarget;
+    [HideInInspector]public GameObject foodTarget;
+    protected bool isDead;
 
     #region GOAP
     protected static readonly GOAP_Planner planner = new GOAP_Planner();
-
     protected GOAP_Goal eatGoal;
     protected List<GOAP_Action> availableActions;
     protected Queue<GOAP_Action> plan;
     protected GOAP_Action currentAction;
-
+    protected GOAP_Goal wanderGoal;
 
     protected virtual void Awake()
     {
@@ -29,6 +30,8 @@ public class AnimalEntity : Entity
     }
     protected virtual void Update()
     {
+        if (isDead)
+            return;
     }
     #endregion
 
@@ -42,9 +45,14 @@ public class AnimalEntity : Entity
         }
     }
 
-    protected override void Die(Entity caster)
+    protected override void Die(Entity caster = null)
     {
         base.Die(caster);
+        navMeshAgent.isStopped = true;
+        navMeshAgent.velocity = Vector3.zero;
+        navMeshAgent.ResetPath();
+        navMeshAgent.enabled = false;
+        isDead = true;
         if(caster != null)
             caster.GetComponent<PlayerLeveling>().AddExperience(animalStats.experienceDrop);
         GetComponent<Lootable>().enabled = true;

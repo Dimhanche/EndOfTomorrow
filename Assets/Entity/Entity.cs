@@ -15,9 +15,10 @@ public class Entity : MonoBehaviour
         Debug.Log($"Take damage {pdamage} from {caster.name} with armor value {armorValue}");
     }
 
-    protected virtual void Die(Entity caster)
+    protected virtual void Die(Entity caster = null)
     {
-        Debug.Log($"{name} has died by {caster.name}");
+        if(caster != null)
+            Debug.Log($"{name} has died by {caster.name}");
     }
 
 }
