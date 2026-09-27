@@ -131,6 +131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Merchant
       objectReference: {fileID: 0}
+    - target: {fileID: 728055035915776854, guid: 8e912e93b0c5c0446b145c8100781e3e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2239588358816521584, guid: 8e912e93b0c5c0446b145c8100781e3e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.24
@@ -1032,11 +1036,11 @@ MonoBehaviour:
     currentLife: 0
     experienceDrop: 0
   cooldownDespawn: 1.5
-  foodTarget: {fileID: 0}
   foodDetectionRadius: 15
   foodType: 1
   hunger: 49
   navMeshAgent: {fileID: 0}
+  foodTarget: {fileID: 0}
   hungerRate: 1
   hungerThreshold: 50
 --- !u!195 &397703717
@@ -1058,7 +1062,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1
-  m_BaseOffset: 0.5
+  m_BaseOffset: 0.35
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!1 &410087039
@@ -2287,14 +2291,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 480597614513233470, guid: deec5523c219e21488cec6169b9bd6c1, type: 3}
-      propertyPath: items.Array.data[0].item
-      value: 
-      objectReference: {fileID: 11400000, guid: 6cbece3922dc92e468bdbf4e131aa8a9, type: 2}
-    - target: {fileID: 480597614513233470, guid: deec5523c219e21488cec6169b9bd6c1, type: 3}
-      propertyPath: items.Array.data[0].currentStack
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1958091616396018347, guid: deec5523c219e21488cec6169b9bd6c1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2411,14 +2407,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5592643612620992741, guid: deec5523c219e21488cec6169b9bd6c1, type: 3}
-      propertyPath: entityStats.money
-      value: 10000
-      objectReference: {fileID: 0}
-    - target: {fileID: 5592643612620992741, guid: deec5523c219e21488cec6169b9bd6c1, type: 3}
-      propertyPath: entityStats.entityName
-      value: loh
-      objectReference: {fileID: 0}
     - target: {fileID: 6247173366897886383, guid: deec5523c219e21488cec6169b9bd6c1, type: 3}
       propertyPath: m_UIInputModule
       value: 
@@ -2447,12 +2435,7 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9198280391953122078, guid: deec5523c219e21488cec6169b9bd6c1, type: 3}
-      propertyPath: weapon
-      value: 
-      objectReference: {fileID: 11400000, guid: 6cbece3922dc92e468bdbf4e131aa8a9, type: 2}
-    m_RemovedComponents:
-    - {fileID: 7967371927426634303, guid: deec5523c219e21488cec6169b9bd6c1, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2540,7 +2523,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 235663523730914218, guid: fb831feeb46e32446a45ac28a2489a9d, type: 3}
       propertyPath: entityStats.entityName
-      value: Jean Michelin de la cuenta
+      value: Jean Michelin
       objectReference: {fileID: 0}
     - target: {fileID: 306459479576374052, guid: fb831feeb46e32446a45ac28a2489a9d, type: 3}
       propertyPath: m_Name

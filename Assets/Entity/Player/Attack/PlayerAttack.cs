@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerAttack : MonoBehaviour
@@ -8,6 +9,8 @@ public class PlayerAttack : MonoBehaviour
     public float cooldownAttack;
     public float cooldownReload;
     private bool _canMove => GetComponent<PlayerEntity>().canMove;
+
+    public static UnityEvent<ItemStack> OnAttackEvent = new UnityEvent<ItemStack>();
 
     public void PlayerAttackInput(InputAction.CallbackContext ctx)
     {
@@ -25,12 +28,14 @@ public class PlayerAttack : MonoBehaviour
             // bullets left to reload with (ItemStack.Reload() will need them to actually refill).
             currentWeaponStack.Reload();
             cooldownReload = rangeWeapon.reloadTime;
+            OnAttackEvent?.Invoke(currentWeaponStack);
         }
     }
 
     private void Attack()
     {
         currentWeapon.Attack(ref cooldownAttack, (int)GetComponent<PlayerEntity>().baseDamage, GetComponent<Entity>(), currentWeaponStack);
+        OnAttackEvent?.Invoke(currentWeaponStack);
     }
 
     private void Update()

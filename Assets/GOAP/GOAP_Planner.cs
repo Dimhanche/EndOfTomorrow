@@ -41,7 +41,6 @@ namespace GOAP
                 if (n.Action != null)
                 {
                     plan.Enqueue(n.Action);
-                    Debug.Log("Action ajoutée au plan : " + n.Action.Name);
                 }
                 n = n.Parent;
             }

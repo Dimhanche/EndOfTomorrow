@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerEquipment : EntityEquipment
@@ -8,7 +9,7 @@ public class PlayerEquipment : EntityEquipment
     private PlayerInventory _playerInventory;
     public ItemStack weaponStack;
 
-
+    public static UnityEvent<ItemStack> OnEquipmentChanged = new UnityEvent<ItemStack>();
 
     private void Start()
     {
@@ -27,22 +28,24 @@ public class PlayerEquipment : EntityEquipment
     /// <summary>
     /// Equip Weapon
     /// </summary>
-    /// <param name="newWeapon">weapon To Equip</param>
-    /// <param name="stack">the exemplar being equipped</param>
+    /// <param name="newWeapon">Weapon To Equip</param>
+    /// <param name="stack">The exemplar being equipped</param>
     public void EquipWeapon(WeaponItem newWeapon, ItemStack stack)
     {
         weapon = newWeapon;
         weaponStack = stack;
+        OnEquipmentChanged?.Invoke(stack);
         _equipmentDisplayer.DisplayEquipment(stack);
     }
 
     /// <summary>
     /// Equip Armor
     /// </summary>
-    /// <param name="newArmor">armor To Equip</param>
-    /// <param name="stack">the exemplar being equipped</param>
+    /// <param name="newArmor">Armor to equip</param>
+    /// <param name="stack">The exemplar being equipped</param>
     public void EquipArmor(ArmorsItem newArmor, ItemStack stack)
     {
+        OnEquipmentChanged?.Invoke(stack);
         for (int i = 0; i < armor.Length; i++)
         {
             if (armor[i] == null || (armor[i].eArmorType == newArmor.eArmorType))
@@ -65,6 +68,11 @@ public class PlayerEquipment : EntityEquipment
         _playerInventory.RemoveStack(stack);
         if(stack.item is WeaponItem weaponItem)
         {
+            if (weapon != null)
+            {
+                UnequipItem(weaponStack);
+            }
+
             EquipWeapon(weaponItem, stack);
         }
         else if(stack.item is ArmorsItem armorItem)
@@ -107,6 +115,7 @@ public class PlayerEquipment : EntityEquipment
     /// <param name="stack">exemplar To Unequip</param>
     private void UnequipArmor(ItemStack stack)
     {
+        OnEquipmentChanged?.Invoke(stack);
         ArmorsItem item = stack.item as ArmorsItem;
         for (int i = 0; i < armor.Length; i++)
         {
@@ -123,10 +132,22 @@ public class PlayerEquipment : EntityEquipment
     /// Unequip Weapon
     /// </summary>
     /// <param name="stack">exemplar To Unequip</param>
-    private void UnequipWeapon(ItemStack stack)
+    private void UnequipWeapon(ItemStack item)
     {
+        Debug.Log("Unequipping Weapon: " + item.item.name);
+        //_playerInventory.AddItem(item);
+        OnEquipmentChanged?.Invoke(item);
         weapon = null;
         weaponStack = null;
-        _equipmentDisplayer.DisplayEquipment(stack, true);
+        _equipmentDisplayer.DisplayEquipment(item, true);
+    }
+
+    private void UnequipWeapon(Item item)
+    {
+        ItemStack stack = new ItemStack(item)
+        {
+            currentStack = 1
+        };
+        UnequipWeapon(stack);
     }
 }

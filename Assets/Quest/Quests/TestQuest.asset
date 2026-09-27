@@ -16,10 +16,14 @@ MonoBehaviour:
   questTitle: Kniiiiiife
   questDescription: Jean veut un couteau attrape le
   requiredItem:
-  - item: {fileID: 11400000, guid: c08331ebedf1ead448f58ec76b945bf1, type: 2}
+  - item: {fileID: 11400000, guid: 6cbece3922dc92e468bdbf4e131aa8a9, type: 2}
     currentStack: 1
+    isEquipped: 0
+    currentAmmo: 0
   rewardItem:
   - item: {fileID: 11400000, guid: d412b7117dc1a4a45877b3e9fef25d1b, type: 2}
     currentStack: 1
+    isEquipped: 0
+    currentAmmo: 0
   xpReward: 10
   isCompleted: 0
