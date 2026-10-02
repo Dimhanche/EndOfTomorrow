@@ -44,6 +44,7 @@ public class ItemActionSelector : MonoBehaviour
         _window.Show();
         itemActionObject.transform.position = itemPos+offest;
         _itemActionButton[0].interactable = true;
+        _itemActionButton[0].onClick.RemoveAllListeners();
         _itemStack = itemStack;
         if(usable)
         {

@@ -13,10 +13,10 @@ public class GA_RandomWalk : GOAP_Action
         Cost = 1;
     }
 
-    public override GOAP_State Perform(Entity entity)
+    public override EGOAP_State Perform(Entity entity)
     {
         if (entity is not AnimalEntity animal)
-            return GOAP_State.Failure;
+            return EGOAP_State.Failure;
 
         NavMeshAgent agent = animal.navMeshAgent;
 
@@ -25,7 +25,7 @@ public class GA_RandomWalk : GOAP_Action
             Vector2 c = Random.insideUnitCircle * Radius;
             Vector3 candidate = animal.transform.position + new Vector3(c.x, 0f, c.y);
             if (!NavMesh.SamplePosition(candidate, out NavMeshHit hit, 2f, NavMesh.AllAreas))
-                return GOAP_State.Failure;
+                return EGOAP_State.Failure;
 
             animal.wanderTarget = hit.position;
             agent.SetDestination(hit.position);
@@ -36,18 +36,18 @@ public class GA_RandomWalk : GOAP_Action
             if (agent.pathStatus == NavMeshPathStatus.PathInvalid)
             {
                 animal.wanderTarget = null;
-                return GOAP_State.Failure;
+                return EGOAP_State.Failure;
             }
 
             if (agent.remainingDistance <= Mathf.Max(agent.stoppingDistance, 0.5f))
             {
                 animal.wanderTarget = null;
                 agent.ResetPath();
-                return GOAP_State.Success;
+                return EGOAP_State.Success;
             }
         }
 
-        return GOAP_State.Running;
+        return EGOAP_State.Running;
     }
 
     public override bool CheckProceduralPrecondition(Entity entity) => true;

@@ -18,7 +18,7 @@ namespace GOAP
             return string.Join(", ", this.Select(kvp => $"{kvp.Key}: {kvp.Value}"));
         }
     }
-    public enum GOAP_State
+    public enum EGOAP_State
     {
         Success,
         Failure,

@@ -8,10 +8,10 @@ public class AnimalEntity : Entity
     public AnimalStat animalStats;
     public float cooldownDespawn = 1.5f;
     public float foodDetectionRadius = 5f;
-    public FoodType foodType= FoodType.None;
+    public EFoodType foodType= EFoodType.None;
     public float hunger = 0f;
     [HideInInspector]public NavMeshAgent navMeshAgent;
-    [HideInInspector]public Vector3? wanderTarget;
+    public Vector3? wanderTarget;
     [HideInInspector]public GameObject foodTarget;
     protected bool isDead;
 
@@ -72,7 +72,7 @@ public class AnimalEntity : Entity
     }
 }
 
-public enum FoodType
+public enum EFoodType
 {
     None,
     Plant,

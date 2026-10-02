@@ -54,10 +54,10 @@ public class Pig : AnimalEntity
 
         switch (currentAction.Perform(this))
         {
-            case GOAP_State.Success:
+            case EGOAP_State.Success:
                 currentAction = null;
                 break;
-            case GOAP_State.Failure:
+            case EGOAP_State.Failure:
                 currentAction = null;
                 plan = null;
                 break;

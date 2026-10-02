@@ -25,6 +25,7 @@ MonoBehaviour:
   damage: 15
   attackSpeed: 1
   range: 100
+  weapon: {fileID: 6548302519648743476, guid: 0601bd33b4a07e5458d71ff7aa2f56df, type: 3}
   ammoCapacity: 30
-  damagePerDistance: 0
+  damagePerDistance: 1
   reloadTime: 3

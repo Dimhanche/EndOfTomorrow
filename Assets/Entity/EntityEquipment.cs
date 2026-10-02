@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EntityEquipment : MonoBehaviour
@@ -10,7 +11,7 @@ public class EntityEquipment : MonoBehaviour
         int armorValue = 0;
         foreach (ArmorsItem item in armor)
         {
-            if (item != null)
+            if (item)
             {
                 armorValue += item.defense;
             }
@@ -18,3 +19,4 @@ public class EntityEquipment : MonoBehaviour
         return armorValue;
     }
 }
+

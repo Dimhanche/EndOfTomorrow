@@ -12,16 +12,16 @@ public class GA_Eat: GOAP_Action
         Effects.Add("IsHungry", false);
     }
 
-    public override GOAP_State Perform(Entity entity)
+    public override EGOAP_State Perform(Entity entity)
     {
        Debug.Log("Je mange !");
         if (entity is not AnimalEntity animalEntity)
         {
-            return GOAP_State.Failure;
+            return EGOAP_State.Failure;
         }
         animalEntity.hunger = animalEntity.animalStats.maxHunger;
         animalEntity.OnEat();
-        return GOAP_State.Success;
+        return EGOAP_State.Success;
     }
 
     public override bool CheckProceduralPrecondition(Entity entity)

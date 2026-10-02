@@ -4,17 +4,17 @@ using UnityEngine.InputSystem;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public WeaponItem currentWeapon => GetComponent<PlayerEquipment>().weapon;
-    private ItemStack currentWeaponStack => GetComponent<PlayerEquipment>().weaponStack;
+    public Weapon currentWeapon;
     public float cooldownAttack;
     public float cooldownReload;
     private bool _canMove => GetComponent<PlayerEntity>().canMove;
 
-    public static UnityEvent<ItemStack> OnAttackEvent = new UnityEvent<ItemStack>();
+    public static UnityEvent<Weapon> OnAttackEvent = new UnityEvent<Weapon>();
+    public static UnityEvent<Weapon> OnReloadEvent = new UnityEvent<Weapon>();
 
     public void PlayerAttackInput(InputAction.CallbackContext ctx)
     {
-        if(ctx.performed && currentWeapon && _canMove && cooldownAttack <= 0)
+        if(ctx.performed && currentWeapon != null && _canMove && cooldownAttack <= 0)
         {
             Attack();
         }
@@ -22,20 +22,20 @@ public class PlayerAttack : MonoBehaviour
 
     public void PlayerReloadInput(InputAction.CallbackContext ctx)
     {
-        if(ctx.performed && currentWeapon is RangeWeaponItem rangeWeapon && _canMove && cooldownReload <= 0)
+        if(ctx.performed && currentWeapon is RangeWeapon rangeWeapon && _canMove && cooldownReload <= 0)
         {
             // TODO: once bullet ItemStacks exist, bail out here if the inventory has no matching
             // bullets left to reload with (ItemStack.Reload() will need them to actually refill).
-            currentWeaponStack.Reload();
-            cooldownReload = rangeWeapon.reloadTime;
-            OnAttackEvent?.Invoke(currentWeaponStack);
+            rangeWeapon.Reload();
+            cooldownReload = rangeWeapon.weaponItem.reloadTime;
+            OnReloadEvent?.Invoke(currentWeapon);
         }
     }
 
     private void Attack()
     {
-        currentWeapon.Attack(ref cooldownAttack, (int)GetComponent<PlayerEntity>().baseDamage, GetComponent<Entity>(), currentWeaponStack);
-        OnAttackEvent?.Invoke(currentWeaponStack);
+        currentWeapon.Attack(ref cooldownAttack, (int)GetComponent<PlayerEntity>().baseDamage, GetComponent<Entity>());
+        OnAttackEvent?.Invoke(currentWeapon);
     }
 
     private void Update()

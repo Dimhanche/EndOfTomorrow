@@ -35,7 +35,7 @@ public class PlayerEntity : HumanoidEntity
     {
         lifeChanged.AddListener(OnLifeChanged);
         xpChanged.AddListener(OnXpChanged);
-        _windows = FindObjectsByType<UIWindow>(FindObjectsSortMode.None);
+        _windows = FindObjectsByType<UIWindow>();
     }
 
     public void OnXpChanged(int currentExperience, int nextLevelExperience)

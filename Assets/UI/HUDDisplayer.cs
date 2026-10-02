@@ -7,21 +7,24 @@ public class HUDDisplayer : MonoBehaviour
     public TextMeshProUGUI weaponAmmoInfoText;
     private void OnEnable()
     {
-        PlayerEquipment.OnEquipmentChanged.AddListener(DisplayRangedWeaponInfo);
+        PlayerEquipment.OnWeaponChanged.AddListener(DisplayRangedWeaponInfo);
         PlayerAttack.OnAttackEvent.AddListener(DisplayRangedWeaponInfo);
+        PlayerAttack.OnReloadEvent.AddListener(DisplayRangedWeaponInfo);
+
     }
 
     private void OnDisable()
     {
-        PlayerEquipment.OnEquipmentChanged.RemoveListener(DisplayRangedWeaponInfo);
+        PlayerEquipment.OnWeaponChanged.RemoveListener(DisplayRangedWeaponInfo);
         PlayerAttack.OnAttackEvent.RemoveListener(DisplayRangedWeaponInfo);
+        PlayerAttack.OnReloadEvent.RemoveListener(DisplayRangedWeaponInfo);
     }
 
-    private void DisplayRangedWeaponInfo(ItemStack weaponStack)
+    private void DisplayRangedWeaponInfo(Weapon currentWeapon)
     {
-        if (weaponStack.item is RangeWeaponItem weapon)
+        if (currentWeapon is RangeWeapon weapon)
         {
-            weaponAmmoInfoText.text = $"Ammo: {weaponStack.currentAmmo}/{weapon.ammoCapacity}";
+            weaponAmmoInfoText.text = $"Ammo: {weapon.ammountAmmo}/{weapon.weaponItem.ammoCapacity}";
         }
     }
 }

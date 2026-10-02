@@ -11,11 +11,11 @@ public class GA_GoFood: GOAP_Action
         Effects.Add("IsNearFood", true);
         Cost = 2;
     }
-    public override GOAP_State Perform(Entity entity)
+    public override EGOAP_State Perform(Entity entity)
     {
         if (entity is not AnimalEntity animalEntity)
         {
-            return GOAP_State.Failure;
+            return EGOAP_State.Failure;
         }
         NavMeshAgent agent = animalEntity.navMeshAgent;
         Vector3 target = animalEntity.foodTarget.transform.position;
@@ -23,16 +23,16 @@ public class GA_GoFood: GOAP_Action
         if (Vector3.Distance(animalEntity.transform.position, target) <= animalEntity.animalStats.eatDistance)
         {
             agent.ResetPath();
-            return GOAP_State.Success;
+            return EGOAP_State.Success;
         }
 
         if (!agent.hasPath || Vector3.Distance(agent.destination, target) > 0.1f)
             agent.SetDestination(target);
 
         if (!agent.pathPending && agent.pathStatus == NavMeshPathStatus.PathInvalid)
-            return GOAP_State.Failure;
+            return EGOAP_State.Failure;
 
-        return GOAP_State.Running;
+        return EGOAP_State.Running;
     }
 
     public override bool CheckProceduralPrecondition(Entity entity)
